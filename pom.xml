@@ -1,49 +1,63 @@
 <project>
-	<name>simulator</name>
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>simulador-tacan</artifactId>
-	<groupId>web-applications</groupId>
-	<parent>
-	    <groupId>org.springframework.boot</groupId>
-	    <artifactId>spring-boot-starter-parent</artifactId>
-	    <version>1.1.8.RELEASE</version>
-	</parent>
-	<dependencies>
-	    <dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-web</artifactId>
-	    </dependency>
+    <name>simulator</name>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>simulador-tacan</artifactId>
+    <groupId>web-applications</groupId>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.1.8.RELEASE</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+        <!-- MYSQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.14.8</version>
             <scope>provided</scope>
         </dependency>
-	</dependencies>
+    </dependencies>
 
-	<properties>
-	        <start-class>simulator.configuration.Application</start-class>
-	</properties>
+    <properties>
+            <start-class>simulator.configuration.Application</start-class>
+    </properties>
 
-	<build>
-	<plugins>
-	    <plugin>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-maven-plugin</artifactId>
-	    </plugin>
-	</plugins>
-	</build>
+    <build>
+    <plugins>
+        <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+    </build>
 
-	<repositories>
-	<repository>
-	    <id>spring-releases</id>
-	    <url>http://repo.spring.io/libs-release</url>
-	</repository>
-	</repositories>
-	<pluginRepositories>
-	<pluginRepository>
-	    <id>spring-releases</id>
-	    <url>http://repo.spring.io/libs-release</url>
-	</pluginRepository>
-	</pluginRepositories>
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>http://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>http://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
