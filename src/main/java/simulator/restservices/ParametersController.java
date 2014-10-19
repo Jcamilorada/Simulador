@@ -7,7 +7,7 @@ import simulator.domain.SystemParameter;
 import simulator.services.systemparameter.ISystemParameterService;
 
 @Controller
-@RequestMapping("/parameters")
+@RequestMapping("/parameter")
 public class ParametersController
 {
     private ISystemParameterService parameterService;
