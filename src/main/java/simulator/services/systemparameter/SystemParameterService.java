@@ -1,5 +1,6 @@
 package simulator.services.systemparameter;
 
+import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,8 @@ public class SystemParameterService implements ISystemParameterService
     @Autowired
     SystemParameterService(SystemParameterRepository systemParameterRepository)
     {
-        this.systemParameterRepository = systemParameterRepository;
+        this.systemParameterRepository = Preconditions.checkNotNull(
+                systemParameterRepository, "systemParameterRepository cannot be null");
     }
 
     public SystemParameter getSystemParameter(long id)
