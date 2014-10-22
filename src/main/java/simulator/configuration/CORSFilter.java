@@ -16,14 +16,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class CORSFilter implements Filter {
 
+    static final String ALLOW_ORIGIN_HEADER = "Access-Control-Allow-Origin";
+    static final String ALLOW_ORIGIN_HEADER_VALUE ="*";
+
+    static final String ALLOW_METHODS_HEADER = "Access-Control-Allow-Methods";
+    static final String ALLOW_METHODS_HEADER_VALUE = "POST, GET, OPTIONS, DELETE";
+
+    static final String MAX_AGE_HEADER = "Access-Control-Max-Age";
+    static final String MAX_AGE_HEADER_VALUE= "3600";
+
+    static final String ALLOW_HEADER = "Access-Control-Allow-Headers";
+    static final String ALLOW_HEADER_VALUE = "x-requested-with";
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException
     {
         HttpServletResponse response = (HttpServletResponse) res;
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        response.setHeader(ALLOW_ORIGIN_HEADER, ALLOW_ORIGIN_HEADER_VALUE);
+        response.setHeader(ALLOW_METHODS_HEADER, ALLOW_METHODS_HEADER_VALUE);
+        response.setHeader(MAX_AGE_HEADER, MAX_AGE_HEADER_VALUE);
+        response.setHeader(ALLOW_HEADER, ALLOW_HEADER_VALUE);
         chain.doFilter(req, res);
     }
 

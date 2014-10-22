@@ -5,8 +5,12 @@ This project is created using spring boot technology. The "Simulador" backend mo
 To run the project
 ------------------
 
-    1. mvn clean package on main project (the one with pom.xml)
-    2. java -jar /target/generated jar
+    1 Using maven and java command line.
+        a. mvn clean package on main project (the one with pom.xml)
+        b. java -jar /target/generated jar
+
+    2 Using maven
+        a. mvn spring-boot:run
 
 Technical Information
 ---------------------
