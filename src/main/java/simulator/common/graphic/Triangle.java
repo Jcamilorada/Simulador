@@ -42,17 +42,22 @@ public final class Triangle
     @Override
     public boolean equals(Object o)
     {
-        if (!(o instanceof Triangle))
+        if (o == this)
         {
-            return false;
+            return true;
         }
 
-        Triangle triangle = (Triangle)o;
-        Map<Long, Point> poinMap = this.getVertixMap();
+        if (o instanceof Triangle)
+        {
+            Triangle triangle = (Triangle)o;
+            Map<Long, Point> poinMap = this.getVertixMap();
 
-        return poinMap.containsKey(vertex1.getIndex()) &&
-            poinMap.containsKey(vertex2.getIndex()) &&
-            poinMap.containsKey(vertex3.getIndex());
+            return poinMap.containsKey(vertex1.getIndex()) &&
+                poinMap.containsKey(vertex2.getIndex()) &&
+                poinMap.containsKey(vertex3.getIndex());
+        }
+
+        return false;
     }
 
     @Override
