@@ -1,0 +1,41 @@
+package simulator.common.graphic;
+
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public final class PointsTable
+{
+    private Table<Double, Double, Point> pointsTable;
+
+    public PointsTable()
+    {
+        pointsTable = HashBasedTable.create();
+    }
+
+    public Point get(final double x, final double y)
+    {
+        return pointsTable.get(y, x);
+    }
+
+    public void put(final double x, final double y, final Point point)
+    {
+        pointsTable.put(y, x, point);
+    }
+
+    public List<Point> getPoints()
+    {
+        List<Point> pointList = new ArrayList<Point>(pointsTable.values());
+        Collections.sort(pointList);
+
+        return pointList;
+    }
+
+    public int size()
+    {
+        return pointsTable.values().size();
+    }
+}

@@ -1,6 +1,7 @@
 package simulator.services.graphic;
 
-import com.google.common.base.Preconditions;
+import org.springframework.stereotype.Component;
+import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Point;
 import simulator.common.graphic.Triangle;
 
@@ -8,35 +9,52 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 class TriangleMeshGenerator
 {
-    List<Triangle> getMesh(final Point[][] pointMatrix)
+    /**
+     * Return the list of {@code Triangle} based of point Matrix information.
+     *
+     * @param pointsTable
+     * @param deltaX
+     * @param deltaY
+     * @param maxX
+     * @param maxY
+     * @return
+     */
+    List<Triangle> getMesh(
+        final PointsTable pointsTable,
+        final double deltaX,
+        final double deltaY,
+        final double maxX,
+        final double maxY)
     {
-        Preconditions.checkNotNull(pointMatrix, "point Matrix cannot be null");
-
-        List<Triangle> triangles = new ArrayList<Triangle>(pointMatrix.length);
-
-        int matrixLength = pointMatrix.length -1;
-        for(int x =0; x < matrixLength; x++)
+        List<Triangle> triangles = new ArrayList<Triangle>(pointsTable.size());
+        for(double x = 0; x < maxX -1 ; x += deltaX)
         {
-            for (int y=0; y < matrixLength; y++)
+            for (double y = 0; y < maxY - 1; y += deltaY)
             {
-                triangles.addAll(generateTriangles(x, y, pointMatrix));
+                triangles.addAll(generateTriangles(x, y, deltaX, deltaY, pointsTable));
             }
         }
 
-        return  triangles;
+        return triangles;
     }
 
-    private List<Triangle> generateTriangles(final int x, final int y, final Point[][] pointMatrix)
+    private List<Triangle> generateTriangles(
+        final double x,
+        final double y,
+        final double deltaX,
+        final double deltaY,
+        final PointsTable dataPoints)
     {
-        Point point = pointMatrix[x][y];
-        Point upNeighbord = pointMatrix[x][y+1];
-        Point rightNeighbord = pointMatrix[x + 1][y];
-        Point rightUpNeighbord = pointMatrix[x + 1][y + 1];
+        Point point = dataPoints.get(x, y);
+        Point upNeighbor = dataPoints.get(x, y + deltaY);
+        Point rightNeighbor = dataPoints.get(x + deltaX, y);
+        Point rightUpNeighbor = dataPoints.get( x + deltaX, y + deltaY);
 
-        Triangle triangle1 = new Triangle(point, upNeighbord, rightNeighbord);
-        Triangle triangle2 = new Triangle(rightUpNeighbord, upNeighbord, rightNeighbord);
+        Triangle triangle1 = new Triangle(point, upNeighbor, rightNeighbor);
+        Triangle triangle2 = new Triangle(rightUpNeighbor, upNeighbor, rightNeighbor);
 
         return Arrays.asList(triangle1, triangle2);
     }

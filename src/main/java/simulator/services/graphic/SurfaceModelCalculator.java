@@ -1,9 +1,8 @@
 package simulator.services.graphic;
 
+import org.springframework.stereotype.Component;
+import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Point;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  Remifentanil and Propofol surface model calculator. The surface model calculates the PN (No response probability)
@@ -17,27 +16,28 @@ import java.util.List;
  z(x,y) = z: The no response probability.
 
  */
+@Component
 class SurfaceModelCalculator
 {
-    private static double epsilon = 0.0828D;
-    private static double gamma = 5.1550D;
+    private static double EPSILON = 0.0828D;
+    private static double GAMMA = 5.1550D;
 
-    public List<Point> generateDataPoints(
+    public PointsTable generateDataPoints(
         final double deltaX, final double deltaY, final double maxX, final double maxY)
     {
-        List<Point> points = new ArrayList<Point>();
+        PointsTable pointsTable = new PointsTable();
         int pointIndex = 0;
 
         for (double x = 0; x < maxX; x = x + deltaX)
         {
-            for (double y = 0; y < maxY; x = y + deltaY)
+            for (double y = 0; y < maxY; y = y + deltaY)
             {
                 Point point = new Point(x, y, caculatePNR(x, y), pointIndex);
-                points.add(point);
+                pointsTable.put(x, y, point);
+                pointIndex ++;
             }
         }
-
-        return  points;
+        return pointsTable;
     }
 
     /**
@@ -46,9 +46,10 @@ class SurfaceModelCalculator
      * @param y The propofol concentration ng/ml.
      * @return The no response probability.
      */
-    private double caculatePNR(final double x, final double y)
+    double caculatePNR(final double x, final double y)
     {
-        double operand = Math.pow((x * y * epsilon), gamma);
+
+        double operand = Math.pow((x * y * EPSILON), GAMMA);
         double z = operand / 1 + operand;
         return z;
     }

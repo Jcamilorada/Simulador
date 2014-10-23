@@ -2,52 +2,63 @@ package simulator.services.graphic;
 
 import org.junit.Assert;
 import org.junit.Test;
+import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Point;
 import simulator.common.graphic.Triangle;
 
 import java.util.List;
 
 /**
- * Data points representation of the unit test.
+ * Data points representation of the unit test. (2 rows 3 columns)
  *
- * p0_1 p1_1 p2_1
- * p0_0 p1_0 p2_0
+ * p5 p6
+ * p3 p4
+ * p1 p2
  */
 public class TriangleMeshGeneratorTest
 {
     private TriangleMeshGenerator testInstance = new TriangleMeshGenerator();
 
-    private Point point0_0 = new Point(0, 0, 0, 1);
-    private Point point1_0 = new Point(1, 0, 4, 2);
-    private Point point1_1 = new Point(1, 1, 5, 3);
-    private Point point0_1 = new Point(0, 1, 2, 4);
-    private Point point2_0 = new Point(2, 0, 5.5, 5);
-    private Point point2_1 = new Point(2, 1, 5.3, 6);
+    private Point point1 = createRandonPoint(1);
+    private Point point2 = createRandonPoint(2);
+    private Point point3 = createRandonPoint(3);
+    private Point point4 = createRandonPoint(4);
+    private Point point5 = createRandonPoint(5);
+    private Point point6 = createRandonPoint(6);
 
-    private Triangle triangle1 = new Triangle(point0_0, point1_0, point1_1);
-    private Triangle triangle2 = new Triangle(point0_0, point1_0, point1_1);
-    private Triangle triangle3 = new Triangle(point1_0, point2_0, point1_1);
-    private Triangle triangle4 = new Triangle(point1_1, point2_1, point2_0);
+    private final Triangle triangle1 = new Triangle(point1, point2, point3);
+    private final Triangle triangle2 = new Triangle(point3, point4, point5);
+    private final Triangle triangle3 = new Triangle(point3, point4, point6);
+    private final Triangle triangle4 = new Triangle(point4, point5, point6);
 
     @Test
     public void testGetMesh()
     {
-        Point[][] matrixPoint = new Point[2][2];
-        matrixPoint[0][0] =  point0_0;
-        matrixPoint[0][1] =  point0_1;
-        matrixPoint[1][0] =  point1_0;
-        matrixPoint[1][1] =  point1_1;
-        matrixPoint[1][0] =  point2_0;
-        matrixPoint[1][1] =  point2_1;
+        PointsTable pointsTable = new PointsTable();
 
-        List<Triangle> triangles =  testInstance.getMesh(matrixPoint);
-        Assert.assertEquals("The mesh should contain two triangles", 2, triangles.size());
+        pointsTable.put(0D, 0D, point1);
+        pointsTable.put(1D, 0D, point2);
+        pointsTable.put(0D, 1D, point3);
+        pointsTable.put(1D, 1D, point4);
+        pointsTable.put(0D, 2D, point5);
+        pointsTable.put(1D, 2D, point6);
+
+        List<Triangle> triangles =  testInstance.getMesh(pointsTable, 1, 1 , 2, 3);
+        Assert.assertEquals("The mesh should contain two triangles", 4, triangles.size());
         verifyTriangles(triangles);
     }
 
-    private void verifyTriangles(List<Triangle> triangles)
+    private void verifyTriangles(final List<Triangle> triangles)
     {
-        boolean isValid = triangles.contains(triangle1) && triangles.contains(triangle2);
+        boolean isValid = triangles.contains(triangle1) &&
+            triangles.contains(triangle2) &&
+            triangles.contains(triangle3) &&
+            triangles.contains(triangle4);
         Assert.assertTrue("Generated Triangle list is wrong", isValid);
+    }
+
+    private Point createRandonPoint(final int index)
+    {
+        return new Point(0 , 0, 0 , index);
     }
 }

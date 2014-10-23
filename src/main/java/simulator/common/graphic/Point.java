@@ -1,12 +1,12 @@
 package simulator.common.graphic;
 
+import com.google.common.primitives.Longs;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @EqualsAndHashCode
-public final class Point
+public final class Point implements Comparable<Point>
 {
     @Getter(AccessLevel.PUBLIC)
     private final double x;
@@ -23,5 +23,10 @@ public final class Point
         this.y = y;
         this.z = z;
         this.index = index;
+    }
+
+    public int compareTo(Point point)
+    {
+        return Longs.compare(this.index, point.index);
     }
 }
