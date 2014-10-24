@@ -2,28 +2,25 @@ package simulator.common.graphic;
 
 import com.google.common.primitives.Longs;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 @EqualsAndHashCode
+@AllArgsConstructor
 public final class Point implements Comparable<Point>
 {
     @Getter(AccessLevel.PUBLIC)
-    private final double x;
+    private final Double x;
     @Getter(AccessLevel.PUBLIC)
-    private final double y;
+    private final Double y;
     @Getter(AccessLevel.PUBLIC)
-    private final double z;
+    private final Double z;
     @Getter(AccessLevel.PUBLIC)
     private final long index;
-
-    public Point(final double x, final double y, final double z, final long index)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.index = index;
-    }
 
     public int compareTo(Point point)
     {

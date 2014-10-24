@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public final class Triangle
 {
@@ -63,10 +64,6 @@ public final class Triangle
     @Override
     public int hashCode()
     {
-        int result = 17;
-            result = result + vertex1.hashCode();
-            result = result + vertex2.hashCode();
-            result = result + vertex3.hashCode();
-        return  result;
+        return Objects.hash(vertex1, vertex2, vertex3);
     }
 }

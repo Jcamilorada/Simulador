@@ -1,10 +1,11 @@
-package simulator.services.graphic;
+package simulator.services.graphic.surfacemodel;
 
 import org.junit.Assert;
 import org.junit.Test;
-import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Point;
+import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
+import simulator.services.graphic.surfacemodel.TriangleMeshGenerator;
 
 import java.util.List;
 
@@ -59,6 +60,6 @@ public class TriangleMeshGeneratorTest
 
     private Point createRandonPoint(final int index)
     {
-        return new Point(0 , 0, 0 , index);
+        return new Point(0D , 0D, 0D , index);
     }
 }

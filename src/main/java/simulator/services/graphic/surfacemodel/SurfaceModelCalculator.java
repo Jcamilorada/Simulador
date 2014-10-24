@@ -1,5 +1,6 @@
-package simulator.services.graphic;
+package simulator.services.graphic.surfacemodel;
 
+import com.google.common.primitives.Doubles;
 import org.springframework.stereotype.Component;
 import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Point;
@@ -9,6 +10,8 @@ import simulator.common.graphic.Point;
  based on Remifentanil and Propofol concentrations.
 
  z(x, y) = (εxy)^ γ / 1 + (εxy)^ γ
+
+ z(x, y) = (0.0828 * x * y)^ 5.1550 / 1 + (0.0828 * x * y)^ 5.1550
 
  x: Remifentanil. The Remifentanil concentration μg/ml.
  y: Propofol. The propofol concentration ng/ml
@@ -22,7 +25,7 @@ class SurfaceModelCalculator
     private static double EPSILON = 0.0828D;
     private static double GAMMA = 5.1550D;
 
-    public PointsTable generateDataPoints(
+    PointsTable generateDataPoints(
         final double deltaX, final double deltaY, final double maxX, final double maxY)
     {
         PointsTable pointsTable = new PointsTable();
@@ -48,9 +51,8 @@ class SurfaceModelCalculator
      */
     double caculatePNR(final double x, final double y)
     {
-
         double operand = Math.pow((x * y * EPSILON), GAMMA);
-        double z = operand / 1 + operand;
-        return z;
+        double z = operand / (1 + operand);
+        return Math.round(z * 100)/100;
     }
 }

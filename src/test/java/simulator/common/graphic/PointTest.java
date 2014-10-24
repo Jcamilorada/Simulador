@@ -1,4 +1,4 @@
-package simulator.common;
+package simulator.common.graphic;
 
 import static junit.framework.TestCase.assertEquals;
 

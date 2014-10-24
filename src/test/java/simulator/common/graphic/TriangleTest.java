@@ -1,4 +1,4 @@
-package simulator.common;
+package simulator.common.graphic;
 
 import junit.framework.TestCase;
 import org.junit.Assume;

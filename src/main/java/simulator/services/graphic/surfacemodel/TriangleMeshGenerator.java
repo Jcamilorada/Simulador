@@ -1,4 +1,4 @@
-package simulator.services.graphic;
+package simulator.services.graphic.surfacemodel;
 
 import org.springframework.stereotype.Component;
 import simulator.common.graphic.PointsTable;
