@@ -6,11 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-
 @EqualsAndHashCode
 @AllArgsConstructor
+@SuppressWarnings("PMD.UnusedPrivateField")
 public final class Point implements Comparable<Point>
 {
     @Getter(AccessLevel.PUBLIC)

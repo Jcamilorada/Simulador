@@ -1,14 +1,12 @@
 package simulator.services.graphic.surfacemodel;
 
 import lombok.Data;
-import simulator.common.graphic.Point;
-import simulator.common.graphic.Triangle;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public final class SurfaceMeshDTO
 {
     private Metadata metadata = new Metadata();

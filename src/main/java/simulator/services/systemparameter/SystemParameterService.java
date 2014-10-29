@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import simulator.domain.SystemParameter;
 import simulator.persistence.SystemParameterRepository;
-import simulator.services.systemparameter.ISystemParameterService;
 
 @Component
 @Transactional

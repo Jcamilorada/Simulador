@@ -1,11 +1,9 @@
 package simulator.services.graphic.surfacemodel;
 
-import com.google.common.primitives.Doubles;
 import org.springframework.stereotype.Component;
 import simulator.common.graphic.Color;
-import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Point;
-import simulator.common.util.ColorUtils;
+import simulator.common.graphic.PointsTable;
 
 /**
  Remifentanil and Propofol surface model calculator. The surface model calculates the PN (No response probability)
@@ -70,7 +68,7 @@ class SurfaceModelCalculator
      */
     double caculatePNR(final double x, final double y)
     {
-        double operand = Math.pow((x * y * EPSILON), GAMMA);
+        double operand = Math.pow(x * y * EPSILON, GAMMA);
         double z = operand / (1 + operand);
         return z;
     }

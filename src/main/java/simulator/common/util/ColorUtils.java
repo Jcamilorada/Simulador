@@ -24,7 +24,7 @@ public class ColorUtils
             double f = h - (float) java.lang.Math.floor(h);
             double p = brightness * (1.0f - saturation);
             double q = brightness * (1.0f - saturation * f);
-            double t = brightness * (1.0f - (saturation * (1.0f - f)));
+            double t = brightness * (1.0f - saturation * (1.0f - f));
             switch ((int) h)
             {
                 case 0:

@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Data
 @Entity()
 @Table(name = "systemparameter")
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class SystemParameter implements Serializable
 {
     private static final long serialVersionUID = 1L;

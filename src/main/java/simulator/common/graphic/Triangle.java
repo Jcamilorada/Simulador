@@ -2,12 +2,9 @@ package simulator.common.graphic;
 
 import com.google.common.base.Preconditions;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.Getter;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -51,7 +48,7 @@ public final class Triangle
         if (o instanceof Triangle)
         {
             Triangle triangle = (Triangle)o;
-            Map<Long, Point> poinMap = this.getVertixMap();
+            Map<Long, Point> poinMap = triangle.getVertixMap();
 
             return poinMap.containsKey(vertex1.getIndex()) &&
                 poinMap.containsKey(vertex2.getIndex()) &&

@@ -4,6 +4,7 @@ import lombok.Data;
 import simulator.common.util.ColorUtils;
 
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class Color
 {
     private double h;
@@ -18,15 +19,5 @@ public class Color
         this.b = b;
 
         value = ColorUtils.HSBtoRGB(h, s, b);
-    }
-
-    /**
-     * Retrieves the integer RGB representation of the color.
-     *
-     * @return the RGB integer value.
-     */
-    public int getIntegerRepresentation()
-    {
-        return value;
     }
 }
