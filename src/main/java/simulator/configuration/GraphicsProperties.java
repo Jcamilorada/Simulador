@@ -1,23 +1,20 @@
 package simulator.configuration;
 
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import org.hibernate.validator.constraints.NotBlank;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+@Data
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "graphics")
 public class GraphicsProperties
 {
+    private double interval;
 
-    @Getter(AccessLevel.PUBLIC)
-    private Double interval;
+    private double maxRange;
 
-
-    @Getter(AccessLevel.PUBLIC)
-    private Double maxRange;
+    private double minRange;
 }

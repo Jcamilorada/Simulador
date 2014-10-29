@@ -8,13 +8,14 @@ import java.util.List;
 public class PointsTableTest
 {
     private PointsTable testInstance = new PointsTable();
+    private Color color;
 
     @Test
     public void testGetAndPut()
     {
         TestCase.assertNull("element should be null", testInstance.get(0,2));
 
-        final Point point = new Point(0d,0d,0d,1);
+        final Point point = new Point(0d,0d,0d,1, color);
         testInstance.put(0, 2, point);
 
         TestCase.assertEquals("wrong point", point, testInstance.get(0, 2));
@@ -23,9 +24,9 @@ public class PointsTableTest
     @Test
     public void testGetPoints()
     {
-        final Point point1 = new Point(0d,0d,0d,1);
-        final Point point2 = new Point(0d,0d,0d,2);
-        final Point point3 = new Point(0d,0d,0d,3);
+        final Point point1 = new Point(0d,0d,0d,1, color);
+        final Point point2 = new Point(0d,0d,0d,2, color);
+        final Point point3 = new Point(0d,0d,0d,3, color);
 
         testInstance.put(0d, 1d, point2);
         testInstance.put(0d, 0d, point1);

@@ -2,18 +2,20 @@ package simulator.services.graphic.surfacemodel;
 
 import junit.framework.TestCase;
 import org.junit.Test;
+import simulator.common.graphic.Color;
 import simulator.common.graphic.Point;
 import simulator.common.graphic.PointsTable;
 import simulator.services.graphic.surfacemodel.SurfaceModelCalculator;
 
 public class SurfaceModelCalculatorTest
 {
+    private Color color;
     private final SurfaceModelCalculator testInstance = new SurfaceModelCalculator();
 
     @Test
     public void testGenerateDataPoints()
     {
-        PointsTable table = testInstance.generateDataPoints(1, 1, 2, 2);
+        PointsTable table = testInstance.generateDataPoints(1, 1, 0, 0, 2, 2);
         verifyPointsTable(table);
     }
 
@@ -26,10 +28,10 @@ public class SurfaceModelCalculatorTest
         Point point3 = table.get(1, 0);
         Point point4 = table.get(1, 1);
 
-        Point expectedPoint1 = new Point(0D, 0D, testInstance.caculatePNR(0, 0), 1);
-        Point expectedPoint2 = new Point(0D, 1D, testInstance.caculatePNR(0, 1), 2);
-        Point expectedPoint3 = new Point(1D, 0D, testInstance.caculatePNR(1, 0), 3);
-        Point expectedPoint4 = new Point(1D, 1D, testInstance.caculatePNR(1, 1), 4);
+        Point expectedPoint1 = new Point(0D, 0D, testInstance.caculatePNR(0, 0), 1, color);
+        Point expectedPoint2 = new Point(0D, 1D, testInstance.caculatePNR(0, 1), 2, color);
+        Point expectedPoint3 = new Point(1D, 0D, testInstance.caculatePNR(1, 0), 3, color);
+        Point expectedPoint4 = new Point(1D, 1D, testInstance.caculatePNR(1, 1), 4, color);
 
 
         verifyPoint(expectedPoint1,  point1);

@@ -15,15 +15,16 @@ import simulator.common.graphic.Triangle;
 @RunWith(Theories.class)
 public class TriangleTest
 {
-    private Point point1 = new Point(10D, 20D, 30D, 1);
-    private Point point2 = new Point(10D, 20D, 30D, 2);
-    private Point point3 = new Point(10D, 20D, 30D, 3);
+    private static Color color = new Color(0d, 0d, 0d);
+    private Point point1 = new Point(10D, 20D, 30D, 1, color);
+    private Point point2 = new Point(10D, 20D, 30D, 2, color);
+    private Point point3 = new Point(10D, 20D, 30D, 3, color);
     
     @DataPoint
-    public static Point nullPoint = null;
+    public static  Point nullPoint = null;
 
     @DataPoint
-    public static Point validPoint = new Point(10D, 20D, 5D, 1);
+    public static Point validPoint = new Point(10D, 20D, 5D, 1, color);
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();

@@ -4,5 +4,5 @@ import simulator.domain.SystemParameter;
 
 public interface ISystemParameterService
 {
-    SystemParameter getSystemParameter(long id);
+    SystemParameter getSystemParameter(final long id);
 }

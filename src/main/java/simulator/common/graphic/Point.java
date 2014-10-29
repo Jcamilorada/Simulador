@@ -21,6 +21,8 @@ public final class Point implements Comparable<Point>
     private final Double z;
     @Getter(AccessLevel.PUBLIC)
     private final long index;
+    @Getter(AccessLevel.PUBLIC)
+    private final Color color;
 
     public int compareTo(Point point)
     {

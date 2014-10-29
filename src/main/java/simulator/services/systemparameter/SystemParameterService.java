@@ -21,7 +21,7 @@ public class SystemParameterService implements ISystemParameterService
                 systemParameterRepository, "systemParameterRepository cannot be null");
     }
 
-    public SystemParameter getSystemParameter(long id)
+    public SystemParameter getSystemParameter(final long id)
     {
         return systemParameterRepository.findById(1);
     }

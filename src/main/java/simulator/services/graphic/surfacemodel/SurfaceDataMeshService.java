@@ -36,8 +36,22 @@ public class SurfaceDataMeshService implements ISurfaceDataMeshService
     @Override
     public SurfaceMeshDTO getSurfaceMeshDTO()
     {
-        PointsTable points = surfaceModelCalculator.generateDataPoints(0.1D, 0.1D, 10, 10);
-        List<Triangle> triangles = triangleMeshGenerator.getMesh(points, 0.1D, 0.1D, 10, 10);
+        PointsTable points = surfaceModelCalculator.generateDataPoints(
+            graphicsProperties.getInterval(),
+            graphicsProperties.getInterval(),
+            graphicsProperties.getMinRange(),
+            graphicsProperties.getMinRange(),
+            graphicsProperties.getMaxRange(),
+            graphicsProperties.getMaxRange());
+
+        List<Triangle> triangles = triangleMeshGenerator.getMesh(
+            points,
+            graphicsProperties.getInterval(),
+            graphicsProperties.getInterval(),
+            graphicsProperties.getMinRange(),
+            graphicsProperties.getMinRange(),
+            graphicsProperties.getMaxRange(),
+            graphicsProperties.getMaxRange());
 
         SurfaceMeshDTO surfaceMeshDTO = surfaceMeshMapper.newSurfaceMeshDTO(points, triangles);
         return surfaceMeshDTO;

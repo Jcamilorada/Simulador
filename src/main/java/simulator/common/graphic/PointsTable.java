@@ -9,7 +9,7 @@ import java.util.List;
 
 public final class PointsTable
 {
-    private Table<Double, Double, Point> pointsTable;
+    private final Table<Double, Double, Point> pointsTable;
 
     public PointsTable()
     {
@@ -28,7 +28,7 @@ public final class PointsTable
 
     public List<Point> getPoints()
     {
-        List<Point> pointList = new ArrayList<Point>(pointsTable.values());
+        List<Point> pointList = new ArrayList<>(pointsTable.values());
         Collections.sort(pointList);
 
         return pointList;

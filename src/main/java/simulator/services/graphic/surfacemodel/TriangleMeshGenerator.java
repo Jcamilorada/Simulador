@@ -12,27 +12,19 @@ import java.util.List;
 @Component
 class TriangleMeshGenerator
 {
-    /**
-     * Return the list of {@code Triangle} based of point Matrix information.
-     *
-     * @param pointsTable
-     * @param deltaX
-     * @param deltaY
-     * @param maxX
-     * @param maxY
-     * @return
-     */
     List<Triangle> getMesh(
         final PointsTable pointsTable,
         final double deltaX,
         final double deltaY,
+        final double initX,
+        final double initY,
         final double maxX,
         final double maxY)
     {
         List<Triangle> triangles = new ArrayList<Triangle>(pointsTable.size());
-        for(double x = 0; x < maxX -1 ; x += deltaX)
+        for(double x = initX; x < maxX -1 ; x += deltaX)
         {
-            for (double y = 0; y < maxY - 1; y += deltaY)
+            for (double y = initY; y < maxY - 1; y += deltaY)
             {
                 triangles.addAll(generateTriangles(x, y, deltaX, deltaY, pointsTable));
             }
@@ -53,7 +45,7 @@ class TriangleMeshGenerator
         Point rightNeighbor = dataPoints.get(x + deltaX, y);
         Point rightUpNeighbor = dataPoints.get( x + deltaX, y + deltaY);
 
-        Triangle triangle1 = new Triangle(point, upNeighbor, rightNeighbor);
+        Triangle triangle1 = new Triangle(point, rightNeighbor, upNeighbor);
         Triangle triangle2 = new Triangle(rightUpNeighbor, upNeighbor, rightNeighbor);
 
         return Arrays.asList(triangle1, triangle2);

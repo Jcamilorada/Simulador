@@ -8,6 +8,8 @@ import simulator.common.graphic.Point;
 
 public class PointTest
 {
+    private Color color;
+
     @Test
     public void testConstructor()
     {
@@ -16,7 +18,7 @@ public class PointTest
         final double z = 7.0D;
         final int index = 2;
 
-        Point point = new Point(x , y , z, index);
+        Point point = new Point(x , y , z, index, color);
         assertEquals(x, point.getX());
         assertEquals(y, point.getY());
         assertEquals(z, point.getZ());
@@ -26,38 +28,38 @@ public class PointTest
     @Test
     public void testEqualsSameInstance()
     {
-        Point point = new Point(0D, 0D, 0D, 1);
+        Point point = new Point(0D, 0D, 0D, 1, color);
         TestCase.assertTrue("Equals should return true", point.equals(point));
     }
 
     @Test
     public void testEqualsWithDifferentClass()
     {
-        Point point = new Point(0D, 0D, 0D, 1);
+        Point point = new Point(0D, 0D, 0D, 1, color);
         TestCase.assertFalse("Equals should return true", point.equals(new String()));
     }
 
     @Test
     public void testEqualsWithDifferentInstanceSameData()
     {
-        Point point = new Point(0D, 0D, 0D, 1);
-        Point point2 = new Point(0D, 0D, 0D, 1);
+        Point point = new Point(0D, 0D, 0D, 1, color);
+        Point point2 = new Point(0D, 0D, 0D, 1, color);
         TestCase.assertTrue("Equals should return true", point.equals(point2));
     }
 
     @Test
     public void testHashCodeWithDifferentInstanceSameData()
     {
-        Point point = new Point(0D, 0D, 0D, 1);
-        Point point2 = new Point(0D, 0D, 0D, 1);
+        Point point = new Point(0D, 0D, 0D, 1, color);
+        Point point2 = new Point(0D, 0D, 0D, 1, color);
         TestCase.assertEquals("Equals should return true", point.hashCode(), point2.hashCode());
     }
 
     @Test
     public void testHashCodeWithDifferentInstanceDiferentData()
     {
-        Point point = new Point(1D, 2D, 3D, 1);
-        Point point2 = new Point(5D, 6D, 2D, 1);
+        Point point = new Point(1D, 2D, 3D, 1, color);
+        Point point2 = new Point(5D, 6D, 2D, 1, color);
         TestCase.assertNotSame("Equals should return true", point.hashCode(), point2.hashCode());
     }
 }
