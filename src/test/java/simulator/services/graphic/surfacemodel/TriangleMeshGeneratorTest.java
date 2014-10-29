@@ -29,9 +29,9 @@ public class TriangleMeshGeneratorTest
     private Point point6 = createRandonPoint(6);
 
     private final Triangle triangle1 = new Triangle(point1, point2, point3);
-    private final Triangle triangle2 = new Triangle(point3, point4, point5);
-    private final Triangle triangle3 = new Triangle(point3, point4, point6);
-    private final Triangle triangle4 = new Triangle(point4, point5, point6);
+    private final Triangle triangle2 = new Triangle(point4, point3, point2);
+    private final Triangle triangle3 = new Triangle(point3, point4, point5);
+    private final Triangle triangle4 = new Triangle(point6, point4, point5);
 
     @Test
     public void testGetMesh()
