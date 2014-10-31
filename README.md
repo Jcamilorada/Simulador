@@ -17,3 +17,7 @@ Technical Information
 * [Spring Boot.](http://projects.spring.io/spring-boot/) For self hosting application.
 * [Spring MVC.](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) For handle Json request. 
 * [Spring data Jpa.](http://projects.spring.io/spring-data-jpa/) For data access.
+
+Before Run the Project
+----------------------
+Install [Maven](http://maven.apache.org/download.cgi) For the dependency management.

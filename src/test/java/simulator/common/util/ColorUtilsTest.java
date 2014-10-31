@@ -11,4 +11,13 @@ public class ColorUtilsTest
         int color = ColorUtils.HSBtoRGB(0f, 0.5f, 0.5f);
         TestCase.assertEquals("wrong color int value", 8405056, color);
     }
+
+    @Test
+    public void testRgbToHex()
+    {
+        String hexRepresentation = ColorUtils.rgbToHex(100, 200, 50);
+        final String expected = "#64C832";
+
+        TestCase.assertEquals("wrong hexa representation", expected, hexRepresentation);
+    }
 }
