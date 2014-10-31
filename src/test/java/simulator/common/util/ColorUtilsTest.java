@@ -16,8 +16,9 @@ public class ColorUtilsTest
     public void testRgbToHex()
     {
         String hexRepresentation = ColorUtils.rgbToHex(100, 200, 50);
-        final String expected = "#64C832";
+        final String expected = "#64c832";
 
-        TestCase.assertEquals("wrong hexa representation", expected, hexRepresentation);
+        TestCase.assertEquals(
+            "wrong hexa representation", expected, hexRepresentation);
     }
 }
