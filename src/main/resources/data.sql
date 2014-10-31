@@ -1,0 +1,1 @@
+insert into systemparameter (id, name, description, value) values (1, 'test', 'test parameter', 'value');
