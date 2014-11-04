@@ -1,16 +1,29 @@
 package simulator.services.graphic.surfacemodel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import simulator.common.graphic.Point;
 import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
 import simulator.common.util.ColorUtils;
 import simulator.common.util.DoubleUtils;
+import simulator.configuration.GraphicsProperties;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 @Component
  class SurfaceMeshMapper
 {
+    private static long MESH_BIT_MASK = 128l;
+
+    private final GraphicsProperties graphicsProperties;
+
+    @Autowired
+    SurfaceMeshMapper(final GraphicsProperties graphicsProperties)
+    {
+        this.graphicsProperties = graphicsProperties;
+    }
+
     SurfaceMeshDTO newSurfaceMeshDTO(final PointsTable points, final List<Triangle> triangles)
     {
         SurfaceMeshDTO surfaceMeshDTO = new SurfaceMeshDTO();
@@ -27,7 +40,7 @@ import java.util.List;
 
     private List<Integer> getColorsList(final List<Point> pointList)
     {
-        List<Integer> colorsList = new ArrayList<Integer>();
+        List<Integer> colorsList = new ArrayList<>(pointList.size());
         for (Point point : pointList)
         {
             colorsList.add(point.getColor().getValue());
@@ -37,22 +50,22 @@ import java.util.List;
 
     private List<Double> getVertexList(final List<Point> pointList)
     {
-        List<Double> vertexList = new ArrayList<Double>();
+        List<Double> vertexList = new ArrayList<>(pointList.size());
         for (Point point : pointList)
         {
-            vertexList.add(DoubleUtils.roundDouble(point.getX(), 4) * 5);
-            vertexList.add(DoubleUtils.roundDouble(point.getY(), 4) * 5);
-            vertexList.add(DoubleUtils.roundDouble(point.getZ(), 4) * 10);
+            vertexList.add(DoubleUtils.roundDouble(point.getX(), 4) * graphicsProperties.getXFactor());
+            vertexList.add(DoubleUtils.roundDouble(point.getY(), 4) * graphicsProperties.getYFactor());
+            vertexList.add(DoubleUtils.roundDouble(point.getZ(), 4) * graphicsProperties.getZFactor());
         }
         return vertexList;
     }
 
-    public List<Long> getTriangleList(final List<Triangle> triangleList)
+    private List<Long> getTriangleList(final List<Triangle> triangleList)
     {
         List<Long> vertexList = new ArrayList<>();
         for (Triangle point : triangleList)
         {
-            vertexList.add(128l);
+            vertexList.add(MESH_BIT_MASK);
             //Faces
             vertexList.add(point.getVertex1().getIndex());
             vertexList.add(point.getVertex2().getIndex());
@@ -63,5 +76,23 @@ import java.util.List;
             vertexList.add(point.getVertex3().getIndex());
         }
         return vertexList;
+    }
+
+    private double getXValue(final Point point)
+    {
+        double value = DoubleUtils.roundDouble(point.getX(), 4) * graphicsProperties.getXFactor();
+        return value - graphicsProperties.getMinRange();
+    }
+
+    private double getYValue(final Point point)
+    {
+        double value = DoubleUtils.roundDouble(point.getY(), 4) * graphicsProperties.getYFactor();
+        return value - graphicsProperties.getMinRange();
+    }
+
+    private double getZValue(final Point point)
+    {
+        double value = DoubleUtils.roundDouble(point.getZ(), 4) * graphicsProperties.getZFactor();
+        return value;
     }
 }

@@ -18,4 +18,13 @@ public class GraphicsProperties
     private double maxRange;
 
     private double minRange;
+
+    /* x Factor used to change x values in the mesh. */
+    private int xFactor;
+
+    /* y Factor used to change x values in the mesh. */
+    private int yFactor;
+
+    /* z Factor used to change x values in the mesh. */
+    private int zFactor;
 }
