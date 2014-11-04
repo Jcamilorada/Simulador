@@ -53,9 +53,9 @@ import java.util.List;
         List<Double> vertexList = new ArrayList<>(pointList.size());
         for (Point point : pointList)
         {
-            vertexList.add(DoubleUtils.roundDouble(point.getX(), 4) * graphicsProperties.getXFactor());
-            vertexList.add(DoubleUtils.roundDouble(point.getY(), 4) * graphicsProperties.getYFactor());
-            vertexList.add(DoubleUtils.roundDouble(point.getZ(), 4) * graphicsProperties.getZFactor());
+            vertexList.add(getXValue(point));
+            vertexList.add(getYValue(point));
+            vertexList.add(getZValue(point));
         }
         return vertexList;
     }
