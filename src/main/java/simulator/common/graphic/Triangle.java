@@ -19,17 +19,14 @@ public final class Triangle
 
     public Triangle(final Point vertex1, final Point vertex2, final Point vertex3)
     {
-        this.vertex1 =
-            Preconditions.checkNotNull(vertex1, "vertex1 cannot be null");
-        this.vertex2 =
-            Preconditions.checkNotNull(vertex2, "vertex2 cannot be null");
-        this.vertex3 =
-            Preconditions.checkNotNull(vertex3, "vertex3 cannot be null");
+        this.vertex1 = Preconditions.checkNotNull(vertex1, "vertex1 cannot be null");
+        this.vertex2 = Preconditions.checkNotNull(vertex2, "vertex2 cannot be null");
+        this.vertex3 = Preconditions.checkNotNull(vertex3, "vertex3 cannot be null");
     }
 
     private Map<Long, Point> getVertixMap()
     {
-        Map<Long, Point> pointMap  = new HashMap<Long, Point>(3);
+        Map<Long, Point> pointMap = new HashMap<Long, Point>(3);
         pointMap.put(vertex1.getIndex(), vertex1);
         pointMap.put(vertex2.getIndex(), vertex2);
         pointMap.put(vertex3.getIndex(), vertex3);
@@ -47,7 +44,7 @@ public final class Triangle
 
         if (o instanceof Triangle)
         {
-            Triangle triangle = (Triangle)o;
+            Triangle triangle = (Triangle) o;
             Map<Long, Point> poinMap = triangle.getVertixMap();
 
             return poinMap.containsKey(vertex1.getIndex()) &&

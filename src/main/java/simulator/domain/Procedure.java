@@ -10,17 +10,14 @@ import java.io.Serializable;
 
 @Data
 @Entity()
-@Table(name = "parameters")
-public class SystemParameter implements Serializable
+@Table(name = "procedures")
+public class Procedure implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private long id;
+    private String code;
+
     @Column
     private String name;
-    @Column
-    private String description;
-    @Column
-    private String value;
 }

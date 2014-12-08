@@ -17,8 +17,7 @@ public class ColorUtils
         if (saturation == 0)
         {
             r = g = b = (int) (brightness * 255.0f + 0.5f);
-        }
-        else
+        } else
         {
             double h = (hue - (float) Math.floor(hue)) * 6.0f;
             double f = h - (float) java.lang.Math.floor(h);
@@ -58,8 +57,7 @@ public class ColorUtils
                     b = (int) (q * 255.0f + 0.5f);
                     break;
                 default:
-                    throw new RuntimeException(
-                        "Something went wrong when converting from HSV to RGB. Input was " + hue + ", " + saturation + ", " + brightness);
+                    throw new RuntimeException("Something went wrong when converting from HSV to RGB. Input was " + hue + ", " + saturation + ", " + brightness);
             }
         }
 

@@ -16,8 +16,7 @@ public class SystemParameterService implements ISystemParameterService
     @Autowired
     SystemParameterService(SystemParameterRepository systemParameterRepository)
     {
-        this.systemParameterRepository = Preconditions.checkNotNull(
-                systemParameterRepository, "systemParameterRepository cannot be null");
+        this.systemParameterRepository = Preconditions.checkNotNull(systemParameterRepository, "systemParameterRepository cannot be null");
     }
 
     public SystemParameter getSystemParameter(final long id)

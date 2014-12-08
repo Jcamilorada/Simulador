@@ -21,8 +21,8 @@ public class ParametersControllerTest
     @Mock
     ISystemParameterService mockSystemParameterService;
 
-    private static final int PARAMETER_ID=1;
-    private static final String PARAMETER_NAME="PARAMETER_NAME";
+    private static final int PARAMETER_ID = 1;
+    private static final String PARAMETER_NAME = "PARAMETER_NAME";
 
     private ParametersController testInstance;
 
@@ -39,18 +39,12 @@ public class ParametersControllerTest
         testInstance = new ParametersController(mockSystemParameterService);
         mockMvc = standaloneSetup(testInstance).build();
 
-        when(mockSystemParameterService.getSystemParameter(PARAMETER_ID))
-            .thenReturn(systemParameter);
+        when(mockSystemParameterService.getSystemParameter(PARAMETER_ID)).thenReturn(systemParameter);
     }
 
     @Test
     public void testGetParameter() throws Exception
     {
-        mockMvc.perform(get("/parameter/1")
-            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$.id").value(PARAMETER_ID))
-            .andExpect(jsonPath("$.name").value(PARAMETER_NAME));
+        mockMvc.perform(get("/parameters/1").accept(MediaType.parseMediaType("application/json;charset=UTF-8"))).andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8")).andExpect(jsonPath("$.id").value(PARAMETER_ID)).andExpect(jsonPath("$.name").value(PARAMETER_NAME));
     }
 }

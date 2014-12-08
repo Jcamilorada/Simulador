@@ -1,8 +1,8 @@
 package simulator.services.graphic.surfacemodel;
 
 import org.springframework.stereotype.Component;
-import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Point;
+import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
 
 import java.util.ArrayList;
@@ -13,16 +13,10 @@ import java.util.List;
 class TriangleMeshGenerator
 {
     List<Triangle> getMesh(
-        final PointsTable pointsTable,
-        final double deltaX,
-        final double deltaY,
-        final double initX,
-        final double initY,
-        final double maxX,
-        final double maxY)
+        final PointsTable pointsTable, final double deltaX, final double deltaY, final double initX, final double initY, final double maxX, final double maxY)
     {
         List<Triangle> triangles = new ArrayList<Triangle>(pointsTable.size());
-        for(double x = initX; x < maxX -1 ; x += deltaX)
+        for (double x = initX; x < maxX - 1; x += deltaX)
         {
             for (double y = initY; y < maxY - 1; y += deltaY)
             {
@@ -34,16 +28,12 @@ class TriangleMeshGenerator
     }
 
     private List<Triangle> generateTriangles(
-        final double x,
-        final double y,
-        final double deltaX,
-        final double deltaY,
-        final PointsTable dataPoints)
+        final double x, final double y, final double deltaX, final double deltaY, final PointsTable dataPoints)
     {
         Point point = dataPoints.get(x, y);
         Point upNeighbor = dataPoints.get(x, y + deltaY);
         Point rightNeighbor = dataPoints.get(x + deltaX, y);
-        Point rightUpNeighbor = dataPoints.get( x + deltaX, y + deltaY);
+        Point rightUpNeighbor = dataPoints.get(x + deltaX, y + deltaY);
 
         Triangle triangle1 = new Triangle(point, rightNeighbor, upNeighbor);
         Triangle triangle2 = new Triangle(rightUpNeighbor, upNeighbor, rightNeighbor);

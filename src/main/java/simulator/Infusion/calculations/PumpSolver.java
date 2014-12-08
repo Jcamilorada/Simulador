@@ -1,8 +1,8 @@
-package simulator.domain;
+package simulator.Infusion.calculations;
 
 import com.google.common.base.Preconditions;
 import lombok.Getter;
-import simulator.domain.model.IModel;
+import simulator.Infusion.IModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +11,8 @@ import java.util.List;
 /**
  * Created by alevalv on 11/8/14.
  */
-public class PumpSolver {
+public class PumpSolver
+{
     public static final int MAXIMUM_TIME = 2700;
     public static final double EPSILON = 0.005D; //threshold to consider two numbers equal
     public static final int RECALCULATE_DELTA = 20;
@@ -29,66 +30,48 @@ public class PumpSolver {
         lambda.add(model.getK(4, 1));
         if (model.getK(3, 1) > 0D)
         {
-            plasmaCoefficients[0] =
-                (model.getK(2, 1) - lambda.get(0)) * (model.getK(3, 1) - lambda.get(0)) /
+            plasmaCoefficients[0] = (model.getK(2, 1) - lambda.get(0)) * (model.getK(3, 1) - lambda.get(0)) /
                 (lambda.get(0) - lambda.get(1)) /
                 (lambda.get(0) - lambda.get(2)) /
                 model.getCentralVolume() / lambda.get(0);
-            plasmaCoefficients[1] =
-                (model.getK(2, 1) - lambda.get(1)) * (model.getK(3, 1) - lambda.get(1)) /
+            plasmaCoefficients[1] = (model.getK(2, 1) - lambda.get(1)) * (model.getK(3, 1) - lambda.get(1)) /
                 (lambda.get(1) - lambda.get(0)) /
                 (lambda.get(1) - lambda.get(2)) /
                 model.getCentralVolume() / lambda.get(1);
-            plasmaCoefficients[2] =
-                (model.getK(2, 1) - lambda.get(2)) * (model.getK(3, 1) - lambda.get(2)) /
+            plasmaCoefficients[2] = (model.getK(2, 1) - lambda.get(2)) * (model.getK(3, 1) - lambda.get(2)) /
                 (lambda.get(2) - lambda.get(1)) /
                 (lambda.get(2) - lambda.get(0)) /
                 model.getCentralVolume() / lambda.get(2);
-            effectSiteCoefficients[0] =
-                plasmaCoefficients[0] / (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
-            effectSiteCoefficients[1] =
-                plasmaCoefficients[1] / (model.getK(4, 1) - lambda.get(1)) * model.getK(4, 1);
-            effectSiteCoefficients[2] =
-                plasmaCoefficients[2] / (model.getK(4, 1) - lambda.get(2)) * model.getK(4, 1);
-            effectSiteCoefficients[3] =
-                (model.getK(4, 1) - model.getK(2, 1)) * (model.getK(4, 1) - model.getK(3, 1)) /
+            effectSiteCoefficients[0] = plasmaCoefficients[0] / (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
+            effectSiteCoefficients[1] = plasmaCoefficients[1] / (model.getK(4, 1) - lambda.get(1)) * model.getK(4, 1);
+            effectSiteCoefficients[2] = plasmaCoefficients[2] / (model.getK(4, 1) - lambda.get(2)) * model.getK(4, 1);
+            effectSiteCoefficients[3] = (model.getK(4, 1) - model.getK(2, 1)) * (model.getK(4, 1) - model.getK(3, 1)) /
                 (lambda.get(0) - model.getK(4, 1)) /
                 (lambda.get(1) - model.getK(4, 1)) /
                 (lambda.get(2) - model.getK(4, 1)) / model.getCentralVolume();
-        }
-        else
+        } else
         {
             if (model.getK(2, 1) > 0)
             {
-                plasmaCoefficients[0] =
-                    (model.getK(2, 1) - lambda.get(0)) /
+                plasmaCoefficients[0] = (model.getK(2, 1) - lambda.get(0)) /
                     (lambda.get(1) - lambda.get(0)) /
                     model.getCentralVolume() / lambda.get(0);
-                    plasmaCoefficients[1] =
-                    (model.getK(2, 1) - lambda.get(1)) /
+                plasmaCoefficients[1] = (model.getK(2, 1) - lambda.get(1)) /
                     (lambda.get(0) - lambda.get(1)) /
                     model.getCentralVolume() / lambda.get(1);
                 plasmaCoefficients[2] = 0;
-                effectSiteCoefficients[0] =
-                    plasmaCoefficients[0] /
-                    (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
-                effectSiteCoefficients[1] =
-                    plasmaCoefficients[1] /
-                    (model.getK(4, 1) - lambda.get(1)) * model.getK(4, 1);
+                effectSiteCoefficients[0] = plasmaCoefficients[0] / (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
+                effectSiteCoefficients[1] = plasmaCoefficients[1] / (model.getK(4, 1) - lambda.get(1)) * model.getK(4, 1);
                 effectSiteCoefficients[2] = 0;
-                effectSiteCoefficients[3] =
-                    (model.getK(2, 1) - model.getK(4, 1)) /
+                effectSiteCoefficients[3] = (model.getK(2, 1) - model.getK(4, 1)) /
                     (lambda.get(0) - model.getK(4, 1)) /
                     (lambda.get(1) - model.getK(4, 1)) / model.getCentralVolume();
-            }
-            else
+            } else
             {
                 plasmaCoefficients[0] = 1 / lambda.get(0) / model.getCentralVolume();
                 plasmaCoefficients[1] = 0;
                 plasmaCoefficients[2] = 0;
-                effectSiteCoefficients[0] =
-                    plasmaCoefficients[0] /
-                    (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
+                effectSiteCoefficients[0] = plasmaCoefficients[0] / (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
                 effectSiteCoefficients[1] = 0;
                 effectSiteCoefficients[2] = 0;
                 effectSiteCoefficients[3] = 1 / (lambda.get(0) - model.getK(4, 1)) / model.getCentralVolume();
@@ -97,8 +80,7 @@ public class PumpSolver {
     }
 
     public int solve(
-            final double desiredConcentration,
-            final int timeLimit)
+        final double desiredConcentration, final int timeLimit)
     {
         PumpStatus pumpStatus = new PumpStatus(MAXIMUM_TIME);
 
@@ -113,46 +95,30 @@ public class PumpSolver {
     }
 
     private int findDesiredConcentration(
-        final double l1,
-        final double l2,
-        final double l3,
-        final double l4,
-        final double desiredConcentration,
-        final PumpStatus oldPumpStatus,
-        final int delta)
+        final double l1, final double l2, final double l3, final double l4, final double desiredConcentration, final PumpStatus oldPumpStatus, final int delta)
     {
         PumpStatus pumpStatus = new PumpStatus(oldPumpStatus, delta);
         calculateConcentrationWithoutPumping(l1, l2, l3, l4, pumpStatus);
         if (pumpStatus.areWeThereYet(desiredConcentration))
         {
             return findDesiredConcentration(l1, l2, l3, l4, desiredConcentration, oldPumpStatus, delta * 2);
-        }
-        else
+        } else
         {
-            return findDesiredConcentrationSecondStep(
-                l1, l2, l3, l4, desiredConcentration, oldPumpStatus, delta - 1);
+            return findDesiredConcentrationSecondStep(l1, l2, l3, l4, desiredConcentration, oldPumpStatus, delta - 1);
         }
     }
 
     private int findDesiredConcentrationSecondStep(
-        final double l1,
-        final double l2,
-        final double l3,
-        final double l4,
-        final double desiredConcentration,
-        final PumpStatus oldPumpStatus,
-        final int delta)
+        final double l1, final double l2, final double l3, final double l4, final double desiredConcentration, final PumpStatus oldPumpStatus, final int delta)
     {
         PumpStatus pumpStatus = new PumpStatus(oldPumpStatus, delta);
         calculateConcentrationWithoutPumping(l1, l2, l3, l4, pumpStatus);
         if (pumpStatus.areWeThereYet(desiredConcentration))
         {
             return pumpStatus.iterator;
-        }
-        else
+        } else
         {
-            return findDesiredConcentrationSecondStep(
-                l1, l2, l3, l4, desiredConcentration, oldPumpStatus, delta - 1);
+            return findDesiredConcentrationSecondStep(l1, l2, l3, l4, desiredConcentration, oldPumpStatus, delta - 1);
         }
     }
 
@@ -170,27 +136,16 @@ public class PumpSolver {
             pumpStatus.plasmaUdf.add(temp1 + temp2 + temp3);
         }
     }
+
     private void calculateConcentrationWhenPumping(
-        final double l1,
-        final double l2,
-        final double l3,
-        final double l4,
-        final double desiredConcentration,
-        final int timeLimit,
-        final PumpStatus status)
+        final double l1, final double l2, final double l3, final double l4, final double desiredConcentration, final int timeLimit, final PumpStatus status)
     {
-        while(status.areWeThereYet(desiredConcentration) && status.iterator < timeLimit)
+        while (status.areWeThereYet(desiredConcentration) && status.iterator < timeLimit)
         {
-            status.storeStatus(
-            status.getTemp1() * l1 + effectSiteCoefficients[0] * (1 - l1),
-            status.getTemp2() * l2 + effectSiteCoefficients[1] * (1 - l2),
-            status.getTemp3() * l3 + effectSiteCoefficients[2] * (1 - l3),
-            status.getTemp4() * l4 + effectSiteCoefficients[3] * (1 - l4));
+            status.storeStatus(status.getTemp1() * l1 + effectSiteCoefficients[0] * (1 - l1), status.getTemp2() * l2 + effectSiteCoefficients[1] * (1 - l2), status.getTemp3() * l3 + effectSiteCoefficients[2] * (1 - l3), status.getTemp4() * l4 + effectSiteCoefficients[3] * (1 - l4));
             if (status.iterator < timeLimit)
             {
-                throw new IllegalArgumentException(
-                    String.format(
-                        "The needed amount is not achievable in '%d' seconds", timeLimit));
+                throw new IllegalArgumentException(String.format("The needed amount is not achievable in '%d' seconds", timeLimit));
             }
         }
     }
@@ -202,13 +157,8 @@ public class PumpSolver {
         do
         {
             prior = status.getEffectSiteUdf();
-            status.storeStatus(
-                status.getTemp1() * l1,
-                status.getTemp2() * l2,
-                status.getTemp3() * l3,
-                status.getTemp4() * l4);
-        }
-        while (prior < status.getEffectSiteUdf() && status.iterator < MAXIMUM_TIME);
+            status.storeStatus(status.getTemp1() * l1, status.getTemp2() * l2, status.getTemp3() * l3, status.getTemp4() * l4);
+        } while (prior < status.getEffectSiteUdf() && status.iterator < MAXIMUM_TIME);
     }
 
     private class PumpStatus
@@ -263,10 +213,7 @@ public class PumpSolver {
          * @param temp4
          */
         void storeStatus(
-            final double temp1,
-            final double temp2,
-            final double temp3,
-            final double temp4)
+            final double temp1, final double temp2, final double temp3, final double temp4)
         {
             this.effectSiteUdf.add(temp1 + temp2 + temp3 + temp4);
             this.temp1.add(temp1);
@@ -303,12 +250,11 @@ public class PumpSolver {
 
         boolean areWeThereYet(final double desiredConcentration)
         {
-            if (iterator > 1 && (getEffectSiteUdf() - effectSiteUdf.get(iterator -1)) < 0.000001)
+            if (iterator > 1 && (getEffectSiteUdf() - effectSiteUdf.get(iterator - 1)) < 0.000001)
             {
                 throw new IllegalStateException("Tangential");
             }
-            return (((getEffectSiteUdf() - desiredConcentration) / desiredConcentration) < EPSILON
-                || (getEffectSiteUdf() > desiredConcentration));
+            return (((getEffectSiteUdf() - desiredConcentration) / desiredConcentration) < EPSILON || (getEffectSiteUdf() > desiredConcentration));
         }
     }
 }

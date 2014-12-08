@@ -13,8 +13,7 @@ public class DoubleUtils
         Preconditions.checkArgument(decimalPlaces > 0, "decimalPlaces should be greater that 0");
 
         double factor = Math.pow(10, decimalPlaces);
-        double result =
-            Math.round(number * factor) / factor;
+        double result = Math.round(number * factor) / factor;
 
         return result;
     }

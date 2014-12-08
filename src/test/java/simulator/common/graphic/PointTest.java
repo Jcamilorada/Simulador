@@ -1,10 +1,9 @@
 package simulator.common.graphic;
 
-import static junit.framework.TestCase.assertEquals;
-
 import junit.framework.TestCase;
 import org.junit.Test;
-import simulator.common.graphic.Point;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class PointTest
 {
@@ -18,7 +17,7 @@ public class PointTest
         final double z = 7.0D;
         final int index = 2;
 
-        Point point = new Point(x , y , z, index, color);
+        Point point = new Point(x, y, z, index, color);
         assertEquals(x, point.getX());
         assertEquals(y, point.getY());
         assertEquals(z, point.getZ());

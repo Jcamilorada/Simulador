@@ -5,7 +5,6 @@ import org.junit.Test;
 import simulator.common.graphic.Color;
 import simulator.common.graphic.Point;
 import simulator.common.graphic.PointsTable;
-import simulator.services.graphic.surfacemodel.SurfaceModelCalculator;
 
 public class SurfaceModelCalculatorTest
 {
@@ -34,10 +33,10 @@ public class SurfaceModelCalculatorTest
         Point expectedPoint4 = new Point(1D, 1D, testInstance.caculatePNR(1, 1), 4, color);
 
 
-        verifyPoint(expectedPoint1,  point1);
-        verifyPoint(expectedPoint2,  point2);
-        verifyPoint(expectedPoint3,  point3);
-        verifyPoint(expectedPoint4,  point4);
+        verifyPoint(expectedPoint1, point1);
+        verifyPoint(expectedPoint2, point2);
+        verifyPoint(expectedPoint3, point3);
+        verifyPoint(expectedPoint4, point4);
     }
 
     private void verifyPoint(final Point expected, final Point actual)

@@ -6,18 +6,17 @@ import simulator.common.graphic.Point;
 import simulator.common.graphic.PointsTable;
 
 /**
- Remifentanil and Propofol surface model calculator. The surface model calculates the PN (No response probability)
- based on Remifentanil and Propofol concentrations.
-
- z(x, y) = (εxy)^ γ / 1 + (εxy)^ γ
-
- z(x, y) = (0.0828 * x * y)^ 5.1550 / 1 + (0.0828 * x * y)^ 5.1550
-
- x: Remifentanil. The Remifentanil concentration μg/ml.
- y: Propofol. The propofol concentration ng/ml
-
- z(x,y) = z: The no response probability.
-
+ * Remifentanil and Propofol surface model calculator. The surface model calculates the PN (No response probability)
+ * based on Remifentanil and Propofol concentrations.
+ * <p/>
+ * z(x, y) = (εxy)^ γ / 1 + (εxy)^ γ
+ * <p/>
+ * z(x, y) = (0.0828 * x * y)^ 5.1550 / 1 + (0.0828 * x * y)^ 5.1550
+ * <p/>
+ * x: Remifentanil. The Remifentanil concentration μg/ml.
+ * y: Propofol. The propofol concentration ng/ml
+ * <p/>
+ * z(x,y) = z: The no response probability.
  */
 @Component
 class SurfaceModelCalculator
@@ -29,12 +28,7 @@ class SurfaceModelCalculator
     private static double SATURATION = 1;
 
     PointsTable generateDataPoints(
-        final double deltaX,
-        final double deltaY,
-        final double initX,
-        final double initY,
-        final double maxX,
-        final double maxY)
+        final double deltaX, final double deltaY, final double initX, final double initY, final double maxX, final double maxY)
     {
         PointsTable pointsTable = new PointsTable();
         int pointIndex = 0;
@@ -45,7 +39,7 @@ class SurfaceModelCalculator
             {
                 Point point = createPoint(x, y, pointIndex);
                 pointsTable.put(x, y, point);
-                pointIndex ++;
+                pointIndex++;
             }
         }
         return pointsTable;
@@ -61,7 +55,6 @@ class SurfaceModelCalculator
     }
 
     /**
-     *
      * @param x the Remifentanil concentration μg/ml.
      * @param y The propofol concentration ng/ml.
      * @return The no response probability.
@@ -75,7 +68,7 @@ class SurfaceModelCalculator
 
     Color getPointColor(final double z)
     {
-        double h = z * 2 * Math.PI /6;
+        double h = z * 2 * Math.PI / 6;
         return new Color(h, SATURATION, VALUE);
     }
 }

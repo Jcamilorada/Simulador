@@ -22,10 +22,7 @@ public class SurfaceDataMeshService implements ISurfaceDataMeshService
 
     @Autowired
     SurfaceDataMeshService(
-        final SurfaceModelCalculator surfaceModelCalculator,
-        final TriangleMeshGenerator triangleMeshGenerator,
-        final GraphicsProperties graphicsProperties,
-        final SurfaceMeshMapper surfaceMeshMapper)
+        final SurfaceModelCalculator surfaceModelCalculator, final TriangleMeshGenerator triangleMeshGenerator, final GraphicsProperties graphicsProperties, final SurfaceMeshMapper surfaceMeshMapper)
     {
         this.surfaceModelCalculator = Preconditions.checkNotNull(surfaceModelCalculator);
         this.triangleMeshGenerator = Preconditions.checkNotNull(triangleMeshGenerator);
@@ -36,22 +33,9 @@ public class SurfaceDataMeshService implements ISurfaceDataMeshService
     @Override
     public SurfaceMeshDTO getSurfaceMeshDTO()
     {
-        PointsTable points = surfaceModelCalculator.generateDataPoints(
-            graphicsProperties.getInterval(),
-            graphicsProperties.getInterval(),
-            graphicsProperties.getMinRange(),
-            graphicsProperties.getMinRange(),
-            graphicsProperties.getMaxRange(),
-            graphicsProperties.getMaxRange());
+        PointsTable points = surfaceModelCalculator.generateDataPoints(graphicsProperties.getInterval(), graphicsProperties.getInterval(), graphicsProperties.getMinRange(), graphicsProperties.getMinRange(), graphicsProperties.getMaxRange(), graphicsProperties.getMaxRange());
 
-        List<Triangle> triangles = triangleMeshGenerator.getMesh(
-            points,
-            graphicsProperties.getInterval(),
-            graphicsProperties.getInterval(),
-            graphicsProperties.getMinRange(),
-            graphicsProperties.getMinRange(),
-            graphicsProperties.getMaxRange(),
-            graphicsProperties.getMaxRange());
+        List<Triangle> triangles = triangleMeshGenerator.getMesh(points, graphicsProperties.getInterval(), graphicsProperties.getInterval(), graphicsProperties.getMinRange(), graphicsProperties.getMinRange(), graphicsProperties.getMaxRange(), graphicsProperties.getMaxRange());
 
         SurfaceMeshDTO surfaceMeshDTO = surfaceMeshMapper.newSurfaceMeshDTO(points, triangles);
         return surfaceMeshDTO;

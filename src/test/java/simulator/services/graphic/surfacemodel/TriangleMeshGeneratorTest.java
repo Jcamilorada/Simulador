@@ -6,13 +6,12 @@ import simulator.common.graphic.Color;
 import simulator.common.graphic.Point;
 import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
-import simulator.services.graphic.surfacemodel.TriangleMeshGenerator;
 
 import java.util.List;
 
 /**
  * Data points representation of the unit test. (2 rows 3 columns)
- *
+ * <p/>
  * p5 p6
  * p3 p4
  * p1 p2
@@ -45,7 +44,7 @@ public class TriangleMeshGeneratorTest
         pointsTable.put(0D, 2D, point5);
         pointsTable.put(1D, 2D, point6);
 
-        List<Triangle> triangles =  testInstance.getMesh(pointsTable, 1, 1, 0, 0, 2, 3);
+        List<Triangle> triangles = testInstance.getMesh(pointsTable, 1, 1, 0, 0, 2, 3);
         Assert.assertEquals("The mesh should contain two triangles", 4, triangles.size());
         verifyTriangles(triangles);
     }
@@ -62,6 +61,6 @@ public class TriangleMeshGeneratorTest
     private Point createRandonPoint(final int index)
     {
         Color color = null;
-        return new Point(0D , 0D, 0D , index, color);
+        return new Point(0D, 0D, 0D, index, color);
     }
 }

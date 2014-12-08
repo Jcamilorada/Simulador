@@ -1,18 +1,19 @@
 package simulator.services.graphic.surfacemodel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import simulator.common.graphic.Point;
 import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
-import simulator.common.util.ColorUtils;
 import simulator.common.util.DoubleUtils;
 import simulator.configuration.GraphicsProperties;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 @Component
- class SurfaceMeshMapper
+class SurfaceMeshMapper
 {
     private static long MESH_BIT_MASK = 128l;
 

@@ -9,8 +9,6 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import simulator.common.graphic.Point;
-import simulator.common.graphic.Triangle;
 
 @RunWith(Theories.class)
 public class TriangleTest
@@ -19,9 +17,9 @@ public class TriangleTest
     private Point point1 = new Point(10D, 20D, 30D, 1, color);
     private Point point2 = new Point(10D, 20D, 30D, 2, color);
     private Point point3 = new Point(10D, 20D, 30D, 3, color);
-    
+
     @DataPoint
-    public static  Point nullPoint = null;
+    public static Point nullPoint = null;
 
     @DataPoint
     public static Point validPoint = new Point(10D, 20D, 5D, 1, color);

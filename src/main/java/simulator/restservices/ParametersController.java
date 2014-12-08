@@ -1,13 +1,15 @@
 package simulator.restservices;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.domain.SystemParameter;
 import simulator.services.systemparameter.ISystemParameterService;
 
 @Controller
-@RequestMapping("/parameter")
+@RequestMapping("/parameters")
 public class ParametersController
 {
     private ISystemParameterService parameterService;
@@ -19,7 +21,9 @@ public class ParametersController
     }
 
     @RequestMapping("/{id}")
-    public @ResponseBody SystemParameter getParameter(@PathVariable long id)
+    public
+    @ResponseBody
+    SystemParameter getParameter(@PathVariable long id)
     {
         return parameterService.getSystemParameter(1);
     }

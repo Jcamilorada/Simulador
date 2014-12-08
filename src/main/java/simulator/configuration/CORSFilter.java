@@ -1,6 +1,7 @@
 package simulator.configuration;
 
-import java.io.IOException;
+import org.springframework.stereotype.Component;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -8,22 +9,23 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
+import java.io.IOException;
 
 /**
  * Cross-site http request filter. Enable to use the get and send data to the rest service (simulator) application.
  */
 @Component
-public class CORSFilter implements Filter {
+public class CORSFilter implements Filter
+{
 
     static final String ALLOW_ORIGIN_HEADER = "Access-Control-Allow-Origin";
-    static final String ALLOW_ORIGIN_HEADER_VALUE ="*";
+    static final String ALLOW_ORIGIN_HEADER_VALUE = "*";
 
     static final String ALLOW_METHODS_HEADER = "Access-Control-Allow-Methods";
     static final String ALLOW_METHODS_HEADER_VALUE = "POST, GET, OPTIONS, DELETE";
 
     static final String MAX_AGE_HEADER = "Access-Control-Max-Age";
-    static final String MAX_AGE_HEADER_VALUE= "3600";
+    static final String MAX_AGE_HEADER_VALUE = "3600";
 
     static final String ALLOW_HEADER = "Access-Control-Allow-Headers";
     static final String ALLOW_HEADER_VALUE = "x-requested-with";
@@ -40,8 +42,12 @@ public class CORSFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) {}
+    public void init(FilterConfig filterConfig)
+    {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy()
+    {
+    }
 }

@@ -20,7 +20,9 @@ public class MeshController
     }
 
     @RequestMapping("/remi_prop")
-    public @ResponseBody SurfaceMeshDTO getMesh()
+    public
+    @ResponseBody
+    SurfaceMeshDTO getMesh()
     {
         return surfaceDataMeshService.getSurfaceMeshDTO();
     }
