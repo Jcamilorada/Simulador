@@ -10,6 +10,5 @@ public class Patient
     private Gender gender;
     private int age;
 
-
-    enum Gender {M, F}
+    static enum Gender {M, F}
 }

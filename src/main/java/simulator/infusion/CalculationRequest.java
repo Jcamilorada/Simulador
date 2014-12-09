@@ -1,4 +1,4 @@
-package simulator.Infusion;
+package simulator.infusion;
 
 import lombok.Data;
 import simulator.domain.Patient;

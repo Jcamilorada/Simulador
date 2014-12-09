@@ -1,4 +1,4 @@
-package simulator.Infusion;
+package simulator.infusion;
 
 /**
  * Created by alevalv on 11/18/14.

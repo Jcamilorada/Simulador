@@ -1,4 +1,4 @@
-package simulator.Infusion;
+package simulator.infusion;
 
 import lombok.Data;
 
@@ -14,5 +14,5 @@ public class CalculationResponse
 {
     List<Double> siteConcentrationsData;
     List<Double> plasmaConcentrationsData;
-    List<PumpInfunsions> infusionList;
+    List<PumpInfusion> infusionList;
 }

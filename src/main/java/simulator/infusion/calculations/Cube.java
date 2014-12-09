@@ -1,4 +1,4 @@
-package simulator.Infusion.calculations;
+package simulator.infusion.calculations;
 
 import java.util.ArrayList;
 import java.util.Collections;

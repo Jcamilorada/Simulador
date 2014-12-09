@@ -3,9 +3,9 @@ package simulator.domain;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
-import simulator.Infusion.IModel;
-import simulator.Infusion.calculations.PumpSolver;
-import simulator.Infusion.calculations.SchiderModel;
+import simulator.infusion.IModel;
+import simulator.infusion.calculations.PumpSolver;
+import simulator.infusion.calculations.SchiderModel;
 
 /**
  * Created by alevalv on 11/20/14.

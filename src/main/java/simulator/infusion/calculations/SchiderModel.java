@@ -1,15 +1,14 @@
-package simulator.Infusion.calculations;
+package simulator.infusion.calculations;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import simulator.Infusion.IModel;
+import simulator.infusion.IModel;
 
 /**
  * Created by alevalv on 11/25/14.
  */
 public class SchiderModel implements IModel
 {
-    private double k1; //do we need this thingy?
     private final Table<Integer, Integer, Double> weightedGraph = HashBasedTable.create();
 
     public SchiderModel(final double peso, final double estatura, final double edad)
@@ -22,7 +21,6 @@ public class SchiderModel implements IModel
         weightedGraph.put(2, 1, ((1.29 - 0.024 * (edad - 53)) / ((18.9 - 0.391 * (edad - 53)))) / 60);
         weightedGraph.put(3, 1, 0.0035 / 60);
         weightedGraph.put(4, 1, 0.456 / 60);
-        k1 = weightedGraph.get(1, 0) + weightedGraph.get(1, 2) + weightedGraph.get(1, 3) + weightedGraph.get(1, 4);
     }
 
     @Override

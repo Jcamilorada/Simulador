@@ -1,9 +1,12 @@
-package simulator.Infusion;
+package simulator.infusion;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class PumpInfunsions
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+public class PumpInfusion
 {
     /* Elapsed time in second from simulation start. */
     private int time;
