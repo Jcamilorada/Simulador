@@ -1,11 +1,9 @@
 package simulator.infusion.calculations;
 
 import com.google.common.base.Preconditions;
-import simulator.infusion.CalculationRequest;
-import simulator.infusion.CalculationResponse;
-import simulator.infusion.IModel;
-import simulator.infusion.PumpInfusion;
+import simulator.infusion.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,57 +85,66 @@ public class PumpSolver
 
     public CalculationResponse solve(final CalculationRequest request)
     {
-        PumpStatus pumpStatus = new PumpStatus(request.getTime());
-
+        List<PumpInfusion> infusions = new ArrayList<>();
+        PumpStatus pumpStatus =
+            new PumpStatus(request.getInfusionRequestList().get(request.getInfusionRequestList().size()-1).getTime());
         int time = 1;
         double infusion = 1;
-        while(time < request.getTime())
-        {
-            if ((time-1) % request.getTime() == 0)
-            {
-                infusion = findNeededInfusion(request, time, pumpStatus);
-                //INFUSION = infusion * 3.6/10;  //no entiendo esto :P
-            }
-            calculateEffectSiteConcentration(infusion, request.getDeltaTime(), pumpStatus);
-            calculatePlasmaConcentration(infusion, request.getDeltaTime(), pumpStatus);
-            time += request.getDeltaTime();
-
-        }
         CalculationResponse response = new CalculationResponse();
-        response.setInfusionList(Collections.singletonList(new PumpInfusion(time, infusion)));
-        response.setPlasmaConcentrationsData(pumpStatus.getPlasmaUdf());
-        response.setSiteConcentrationsData(pumpStatus.getEffectSiteUdf());
+        try
+        {
+            for (PumpInfusion infusionRequest : request.getInfusionRequestList()) {
+                infusion = findNeededInfusion(infusionRequest, time, pumpStatus);
+                //INFUSION = infusion * 3.6/10;  //no entiendo esto :P
+
+                calculateEffectSiteConcentration(infusion, request.getDeltaTime(), pumpStatus);
+                calculatePlasmaConcentration(infusion, request.getDeltaTime(), pumpStatus);
+                time += request.getDeltaTime();
+                infusions.add(new PumpInfusion(time, infusion));
+            }
+            response.setInfusionList(infusions);
+            response.setPlasmaConcentrationsData(pumpStatus.getPlasmaUdf());
+            response.setSiteConcentrationsData(pumpStatus.getEffectSiteUdf());
+        }
+        catch (InfusionException ie)
+        {
+            response.setErrorCode(CalculationResponse.ErrorCode.UNREACHABLE_INFUSION);
+            response.setInfusionList(Collections.singletonList(ie.getRequest()));
+        }
         return response;
     }
 
     private double findNeededInfusion(
-        final CalculationRequest request, final int time, final PumpStatus oldPumpStatus)
+        final PumpInfusion infusionRequest, final int time, final PumpStatus oldPumpStatus) throws InfusionException
     {
         double error = 1;
         double infusion = 1;
         while (Math.abs(error) > 0.05)
         {
             PumpStatus pumpStatus = new PumpStatus(oldPumpStatus);
-            calculateEffectSiteConcentration(infusion, request.getTime(), pumpStatus);
+            calculateEffectSiteConcentration(infusion, infusionRequest.getTime(), pumpStatus);
             error =
-                (pumpStatus.getLatestEffectSiteUdf() - request.getConcentration())
-                / request.getConcentration();
+                (pumpStatus.getLatestEffectSiteUdf() - infusionRequest.getInfusion())
+                / infusionRequest.getInfusion();
             if (Math.abs(error) > 0.005)
             {
                 infusion = infusion * (1 - error);
             }
             if (infusion < 1)  //si esto sucede es mejor apagar la bomba.
             {
+                throw new InfusionException(infusionRequest);
+                /**
                 infusion = 0;
-                int additionalTime = time + request.getTime();
-                while (pumpStatus.getLatestEffectSiteUdf() > request.getConcentration())
+                int additionalTime = time + infusionRequest.getTime();
+                while (pumpStatus.getLatestEffectSiteUdf() > infusionRequest.getInfusion())
                 {
                     additionalTime++;
                     calculateEffectSiteConcentration(1, 1, pumpStatus);
                 }
-                request.setTime((int) Math.round(((double) additionalTime)/60D)* 60);
-                System.out.println(request.getTime());  //TODO
+                infusionRequest.setTime((int) Math.round(((double) additionalTime)/60D)* 60);
+                System.out.println(infusionRequest.getTime());  //TODO
                 break;
+                 */
             }
         }
         return infusion;

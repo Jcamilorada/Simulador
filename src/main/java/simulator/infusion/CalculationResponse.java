@@ -12,7 +12,10 @@ import java.util.List;
 @Data
 public class CalculationResponse
 {
+    ErrorCode errorCode = ErrorCode.NO_ERROR;
     List<Double> siteConcentrationsData;
     List<Double> plasmaConcentrationsData;
     List<PumpInfusion> infusionList;
+
+    public static enum ErrorCode {NO_ERROR, UNREACHABLE_INFUSION}
 }

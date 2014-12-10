@@ -3,6 +3,8 @@ package simulator.infusion;
 import lombok.Data;
 import simulator.domain.Patient;
 
+import java.util.List;
+
 @Data
 /**
  * The calculation request information containing all the necesary information
@@ -10,8 +12,7 @@ import simulator.domain.Patient;
  */
 public class CalculationRequest
 {
-    private double concentration;
-    private int time;
+    List<PumpInfusion> infusionRequestList;
     private int deltaTime;
     private Patient patient;
     private IModel model;
