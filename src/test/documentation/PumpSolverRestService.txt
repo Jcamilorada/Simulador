@@ -1,0 +1,14 @@
+URL: http://localhost:8080/infusion/solve
+Content-Type: application/json
+
+{
+    "deltaTime": 200,
+    "patient":
+    {
+        "height":  160,
+        "weight":  55,
+        "age":  22,
+        "gender": 1
+    },
+    "pumpInfusion": [{"time": 9024, "infusion": 2}]
+}

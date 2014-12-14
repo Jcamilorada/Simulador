@@ -1,6 +1,7 @@
 package simulator.infusion.calculations;
 
 import com.google.common.base.Preconditions;
+import org.springframework.stereotype.Component;
 import simulator.infusion.*;
 
 import java.util.ArrayList;
@@ -10,22 +11,23 @@ import java.util.List;
 /**
  * @author Alejandro Valdes
  */
+@Component
 public class PumpSolver
 {
-    final IModel model;
+    IModel model;
     List<Double> lambda;
     double[] plasmaCoefficients = new double[4];
     double[] effectSiteCoefficients = new double[4];
-    final double l1;
-    final double l2;
-    final double l3;
-    final double l4;
+    double l1;
+    double l2;
+    double l3;
+    double l4;
 
-    public PumpSolver(final IModel model)
+    public void setModel(final IModel model)
     {
         Preconditions.checkNotNull(model);
         this.model = model;
-        lambda = Cube.solve(model.getK(1, 0), model.getK(1, 2), model.getK(2, 1), model.getK(1, 3), model.getK(3, 1));
+        lambda = CubeSolver.solve(model.getK(1, 0), model.getK(1, 2), model.getK(2, 1), model.getK(1, 3), model.getK(3, 1));
         Collections.sort(lambda, Collections.reverseOrder());
         lambda.add(model.getK(4, 1));
         if (model.getK(3, 1) > 0D)

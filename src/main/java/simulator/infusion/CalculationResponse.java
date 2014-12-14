@@ -17,5 +17,19 @@ public class CalculationResponse
     List<Double> plasmaConcentrationsData;
     List<PumpInfusion> infusionList;
 
-    public static enum ErrorCode {NO_ERROR, UNREACHABLE_INFUSION}
+    public static enum ErrorCode
+    {
+        NO_ERROR(0), UNREACHABLE_INFUSION(1);
+
+        ErrorCode(int value)
+        {
+            this.value = value;
+        }
+
+        private int value;
+        public int getValue()
+        {
+            return value;
+        }
+    }
 }

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"simulator.configuration", "simulator.restservices", "simulator.services"})
+@ComponentScan({"simulator.configuration", "simulator.infusion", "simulator.restservices", "simulator.services"})
 @EnableJpaRepositories(basePackages = "simulator.persistence")
 @EntityScan(basePackages = "simulator.domain")
 public class Application

@@ -7,11 +7,11 @@ import java.util.List;
 /**
  * See http://opentci.org/doku.php?id=code:ccode:cube
  */
-public class Cube
+public class CubeSolver
 {
     private static final double TO_RADIAN = Math.asin(1D) * 2D / 180D;
 
-    private Cube()
+    private CubeSolver()
     {
     }
 
