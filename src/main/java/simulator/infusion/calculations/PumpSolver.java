@@ -87,16 +87,16 @@ public class PumpSolver
 
     public CalculationResponse solve(final CalculationRequest request)
     {
+        Preconditions.checkNotNull(request);
         List<PumpInfusion> infusions = new ArrayList<>();
         PumpStatus pumpStatus =
             new PumpStatus(request.getInfusionRequestList().get(request.getInfusionRequestList().size()-1).getTime());
         int time = 1;
-        double infusion = 1;
         CalculationResponse response = new CalculationResponse();
         try
         {
             for (PumpInfusion infusionRequest : request.getInfusionRequestList()) {
-                infusion = findNeededInfusion(infusionRequest, time, pumpStatus);
+                double infusion = findNeededInfusion(infusionRequest, pumpStatus);
                 //INFUSION = infusion * 3.6/10;  //no entiendo esto :P
 
                 calculateEffectSiteConcentration(infusion, request.getDeltaTime(), pumpStatus);
@@ -117,7 +117,7 @@ public class PumpSolver
     }
 
     private double findNeededInfusion(
-        final PumpInfusion infusionRequest, final int time, final PumpStatus oldPumpStatus) throws InfusionException
+        final PumpInfusion infusionRequest, final PumpStatus oldPumpStatus) throws InfusionException
     {
         double error = 1;
         double infusion = 1;
