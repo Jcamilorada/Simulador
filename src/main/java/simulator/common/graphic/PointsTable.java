@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Point Table information containing surface model information.
+ */
 public final class PointsTable
 {
     private final Table<Double, Double, Point> pointsTable;

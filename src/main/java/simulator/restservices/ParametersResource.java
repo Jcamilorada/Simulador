@@ -10,12 +10,12 @@ import simulator.services.systemparameter.ISystemParameterService;
 
 @Controller
 @RequestMapping("/parameters")
-public class ParametersController
+public class ParametersResource
 {
     private ISystemParameterService parameterService;
 
     @Autowired
-    ParametersController(ISystemParameterService parameterService)
+    ParametersResource(ISystemParameterService parameterService)
     {
         this.parameterService = parameterService;
     }

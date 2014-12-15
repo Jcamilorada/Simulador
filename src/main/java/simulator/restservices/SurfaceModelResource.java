@@ -9,7 +9,7 @@ import simulator.surfacemodel.SurfaceModelCalculator;
 
 @Controller
 @RequestMapping("/sf")
-public class SurfaceModelController
+public class SurfaceModelResource
 {
     @RequestMapping("/x/{x}/y/{y}")
     public

@@ -12,12 +12,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/procedures")
-public class ProceduresController
+public class ProceduresResource
 {
     private IProcedureService prodecureService;
 
     @Autowired
-    ProceduresController(IProcedureService prodecureService)
+    ProceduresResource(IProcedureService prodecureService)
     {
         this.prodecureService = prodecureService;
     }

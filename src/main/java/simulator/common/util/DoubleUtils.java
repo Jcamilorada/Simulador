@@ -1,16 +1,28 @@
 package simulator.common.util;
 
-import com.google.common.base.Preconditions;
-
+/**
+ * @author Juan Camilo Rada
+ *
+ * Double util to perform color operations.
+ */
 public class DoubleUtils
 {
     private DoubleUtils()
     {
     }
 
+    /**
+     * Round the double to the specified number of decimal position.
+     * The decimal places should be greater that 0.
+     *
+     * @param number the double number to round.
+     * @param decimalPlaces the number of decimal positions.
+     *
+     * @return a rounded double.
+     */
     public static double roundDouble(final double number, final int decimalPlaces)
     {
-        Preconditions.checkArgument(decimalPlaces > 0, "decimalPlaces should be greater that 0");
+        assert decimalPlaces > 0;
 
         double factor = Math.pow(10, decimalPlaces);
         double result = Math.round(number * factor) / factor;

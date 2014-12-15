@@ -12,12 +12,12 @@ import simulator.dto.CalculationResponseDTO;
 
 @Controller
 @RequestMapping("/infusion")
-public class InfusionController
+public class InfusionResource
 {
     private InfusionService infusionService;
 
     @Autowired
-    public InfusionController(InfusionService infusionService)
+    public InfusionResource(InfusionService infusionService)
     {
         this.infusionService = infusionService;
     }

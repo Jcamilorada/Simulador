@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * @author Juan Camilo Rada
+ *
  * Cross-site http request filter. Enable to use the get and send data to the rest service (simulator) application.
  */
 @Component

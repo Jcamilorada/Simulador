@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-public class ParametersControllerTest
+public class ParametersResourceTest
 {
     @Mock
     ISystemParameterService mockSystemParameterService;
@@ -24,7 +24,7 @@ public class ParametersControllerTest
     private static final int PARAMETER_ID = 1;
     private static final String PARAMETER_NAME = "PARAMETER_NAME";
 
-    private ParametersController testInstance;
+    private ParametersResource testInstance;
 
     private MockMvc mockMvc;
 
@@ -36,7 +36,7 @@ public class ParametersControllerTest
         systemParameter.setName(PARAMETER_NAME);
 
         MockitoAnnotations.initMocks(this);
-        testInstance = new ParametersController(mockSystemParameterService);
+        testInstance = new ParametersResource(mockSystemParameterService);
         mockMvc = standaloneSetup(testInstance).build();
 
         when(mockSystemParameterService.getSystemParameter(PARAMETER_ID)).thenReturn(systemParameter);

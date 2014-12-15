@@ -11,12 +11,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/recommendations")
-public class RecomendationsController
+public class RecomendationsResource
 {
     private IRecommendationService recommendationService;
 
     @Autowired
-    RecomendationsController(IRecommendationService parameterService)
+    RecomendationsResource(IRecommendationService parameterService)
     {
         this.recommendationService = parameterService;
     }

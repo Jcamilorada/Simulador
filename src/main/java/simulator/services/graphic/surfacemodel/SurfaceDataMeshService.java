@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
 import simulator.configuration.GraphicsProperties;
+import simulator.dto.SurfaceMeshDTO;
 
 import java.util.List;
 

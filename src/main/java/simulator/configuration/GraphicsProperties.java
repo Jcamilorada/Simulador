@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "graphics")
-@SuppressWarnings("PMD.UnusedPrivateField")
 public class GraphicsProperties
 {
     private double interval;

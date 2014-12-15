@@ -9,6 +9,11 @@ import simulator.common.util.DoubleUtils;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Surface model calculator. Generate the pnr, and drug concentration data.
+ */
 public class SurfaceModelCalculator
 {
     private static double EPSILON = 0.0828d;
@@ -81,6 +86,11 @@ public class SurfaceModelCalculator
         return minPnrMap.get(pnr);
     }
 
+    /**
+     * return the pnr different values for testing proporse.
+     *
+     * @return
+     */
     static Set<Double> getPossiblesPNR()
     {
         return Sets.newTreeSet(pnrDataTable.values());

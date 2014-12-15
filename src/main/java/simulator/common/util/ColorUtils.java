@@ -1,14 +1,21 @@
 package simulator.common.util;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Color util to perform color operations.
+ */
 public class ColorUtils
 {
+    private static String RGB_FORMAT = "#%02x%02x%02x";
+
     private ColorUtils()
     {
     }
 
-    public static String rgbToHex(int r, int g, int b)
+    public static String rgbToHex(final int r, final int g, final int b)
     {
-        return String.format("#%02x%02x%02x", r, g, b);
+        return String.format(RGB_FORMAT, r, g, b);
     }
 
     public static int HSBtoRGB(final double hue, final double saturation, final double brightness)

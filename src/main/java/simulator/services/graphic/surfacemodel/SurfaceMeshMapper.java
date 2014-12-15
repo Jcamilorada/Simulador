@@ -7,6 +7,7 @@ import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
 import simulator.common.util.DoubleUtils;
 import simulator.configuration.GraphicsProperties;
+import simulator.dto.SurfaceMeshDTO;
 
 import java.util.ArrayList;
 import java.util.Collections;

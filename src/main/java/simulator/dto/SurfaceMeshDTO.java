@@ -1,4 +1,4 @@
-package simulator.services.graphic.surfacemodel;
+package simulator.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@SuppressWarnings("PMD.UnusedPrivateField")
 public final class SurfaceMeshDTO
 {
     private Metadata metadata = new Metadata();
@@ -29,19 +28,7 @@ public final class SurfaceMeshDTO
     }
 
     @Data
-    class Metadata
-    {
-        private Double formatVersion = 3.0;
-        public int faces;
-        private int vertices;
-        private Double normals = 0.0;
-        private int colors = 0;
-        private Double uvs = 0.0;
-        private Double materials = 1.0;
-    }
-
-    @Data
-    class Material
+    public class Material
     {
         private boolean vertexColors;
         private String shading;

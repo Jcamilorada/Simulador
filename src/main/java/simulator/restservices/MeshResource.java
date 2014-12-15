@@ -5,16 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.services.graphic.surfacemodel.ISurfaceDataMeshService;
-import simulator.services.graphic.surfacemodel.SurfaceMeshDTO;
+import simulator.dto.SurfaceMeshDTO;
 
 @Controller
 @RequestMapping("/mesh")
-public class MeshController
+public class MeshResource
 {
     private ISurfaceDataMeshService surfaceDataMeshService;
 
     @Autowired
-    public MeshController(final ISurfaceDataMeshService surfaceDataMeshService)
+    public MeshResource(final ISurfaceDataMeshService surfaceDataMeshService)
     {
         this.surfaceDataMeshService = surfaceDataMeshService;
     }

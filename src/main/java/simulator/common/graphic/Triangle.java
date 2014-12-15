@@ -8,6 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Triangle representation used for plot the surface model graphic.
+ */
 public final class Triangle
 {
     @Getter(AccessLevel.PUBLIC)
@@ -24,16 +29,6 @@ public final class Triangle
         this.vertex3 = Preconditions.checkNotNull(vertex3, "vertex3 cannot be null");
     }
 
-    private Map<Long, Point> getVertixMap()
-    {
-        Map<Long, Point> pointMap = new HashMap<Long, Point>(3);
-        pointMap.put(vertex1.getIndex(), vertex1);
-        pointMap.put(vertex2.getIndex(), vertex2);
-        pointMap.put(vertex3.getIndex(), vertex3);
-
-        return pointMap;
-    }
-
     @Override
     public boolean equals(Object o)
     {
@@ -45,7 +40,7 @@ public final class Triangle
         if (o instanceof Triangle)
         {
             Triangle triangle = (Triangle) o;
-            Map<Long, Point> poinMap = triangle.getVertixMap();
+            Map<Long, Point> poinMap = triangle.getVertexMap();
 
             return poinMap.containsKey(vertex1.getIndex()) &&
                 poinMap.containsKey(vertex2.getIndex()) &&
@@ -59,5 +54,15 @@ public final class Triangle
     public int hashCode()
     {
         return Objects.hash(vertex1, vertex2, vertex3);
+    }
+
+    private Map<Long, Point> getVertexMap()
+    {
+        Map<Long, Point> pointMap = new HashMap<Long, Point>(3);
+        pointMap.put(vertex1.getIndex(), vertex1);
+        pointMap.put(vertex2.getIndex(), vertex2);
+        pointMap.put(vertex3.getIndex(), vertex3);
+
+        return pointMap;
     }
 }

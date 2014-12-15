@@ -6,9 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Point representation with the x,y,z coordinates and the color value.
+ */
 @EqualsAndHashCode
 @AllArgsConstructor
-@SuppressWarnings("PMD.UnusedPrivateField")
 public final class Point implements Comparable<Point>
 {
     @Getter(AccessLevel.PUBLIC)

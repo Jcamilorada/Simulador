@@ -3,8 +3,12 @@ package simulator.common.graphic;
 import lombok.Data;
 import simulator.common.util.ColorUtils;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Color class in the hsb representation. see http://en.wikipedia.org/wiki/HSB.
+ */
 @Data
-@SuppressWarnings("PMD.UnusedPrivateField")
 public class Color
 {
     private double h;
