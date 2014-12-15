@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * See http://opentci.org/doku.php?id=code:ccode:cube
+ *
+ * @author Alejandro Valdes
  */
 public class CubeSolver
 {
