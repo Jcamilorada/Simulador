@@ -1,7 +1,7 @@
 package simulator.persistence;
 
 import org.springframework.data.repository.CrudRepository;
-import simulator.domain.ProcedureType;
+import simulator.domain.procedurestypes.ProcedureType;
 
 /**
  * @author Juan Camilo Rada

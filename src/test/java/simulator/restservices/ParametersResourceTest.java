@@ -6,8 +6,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import simulator.domain.SystemParameter;
-import simulator.services.systemparameter.ISystemParameterService;
+import simulator.domain.systemparameter.SystemParameter;
+import simulator.domain.systemparameter.ISystemParameterService;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

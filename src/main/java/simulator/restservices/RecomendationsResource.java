@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.domain.Recommendation;
-import simulator.services.recomendations.IRecommendationService;
+import simulator.domain.recomendations.Recommendation;
+import simulator.domain.recomendations.IRecommendationService;
 
 import java.util.List;
 

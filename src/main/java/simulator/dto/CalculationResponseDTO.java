@@ -1,7 +1,6 @@
 package simulator.dto;
 
 import lombok.Data;
-import simulator.infusion.PumpInfusion;
 
 import java.util.List;
 

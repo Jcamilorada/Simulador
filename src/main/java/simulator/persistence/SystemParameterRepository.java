@@ -1,7 +1,7 @@
 package simulator.persistence;
 
 import org.springframework.data.repository.Repository;
-import simulator.domain.SystemParameter;
+import simulator.domain.systemparameter.SystemParameter;
 
 /**
  * @author Juan Camilo Rada

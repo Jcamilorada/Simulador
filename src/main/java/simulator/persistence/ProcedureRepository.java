@@ -1,8 +1,7 @@
 package simulator.persistence;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.Repository;
-import simulator.domain.Procedure;
+import simulator.domain.procedure.Procedure;
 
 import java.util.List;
 
