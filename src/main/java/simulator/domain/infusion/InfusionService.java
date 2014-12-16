@@ -21,8 +21,6 @@ public class InfusionService
     {
         this.infusionMapper = infusionMapper;
         this.pumpSolver = pumpSolver;
-
-
     }
 
     public CalculationResponse processSimulation(final CalculationRequest request)
