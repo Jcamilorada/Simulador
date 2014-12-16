@@ -1,4 +1,4 @@
-package simulator.persistence;
+package simulator.persistence.parameter;
 
 import org.springframework.data.repository.Repository;
 import simulator.domain.systemparameter.SystemParameter;
@@ -9,7 +9,7 @@ import simulator.domain.systemparameter.SystemParameter;
  * System Repository. Enable perform crud operations over system parameter data.
  * The class implementation is provided by spring data at runtime.
  */
-public interface SystemParameterRepository extends Repository<SystemParameter, Long>
+public interface SystemParameterRepository extends Repository<SystemParameterBean, Long>
 {
-    SystemParameter findById(long id);
+    SystemParameterBean findById(long id);
 }

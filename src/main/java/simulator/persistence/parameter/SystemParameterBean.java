@@ -1,4 +1,4 @@
-package simulator.domain.recomendations;
+package simulator.persistence.parameter;
 
 import lombok.Data;
 
@@ -9,12 +9,18 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Data
-public class Recommendation implements Serializable
+@Entity()
+@Table(name = "parameters")
+public class SystemParameterBean implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private Long id;
+    private long id;
+    @Column
+    private String name;
     @Column
     private String description;
+    @Column
+    private String value;
 }

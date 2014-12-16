@@ -1,4 +1,4 @@
-package simulator.persistence;
+package simulator.persistence.proceduretype;
 
 import org.springframework.data.repository.CrudRepository;
 import simulator.domain.procedurestypes.ProcedureType;
@@ -9,6 +9,6 @@ import simulator.domain.procedurestypes.ProcedureType;
  * Procedure Repository. Enable perform crud operations over procedures type.
  * The class implementation is provided by spring data at runtime.
  */
-public interface ProcedureTypeRepository extends CrudRepository<ProcedureType, Long>
+public interface ProcedureTypeRepository extends CrudRepository<ProcedureTypeBean, Long>
 {
 }

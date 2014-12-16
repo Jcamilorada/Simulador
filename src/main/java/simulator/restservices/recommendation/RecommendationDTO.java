@@ -1,4 +1,4 @@
-package simulator.domain.recomendations;
+package simulator.restservices.recommendation;
 
 import lombok.Data;
 
@@ -9,12 +9,11 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Data
-public class Recommendation implements Serializable
+public class RecommendationDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    @Id
     private Long id;
-    @Column
+
     private String description;
 }

@@ -9,9 +9,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"simulator.configuration", "simulator.domain.infusion", "simulator.restservices", "simulator.domain.services"})
+@ComponentScan({
+    "simulator.configuration",
+    "simulator.domain",
+    "simulator.restservices",
+    "simulator.domain.services",
+    "simulator.common"
+})
 @EnableJpaRepositories(basePackages = "simulator.persistence")
-@EntityScan(basePackages = "simulator.domain")
+@EntityScan(basePackages = {"simulator.persistence"})
 public class Application
 {
     public static void main(String... args)
