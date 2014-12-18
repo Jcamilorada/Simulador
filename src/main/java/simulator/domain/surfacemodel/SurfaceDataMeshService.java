@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class SurfaceDataMeshService implements ISurfaceDataMeshService
 {
-    private final SurfaceModelCalculator surfaceModelCalculator;
+    private final SurfaceMeshDataGenerator surfaceMeshDataGenerator;
 
     private final TriangleMeshGenerator triangleMeshGenerator;
 
@@ -23,9 +23,9 @@ public class SurfaceDataMeshService implements ISurfaceDataMeshService
 
     @Autowired
     SurfaceDataMeshService(
-        final SurfaceModelCalculator surfaceModelCalculator, final TriangleMeshGenerator triangleMeshGenerator, final GraphicsProperties graphicsProperties, final SurfaceMeshMapper surfaceMeshMapper)
+        final SurfaceMeshDataGenerator surfaceMeshDataGenerator, final TriangleMeshGenerator triangleMeshGenerator, final GraphicsProperties graphicsProperties, final SurfaceMeshMapper surfaceMeshMapper)
     {
-        this.surfaceModelCalculator = Preconditions.checkNotNull(surfaceModelCalculator);
+        this.surfaceMeshDataGenerator = Preconditions.checkNotNull(surfaceMeshDataGenerator);
         this.triangleMeshGenerator = Preconditions.checkNotNull(triangleMeshGenerator);
         this.graphicsProperties = Preconditions.checkNotNull(graphicsProperties);
         this.surfaceMeshMapper = Preconditions.checkNotNull(surfaceMeshMapper);
@@ -34,7 +34,7 @@ public class SurfaceDataMeshService implements ISurfaceDataMeshService
     @Override
     public SurfaceMeshDTO getSurfaceMeshDTO()
     {
-        PointsTable points = surfaceModelCalculator.generateDataPoints(graphicsProperties.getInterval(), graphicsProperties.getInterval(), graphicsProperties.getMinRange(), graphicsProperties.getMinRange(), graphicsProperties.getMaxRange(), graphicsProperties.getMaxRange());
+        PointsTable points = surfaceMeshDataGenerator.generateDataPoints(graphicsProperties.getInterval(), graphicsProperties.getInterval(), graphicsProperties.getMinRange(), graphicsProperties.getMinRange(), graphicsProperties.getMaxRange(), graphicsProperties.getMaxRange());
 
         List<Triangle> triangles = triangleMeshGenerator.getMesh(points, graphicsProperties.getInterval(), graphicsProperties.getInterval(), graphicsProperties.getMinRange(), graphicsProperties.getMinRange(), graphicsProperties.getMaxRange(), graphicsProperties.getMaxRange());
 

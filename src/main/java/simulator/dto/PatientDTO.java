@@ -8,6 +8,6 @@ public class PatientDTO
     private int height;
     private int weight;
     private int age;
-    /* 0 M - F 1 */
+    /* 1 M - F 2 */
     private int gender;
 }

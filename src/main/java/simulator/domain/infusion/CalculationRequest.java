@@ -1,10 +1,9 @@
 package simulator.domain.infusion;
 
 import lombok.Data;
-import simulator.domain.common.Patient;
 
 import java.util.List;
-import simulator.domain.infusion.model.IModel;
+
 import simulator.domain.infusion.model.Model;
 
 @Data

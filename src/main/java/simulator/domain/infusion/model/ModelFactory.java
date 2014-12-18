@@ -1,7 +1,7 @@
 package simulator.domain.infusion.model;
 
 import com.google.common.base.Preconditions;
-import simulator.domain.common.Patient;
+import simulator.domain.infusion.Patient;
 
 /**
  * @author Alejandro Valdes

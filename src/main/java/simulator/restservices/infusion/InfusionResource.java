@@ -7,42 +7,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.common.ObjectMapper;
 import simulator.domain.infusion.CalculationRequest;
 import simulator.domain.infusion.CalculationResponse;
 import simulator.domain.infusion.InfusionService;
 import simulator.dto.CalculationRequestDTO;
 import simulator.dto.CalculationResponseDTO;
-import simulator.restservices.mappers.InfusionMapper;
 
 @Controller
 @RequestMapping("/infusion")
 public class InfusionResource
 {
     private InfusionService infusionService;
-    private InfusionMapper infusionMapper;
-    private ObjectMapper objectMapper;
+
+    private final CalculationRequestMapper requestMapper;
+
+    private final CalculationResponseMapper responseMapper;
 
     @Autowired
     public InfusionResource(
-        final InfusionService infusionService, final InfusionMapper infusionMapper, final ObjectMapper objectMapper)
+        final InfusionService infusionService,
+        final CalculationRequestMapper requestMapper,
+        final CalculationResponseMapper responseMapper)
     {
         this.infusionService = Preconditions.checkNotNull(infusionService);
-        this.infusionMapper = Preconditions.checkNotNull(infusionMapper);
-        this.objectMapper = Preconditions.checkNotNull(objectMapper);
+        this.requestMapper = Preconditions.checkNotNull(requestMapper);
+        this.responseMapper = Preconditions.checkNotNull(responseMapper);
     }
 
     @RequestMapping(value = "/solve", method = RequestMethod.PUT)
     public
     @ResponseBody
-    CalculationResponseDTO getMesh(@RequestBody CalculationRequestDTO requestDTO)
+    CalculationResponseDTO solve(final @RequestBody CalculationRequestDTO requestDTO)
     {
-        CalculationRequest request = objectMapper.map(requestDTO, CalculationRequest.class);
+        CalculationRequest request = requestMapper.newBusinessObject(requestDTO);
         CalculationResponse response = infusionService.processSimulation(request);
-
-        //return infusionMapper.newCalculationResponseDTO(
-          //  infusionService.processSimulation(
-            //    infusionMapper.newCalculationRequest(requestDTO)));
-        return objectMapper.map(response, CalculationResponseDTO.class);
+        return responseMapper.newBusinessObjectDTO(response);
     }
 }

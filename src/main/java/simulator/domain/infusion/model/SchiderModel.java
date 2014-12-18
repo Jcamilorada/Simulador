@@ -3,7 +3,7 @@ package simulator.domain.infusion.model;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import simulator.domain.common.Patient;
+import simulator.domain.infusion.Patient;
 
 /**
  * Propofol (Schider) model.

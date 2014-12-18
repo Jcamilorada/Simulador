@@ -31,5 +31,10 @@ public class CalculationResponse
         {
             return value;
         }
+
+        public static ErrorCode fromValue(int value)
+        {
+            return ErrorCode.values()[value];
+        }
     }
 }

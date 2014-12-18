@@ -4,7 +4,7 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
-import simulator.domain.common.Patient;
+import simulator.domain.infusion.Patient;
 import simulator.domain.infusion.CalculationRequest;
 import simulator.domain.infusion.CalculationResponse;
 import simulator.domain.infusion.model.IModel;

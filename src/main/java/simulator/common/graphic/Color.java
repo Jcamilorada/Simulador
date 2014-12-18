@@ -1,7 +1,6 @@
 package simulator.common.graphic;
 
 import lombok.Data;
-import simulator.common.util.ColorUtils;
 
 /**
  * @author Juan Camilo Rada

@@ -2,6 +2,7 @@ package simulator.common.util;
 
 import junit.framework.TestCase;
 import org.junit.Test;
+import simulator.common.graphic.ColorUtils;
 
 public class ColorUtilsTest
 {

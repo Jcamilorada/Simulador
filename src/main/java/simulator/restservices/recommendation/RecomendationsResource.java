@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.common.ObjectMapper;
-import simulator.domain.recomendations.Recommendation;
 import simulator.domain.recomendations.IRecommendationService;
+import simulator.domain.recomendations.Recommendation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,14 +15,14 @@ import java.util.List;
 public class RecomendationsResource
 {
     private final IRecommendationService recommendationService;
-    private final ObjectMapper objectMapper;
+    private final RecomendationMapper recomendationMapper;
 
     @Autowired
     RecomendationsResource(final IRecommendationService parameterService,
-                           final ObjectMapper objectMapper)
+                           final RecomendationMapper recomendationMapper)
     {
         this.recommendationService = parameterService;
-        this.objectMapper = objectMapper;
+        this.recomendationMapper = recomendationMapper;
     }
 
     @RequestMapping
@@ -30,8 +30,18 @@ public class RecomendationsResource
     @ResponseBody
     List<RecommendationDTO> getRecomendations()
     {
-        return objectMapper.mapList(
-            recommendationService.getRecomendations(), RecommendationDTO.class);
+        return  getRecomendations(recommendationService.getRecomendations());
+    }
+
+    private List<RecommendationDTO> getRecomendations(final List<Recommendation> recommendations)
+    {
+        List<RecommendationDTO> dtoList = new ArrayList<>(recommendations.size());
+        for (Recommendation recommendation : recommendations)
+        {
+            dtoList.add(recomendationMapper.newBusinessObjectDTO(recommendation));
+        }
+
+        return  dtoList;
     }
 }
 

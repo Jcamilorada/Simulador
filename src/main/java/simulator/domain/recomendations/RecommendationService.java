@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import simulator.common.ObjectMapper;
 import simulator.persistence.recommendation.RecommendationRepository;
 
 import java.util.List;
@@ -15,21 +14,22 @@ import java.util.List;
 public class RecommendationService implements IRecommendationService
 {
     private final RecommendationRepository recomendationRepository;
-    private final ObjectMapper objectMapper;
+    private final RecomendationBeanMapper beanMapper;
 
     @Autowired
     RecommendationService(
-        final RecommendationRepository recomendationRepository, final ObjectMapper objectMapper)
+        final RecommendationRepository recomendationRepository, final RecomendationBeanMapper objectMapper)
     {
-        this.recomendationRepository = Preconditions.checkNotNull(recomendationRepository, "RecommendationRepository can not be null");
-        this.objectMapper = Preconditions.checkNotNull(objectMapper, "objectMapper can not be null");
+        this.recomendationRepository =
+            Preconditions.checkNotNull(recomendationRepository, "RecommendationRepository can not be null");
+        this.beanMapper =
+            Preconditions.checkNotNull(objectMapper, "beanMapper can not be null");
     }
 
     @Override
     public List<Recommendation> getRecomendations()
     {
-        return  objectMapper.mapList(
-            Lists.newArrayList(recomendationRepository.findAll().iterator()),
-            Recommendation.class);
+        return beanMapper.newBusinessObjectList(
+            Lists.newArrayList(recomendationRepository.findAll()));
     }
 }
