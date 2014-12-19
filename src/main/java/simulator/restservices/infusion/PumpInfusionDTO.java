@@ -1,4 +1,4 @@
-package simulator.dto;
+package simulator.restservices.infusion;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

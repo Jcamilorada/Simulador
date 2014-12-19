@@ -5,13 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.domain.surfacemodel.ISurfaceDataMeshService;
-import simulator.dto.SurfaceMeshDTO;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Mesh graphic data resource. Provide information about vertex and color of the model surface graphic.
+ */
 @Controller
 @RequestMapping("/mesh")
 public class MeshResource
 {
-    private ISurfaceDataMeshService surfaceDataMeshService;
+    private final ISurfaceDataMeshService surfaceDataMeshService;
 
     @Autowired
     public MeshResource(final ISurfaceDataMeshService surfaceDataMeshService)

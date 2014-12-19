@@ -1,13 +1,17 @@
-package simulator.dto;
+package simulator.restservices.infusion;
 
 import lombok.Data;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Patient information data transfer object.
+ */
 @Data
 public class PatientDTO
 {
     private int height;
     private int weight;
     private int age;
-    /* 1 M - F 2 */
     private int gender;
 }

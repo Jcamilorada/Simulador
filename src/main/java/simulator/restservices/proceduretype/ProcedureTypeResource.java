@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/procedures-types")
 public class ProcedureTypeResource
 {
-    private IProcedureTypeService procedureTypeService;
+    private final IProcedureTypeService procedureTypeService;
 
-    private ProcedureTypeMapper procedureTypeMapper;
+    private final ProcedureTypeMapper procedureTypeMapper;
 
     @Autowired
     ProcedureTypeResource(

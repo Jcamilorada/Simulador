@@ -4,16 +4,14 @@ import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import simulator.domain.infusion.CalculationRequest;
-import simulator.domain.infusion.PumpInfusion;
 import simulator.domain.infusion.model.Model;
-import simulator.dto.CalculationRequestDTO;
-import simulator.dto.PumpInfusionDTO;
 import simulator.restservices.common.AbstractBusinessObjectMapper;
-import simulator.restservices.common.IBusinessObjectMapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * @author Juan Camilo Rada
+ *
+ * {@code CalculationRequest} and  {@code CalculationRequestDTO} mapper.
+ */
 @Component
 class CalculationRequestMapper extends AbstractBusinessObjectMapper<CalculationRequest, CalculationRequestDTO>
 {
@@ -29,31 +27,29 @@ class CalculationRequestMapper extends AbstractBusinessObjectMapper<CalculationR
     }
 
     @Override
-    public CalculationRequest newBusinessObject(CalculationRequestDTO businessObjectDTO)
+    public CalculationRequest newBusinessObject(final CalculationRequestDTO businessObjectDTO)
     {
         CalculationRequest calculationRequest = new CalculationRequest();
         calculationRequest.setPatient(patientMapper.newBusinessObject(businessObjectDTO.getPatient()));
         calculationRequest.setDeltaTime(businessObjectDTO.getDeltaTime());
-        calculationRequest.setInfusionRequestList(getInfusionRequestList(businessObjectDTO.getPumpInfusion()));
         calculationRequest.setModel(Model.fromValue(businessObjectDTO.getModel()));
+
+        calculationRequest.setInfusionRequestList(
+            pumpInfusionMapper.newBusinessObjectList(businessObjectDTO.getPumpInfusion()));
 
         return  calculationRequest;
     }
 
     @Override
-    public CalculationRequestDTO newBusinessObjectDTO(CalculationRequest businessObject)
+    public CalculationRequestDTO newBusinessObjectDTO(final CalculationRequest businessObject)
     {
-        return null;
-    }
+        CalculationRequestDTO calculationRequestDTO = new CalculationRequestDTO();
+        calculationRequestDTO.setPatient(patientMapper.newBusinessObjectDTO(businessObject.getPatient()));
+        calculationRequestDTO.setDeltaTime(businessObject.getDeltaTime());
+        calculationRequestDTO.setModel(businessObject.getModel().getValue());
 
-    private List<PumpInfusion> getInfusionRequestList(final List<PumpInfusionDTO> infusionDTOList)
-    {
-        List<PumpInfusion> infusions = new ArrayList<>(infusionDTOList.size());
-        for (PumpInfusionDTO infusionDTO: infusionDTOList)
-        {
-            infusions.add(pumpInfusionMapper.newBusinessObject(infusionDTO));
-        }
+        calculationRequestDTO.setPumpInfusion(pumpInfusionMapper.newBusinessObjectDTOList(businessObject.getInfusionRequestList()));
 
-        return infusions;
+        return  calculationRequestDTO;
     }
 }

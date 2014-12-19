@@ -7,7 +7,7 @@ import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
 import simulator.common.util.DoubleUtils;
 import simulator.configuration.GraphicsProperties;
-import simulator.dto.SurfaceMeshDTO;
+import simulator.restservices.graphic.SurfaceMeshDTO;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,9 +34,9 @@ class SurfaceMeshMapper
         surfaceMeshDTO.setNormals(Collections.<Double>emptyList());
         surfaceMeshDTO.setColors(getColorsList(points.getPoints()));
         surfaceMeshDTO.setUvs(Collections.<Double>emptyList());
-        surfaceMeshDTO.getMetadata().setFaces(surfaceMeshDTO.getFaces().size() - surfaceMeshDTO.getFaces().size() / 4);
-        surfaceMeshDTO.getMetadata().setVertices(surfaceMeshDTO.getVertices().size());
-        surfaceMeshDTO.getMetadata().setColors(surfaceMeshDTO.getColors().size());
+        surfaceMeshDTO.getMetadataDTO().setFaces(surfaceMeshDTO.getFaces().size() - surfaceMeshDTO.getFaces().size() / 4);
+        surfaceMeshDTO.getMetadataDTO().setVertices(surfaceMeshDTO.getVertices().size());
+        surfaceMeshDTO.getMetadataDTO().setColors(surfaceMeshDTO.getColors().size());
         return surfaceMeshDTO;
     }
 

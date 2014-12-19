@@ -6,10 +6,7 @@ import lombok.Data;
 public class ParameterDTO
 {
     private long id;
-
     private String name;
-
     private String description;
-
     private String value;
 }

@@ -3,6 +3,11 @@ package simulator.restservices.common;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * AbstractBusinessObjectMapper provider default implemtations for {@code IBusinessObjectMapper}.
+ */
 public abstract class AbstractBusinessObjectMapper<T, DTO> implements IBusinessObjectMapper<T, DTO>
 {
     public List<T> newBusinessObjectList(final List<DTO> businessObjectDTO)

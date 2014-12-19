@@ -7,12 +7,17 @@ import simulator.restservices.common.AbstractBusinessObjectMapper;
 import simulator.restservices.common.IBusinessObjectMapper;
 import simulator.restservices.recommendation.RecommendationDTO;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * {@code Parameter} and  {@code ParameterDTO} mapper.
+ */
 @Component
 class ParameterMapper extends AbstractBusinessObjectMapper<Parameter, ParameterDTO>
 {
 
     @Override
-    public Parameter newBusinessObject(ParameterDTO businessObjectDTO)
+    public Parameter newBusinessObject(final ParameterDTO businessObjectDTO)
     {
         Parameter parameter = new Parameter();
         parameter.setName(businessObjectDTO.getName());
@@ -24,7 +29,7 @@ class ParameterMapper extends AbstractBusinessObjectMapper<Parameter, ParameterD
     }
 
     @Override
-    public ParameterDTO newBusinessObjectDTO(Parameter businessObject)
+    public ParameterDTO newBusinessObjectDTO(final Parameter businessObject)
     {
         ParameterDTO parameterDTO = new ParameterDTO();
         parameterDTO.setName(businessObject.getName());

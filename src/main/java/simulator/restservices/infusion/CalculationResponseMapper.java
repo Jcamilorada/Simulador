@@ -3,14 +3,17 @@ package simulator.restservices.infusion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import simulator.domain.infusion.CalculationResponse;
-import simulator.dto.CalculationResponseDTO;
 import simulator.restservices.common.AbstractBusinessObjectMapper;
-import simulator.restservices.common.IBusinessObjectMapper;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * {@code CalculationResponse} and  {@code CalculationResponseDTO} mapper.
+ */
 @Component
 class CalculationResponseMapper extends AbstractBusinessObjectMapper<CalculationResponse, CalculationResponseDTO>
 {
-    private PumpInfusionMapper pumpInfusionMapper;
+    private final PumpInfusionMapper pumpInfusionMapper;
 
     @Autowired
     CalculationResponseMapper(final PumpInfusionMapper pumpInfusionMapper)

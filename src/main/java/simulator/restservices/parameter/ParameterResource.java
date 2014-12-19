@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.domain.parameter.Parameter;
 import simulator.domain.parameter.IParameterService;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * System parameters resource. Provide paremters information to the ui.
+ */
 @Controller
 @RequestMapping("/parameters")
 public class ParameterResource

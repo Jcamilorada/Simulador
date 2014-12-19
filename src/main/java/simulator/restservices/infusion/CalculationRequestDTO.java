@@ -1,18 +1,20 @@
-package simulator.dto;
+package simulator.restservices.infusion;
 
 import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * Calculation Request data transfer object. This class encapsulate the neccesary information to perform and pump
+ * infusion simulation.
+ */
 @Data
 public class CalculationRequestDTO
 {
     private int deltaTime;
-
-    /* Model identificaction number 0(Minto) - 1(Schider)  */
     private int model;
-
     private PatientDTO patient;
-
     private List<PumpInfusionDTO> pumpInfusion;
 }

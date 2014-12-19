@@ -4,11 +4,16 @@ import org.springframework.stereotype.Component;
 import simulator.domain.procedurestype.ProcedureType;
 import simulator.restservices.common.AbstractBusinessObjectMapper;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * {@code ProcedureType} and  {@code ProcedureTypeDTO} mapper.
+ */
 @Component
 public class ProcedureTypeMapper extends AbstractBusinessObjectMapper<ProcedureType, ProcedureTypeDTO>
 {
     @Override
-    public ProcedureType newBusinessObject(ProcedureTypeDTO businessObjectDTO)
+    public ProcedureType newBusinessObject(final ProcedureTypeDTO businessObjectDTO)
     {
         ProcedureType procedureType = new ProcedureType();
         procedureType.setName(businessObjectDTO.getName());
@@ -20,7 +25,7 @@ public class ProcedureTypeMapper extends AbstractBusinessObjectMapper<ProcedureT
     }
 
     @Override
-    public ProcedureTypeDTO newBusinessObjectDTO(ProcedureType businessObject)
+    public ProcedureTypeDTO newBusinessObjectDTO(final ProcedureType businessObject)
     {
         ProcedureTypeDTO ProcedureTypeDTO = new ProcedureTypeDTO();
         ProcedureTypeDTO.setName(businessObject.getName());

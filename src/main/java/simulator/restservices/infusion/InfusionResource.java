@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.domain.infusion.CalculationRequest;
 import simulator.domain.infusion.CalculationResponse;
 import simulator.domain.infusion.InfusionService;
-import simulator.dto.CalculationRequestDTO;
-import simulator.dto.CalculationResponseDTO;
 
+/**
+ * @author Juan Camilo Rada
+ *
+ * {@code CalculationResponse} and  {@code CalculationResponseDTO} mapper.
+ */
 @Controller
 @RequestMapping("/infusion")
 public class InfusionResource
 {
-    private InfusionService infusionService;
+    private final InfusionService infusionService;
 
     private final CalculationRequestMapper requestMapper;
 

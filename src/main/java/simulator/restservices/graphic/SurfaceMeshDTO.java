@@ -1,4 +1,4 @@
-package simulator.dto;
+package simulator.restservices.graphic;
 
 import lombok.Data;
 
@@ -8,18 +8,18 @@ import java.util.List;
 @Data
 public final class SurfaceMeshDTO
 {
-    private Metadata metadata = new Metadata();
+    private MetadataDTO metadataDTO = new MetadataDTO();
     private List<Double> vertices;
     private List<Long> faces;
     private List<Double> normals;
     private List<Integer> colors;
     private List<Double> uvs;
     private Double scale = 1.0;
-    private List<Material> materials = new ArrayList<Material>();
+    private List<MaterialDTO> materials = new ArrayList<MaterialDTO>();
 
     public SurfaceMeshDTO()
     {
-        Material material = new Material();
+        MaterialDTO material = new MaterialDTO();
         material.setVertexColors(true);
         material.setDepthTest(true);
         material.setDepthWrite(true);
@@ -28,12 +28,24 @@ public final class SurfaceMeshDTO
     }
 
     @Data
-    public class Material
+    public class MaterialDTO
     {
         private boolean vertexColors;
         private String shading;
         private boolean depthTest;
         private boolean depthWrite;
+    }
+
+    @Data
+    public class MetadataDTO
+    {
+        private Double formatVersion = 3.0;
+        public int faces;
+        private int vertices;
+        private Double normals = 0.0;
+        private int colors = 0;
+        private Double uvs = 0.0;
+        private Double materials = 1.0;
     }
 }
 

@@ -19,7 +19,7 @@ public class ProcedureResource
 
     @Autowired
     ProcedureResource(
-        IProcedureService prodecureService, ProcedureMapper procedureMapper)
+        final IProcedureService prodecureService, final ProcedureMapper procedureMapper)
     {
         this.prodecureService = prodecureService;
         this.procedureMapper = procedureMapper;
