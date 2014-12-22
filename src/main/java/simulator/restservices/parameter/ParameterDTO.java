@@ -9,7 +9,5 @@ public class ParameterDTO
 
     private String name;
 
-    private String description;
-
     private String value;
 }

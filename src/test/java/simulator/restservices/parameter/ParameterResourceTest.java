@@ -23,7 +23,6 @@ public class ParameterResourceTest
     IParameterService mockSystemParameterService;
 
     private static final int PARAMETER_ID = 1;
-    private static final String PARAMETER_NAME = "PARAMETER_NAME";
 
     private ParameterResource testInstance;
 
@@ -34,18 +33,19 @@ public class ParameterResourceTest
     {
         Parameter parameter = new Parameter();
         parameter.setId(1L);
-        parameter.setName(PARAMETER_NAME);
 
         MockitoAnnotations.initMocks(this);
         testInstance = new ParameterResource(mockSystemParameterService, null);
         mockMvc = standaloneSetup(testInstance).build();
 
-        when(mockSystemParameterService.getSystemParameter(PARAMETER_ID)).thenReturn(parameter);
+        when(mockSystemParameterService.getParameter(PARAMETER_ID)).thenReturn(parameter);
     }
 
     @Test
     public void testGetParameter() throws Exception
     {
-        mockMvc.perform(get("/parameters/1").accept(MediaType.parseMediaType("application/json;charset=UTF-8"))).andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8")).andExpect(jsonPath("$.id").value(PARAMETER_ID)).andExpect(jsonPath("$.name").value(PARAMETER_NAME));
+        mockMvc.perform(get("/parameters/1").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+            .andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andExpect(jsonPath("$.id").value(PARAMETER_ID));
     }
 }

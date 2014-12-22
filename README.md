@@ -37,6 +37,6 @@ How to create the project on IntelliJ IDEA
     1 On Idea main menu.
         a. Import project. Select the folder that contain the pom.xml file.
         b. Choose maven as project type.
-        c. Enabled automatically download sources and documentation (Is really usefull).
+        c. Enabled automatically download sources and documentation (Is really useful).
     2. To run/debug the project run Application on configuration package.
     

@@ -54,7 +54,7 @@ public class SurfaceModelCalculator
         pnrDataTable = HashBasedTable.create(size, size);
         xDataTable = HashBasedTable.create(size, size);
         yDataTable = HashBasedTable.create(size, size);
-        minPnrMap = new HashMap(size * size);
+        minPnrMap = new HashMap((int)size * size);
 
         for (Double x = 0.0; x < MAX_VALUE; x += INTERVAL)
         {
