@@ -9,7 +9,5 @@ public class Parameter
 
     private String name;
 
-    private String description;
-
     private String value;
 }

@@ -20,7 +20,5 @@ public class ParameterBean implements Serializable
     @Column
     private String name;
     @Column
-    private String description;
-    @Column
     private String value;
 }

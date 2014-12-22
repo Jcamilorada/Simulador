@@ -27,3 +27,16 @@ Maven on Unix based systems.
     export M2_HOME=/home/juan/Applications/apache-maven-3.2.3
     export M2=$M2_HOME/bin
     export PATH=$M2:$PATH
+
+___
+Getting Started
+===============
+How to create the project on IntelliJ IDEA
+------------------------------------------
+
+    1 On Idea main menu.
+        a. Import project. Select the folder that contain the pom.xml file.
+        b. Choose maven as project type.
+        c. Enabled automatically download sources and documentation (Is really useful).
+    2. To run/debug the project run Application on configuration package.
+    

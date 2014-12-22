@@ -8,13 +8,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.domain.parameter.Parameter;
 import simulator.domain.parameter.IParameterService;
 
+<<<<<<< HEAD
 /**
  * @author Juan Camilo Rada
  *
  * System parameters resource. Provide paremters information to the ui.
  */
+=======
+import java.util.List;
+
+>>>>>>> 6619a1a2579211e7c43147f42169edf3456e69fa
 @Controller
-@RequestMapping("/parameters")
 public class ParameterResource
 {
     private final IParameterService parameterService;
@@ -27,12 +31,11 @@ public class ParameterResource
         this.parameterMapper = parameterMapper;
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/parameters/{id}")
     public
     @ResponseBody
-    ParameterDTO getParameter(final @PathVariable long id)
+    ParameterDTO getParameterList(final @PathVariable long id)
     {
-        return parameterMapper.newBusinessObjectDTO(parameterService.getSystemParameter(id));
+        return parameterMapper.newBusinessObjectDTO(parameterService.getParameter(id));
     }
 }
-
