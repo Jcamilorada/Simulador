@@ -5,19 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.domain.parameter.Parameter;
 import simulator.domain.parameter.IParameterService;
 
-<<<<<<< HEAD
 /**
  * @author Juan Camilo Rada
  *
  * System parameters resource. Provide paremters information to the ui.
  */
-=======
-import java.util.List;
-
->>>>>>> 6619a1a2579211e7c43147f42169edf3456e69fa
 @Controller
 public class ParameterResource
 {
