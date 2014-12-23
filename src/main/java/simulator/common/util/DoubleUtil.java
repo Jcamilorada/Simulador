@@ -5,9 +5,9 @@ package simulator.common.util;
  *
  * Double util to perform color operations.
  */
-public class DoubleUtils
+public class DoubleUtil
 {
-    private DoubleUtils()
+    private DoubleUtil()
     {
     }
 

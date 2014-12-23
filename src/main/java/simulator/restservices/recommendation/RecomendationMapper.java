@@ -1,10 +1,8 @@
 package simulator.restservices.recommendation;
 
 import org.springframework.stereotype.Component;
-import simulator.domain.recomendations.Recommendation;
-import simulator.persistence.recommendation.RecommendationBean;
+import simulator.domain.recomendation.Recommendation;
 import simulator.restservices.common.AbstractBusinessObjectMapper;
-import simulator.restservices.common.IBusinessObjectMapper;
 
 @Component
 class RecomendationMapper extends AbstractBusinessObjectMapper<Recommendation, RecommendationDTO>
