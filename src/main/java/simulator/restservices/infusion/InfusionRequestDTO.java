@@ -8,11 +8,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class PumpInfusionDTO
+public class InfusionRequestDTO
 {
-    /* Elapsed time in second from simulation start. */
-    private int time;
+    /** Start time for this infusion request. */
+    private int startTime;
 
-    /* Necessary infusion */
+    /** End time for this infusion request. */
+    private int endTime;
+
+    /** The infusion needed in this time interval. */
     private double infusion;
 }

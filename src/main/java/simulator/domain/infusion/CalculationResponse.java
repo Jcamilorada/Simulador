@@ -15,7 +15,7 @@ public class CalculationResponse
     ErrorCode errorCode = ErrorCode.NO_ERROR;
     List<Double> siteConcentrationsData;
     List<Double> plasmaConcentrationsData;
-    List<PumpInfusion> infusionList;
+    List<InfusionResponse> infusionList;
 
     public static enum ErrorCode
     {

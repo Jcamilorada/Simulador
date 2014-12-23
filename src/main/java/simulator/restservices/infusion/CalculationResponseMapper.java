@@ -13,12 +13,12 @@ import simulator.restservices.common.AbstractBusinessObjectMapper;
 @Component
 class CalculationResponseMapper extends AbstractBusinessObjectMapper<CalculationResponse, CalculationResponseDTO>
 {
-    private final PumpInfusionMapper pumpInfusionMapper;
+    private final InfusionResponseMapper infusionResponseMapper;
 
     @Autowired
-    CalculationResponseMapper(final PumpInfusionMapper pumpInfusionMapper)
+    CalculationResponseMapper(final InfusionResponseMapper infusionResponseMapper)
     {
-        this.pumpInfusionMapper = pumpInfusionMapper;
+        this.infusionResponseMapper = infusionResponseMapper;
     }
 
     @Override
@@ -26,7 +26,7 @@ class CalculationResponseMapper extends AbstractBusinessObjectMapper<Calculation
     {
         CalculationResponse calculationResponse = new CalculationResponse();
         calculationResponse.setErrorCode(CalculationResponse.ErrorCode.fromValue(businessObjectDTO.getErrorCode()));
-        calculationResponse.setInfusionList(pumpInfusionMapper.newBusinessObjectList(businessObjectDTO.getInfusionList()));
+        calculationResponse.setInfusionList(infusionResponseMapper.newBusinessObjectList(businessObjectDTO.getInfusionList()));
         calculationResponse.setPlasmaConcentrationsData(businessObjectDTO.getPlasmaConcentrationsData());
         calculationResponse.setSiteConcentrationsData(businessObjectDTO.getSiteConcentrationsData());
 
@@ -38,7 +38,7 @@ class CalculationResponseMapper extends AbstractBusinessObjectMapper<Calculation
     {
         CalculationResponseDTO calculationResponseDTO = new CalculationResponseDTO();
         calculationResponseDTO.setErrorCode(businessObject.getErrorCode().getValue());
-        calculationResponseDTO.setInfusionList(pumpInfusionMapper.newBusinessObjectDTOList(businessObject.getInfusionList()));
+        calculationResponseDTO.setInfusionList(infusionResponseMapper.newBusinessObjectDTOList(businessObject.getInfusionList()));
         calculationResponseDTO.setPlasmaConcentrationsData(businessObject.getPlasmaConcentrationsData());
         calculationResponseDTO.setSiteConcentrationsData(businessObject.getSiteConcentrationsData());
 

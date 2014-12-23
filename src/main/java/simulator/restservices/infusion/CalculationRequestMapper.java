@@ -16,14 +16,14 @@ import simulator.restservices.common.AbstractBusinessObjectMapper;
 class CalculationRequestMapper extends AbstractBusinessObjectMapper<CalculationRequest, CalculationRequestDTO>
 {
     private final PatientMapper patientMapper;
-    private final PumpInfusionMapper pumpInfusionMapper;
+    private final InfusionRequestMapper infusionRequestMapper;
 
     @Autowired
     CalculationRequestMapper(final PatientMapper patientMapper,
-                             final PumpInfusionMapper pumpInfusionMapper)
+                             final InfusionRequestMapper infusionRequestMapper)
     {
         this.patientMapper = Preconditions.checkNotNull(patientMapper);
-        this.pumpInfusionMapper = Preconditions.checkNotNull(pumpInfusionMapper);
+        this.infusionRequestMapper = Preconditions.checkNotNull(infusionRequestMapper);
     }
 
     @Override
@@ -35,7 +35,7 @@ class CalculationRequestMapper extends AbstractBusinessObjectMapper<CalculationR
         calculationRequest.setModel(Model.fromValue(businessObjectDTO.getModel()));
 
         calculationRequest.setInfusionRequestList(
-            pumpInfusionMapper.newBusinessObjectList(businessObjectDTO.getPumpInfusion()));
+            infusionRequestMapper.newBusinessObjectList(businessObjectDTO.getPumpInfusion()));
 
         return  calculationRequest;
     }
@@ -48,7 +48,7 @@ class CalculationRequestMapper extends AbstractBusinessObjectMapper<CalculationR
         calculationRequestDTO.setDeltaTime(businessObject.getDeltaTime());
         calculationRequestDTO.setModel(businessObject.getModel().getValue());
 
-        calculationRequestDTO.setPumpInfusion(pumpInfusionMapper.newBusinessObjectDTOList(businessObject.getInfusionRequestList()));
+        calculationRequestDTO.setPumpInfusion(infusionRequestMapper.newBusinessObjectDTOList(businessObject.getInfusionRequestList()));
 
         return  calculationRequestDTO;
     }

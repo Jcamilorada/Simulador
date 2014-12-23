@@ -17,5 +17,5 @@ public class CalculationResponseDTO implements Serializable
     int errorCode = 0;
     List<Double> siteConcentrationsData;
     List<Double> plasmaConcentrationsData;
-    List<PumpInfusionDTO> infusionList;
+    List<InfusionResponseDTO> infusionList;
 }

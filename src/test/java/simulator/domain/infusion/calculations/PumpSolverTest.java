@@ -8,7 +8,7 @@ import simulator.domain.infusion.Patient;
 import simulator.domain.infusion.CalculationRequest;
 import simulator.domain.infusion.CalculationResponse;
 import simulator.domain.infusion.model.IModel;
-import simulator.domain.infusion.PumpInfusion;
+import simulator.domain.infusion.InfusionRequest;
 import simulator.domain.infusion.model.Model;
 import simulator.domain.infusion.model.SchiderModel;
 
@@ -38,7 +38,7 @@ public class PumpSolverTest
         request = new CalculationRequest();
         request.setModel(Model.Schider);
         request.setDeltaTime(900);
-        request.setInfusionRequestList(Arrays.asList(new PumpInfusion(900, 2), new PumpInfusion(900, 2)));
+        request.setInfusionRequestList(Arrays.asList(new InfusionRequest(0, 900, 2), new InfusionRequest(900, 1800, 2)));
     }
 
     @Test

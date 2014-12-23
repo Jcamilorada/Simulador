@@ -16,5 +16,5 @@ public class CalculationRequestDTO
     private int deltaTime;
     private int model;
     private PatientDTO patient;
-    private List<PumpInfusionDTO> pumpInfusion;
+    private List<InfusionRequestDTO> pumpInfusion;
 }
