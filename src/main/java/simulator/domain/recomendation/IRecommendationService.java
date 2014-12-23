@@ -1,4 +1,4 @@
-package simulator.domain.recomendations;
+package simulator.domain.recomendation;
 
 import java.util.List;
 

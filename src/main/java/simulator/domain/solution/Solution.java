@@ -1,4 +1,4 @@
-package simulator.domain.recomendations;
+package simulator.domain.solution;
 
 import lombok.Data;
 
@@ -6,15 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @Data
-public class Recommendation implements Serializable
+public class Solution
 {
-    private static final long serialVersionUID = 1L;
-
-    @Id
     private Long id;
-    @Column
     private String description;
+    private int value;
 }

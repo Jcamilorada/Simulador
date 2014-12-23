@@ -4,7 +4,7 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Sets;
 import com.google.common.collect.Table;
 import simulator.common.DataPair;
-import simulator.common.util.DoubleUtils;
+import simulator.common.util.DoubleUtil;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -60,7 +60,7 @@ public class SurfaceModelCalculator
         {
             for (Double y = 0.0; y < MAX_VALUE; y += INTERVAL)
             {
-                double pnr = DoubleUtils.roundDouble(caculatePNR(x, y), 2);
+                double pnr = DoubleUtil.roundDouble(caculatePNR(x, y), 2);
                 updateDataTable(x, y, pnr);
             }
         }
@@ -75,7 +75,7 @@ public class SurfaceModelCalculator
     {
         double operand = Math.pow(x * y * EPSILON, GAMMA);
         double z = operand / (1 + operand);
-        return DoubleUtils.roundDouble(z, DECIMAL_POINTS);
+        return DoubleUtil.roundDouble(z, DECIMAL_POINTS);
     }
 
     public static double getPNR(final double x, final double y)
@@ -110,9 +110,9 @@ public class SurfaceModelCalculator
 
     private static void updateDataTable(final double x, final double y, final double pnr)
     {
-        double roundedX = DoubleUtils.roundDouble(x, DECIMAL_POINTS);
-        double roundedY = DoubleUtils.roundDouble(y, DECIMAL_POINTS);
-        double roundedPNR = DoubleUtils.roundDouble(pnr, DECIMAL_POINTS);
+        double roundedX = DoubleUtil.roundDouble(x, DECIMAL_POINTS);
+        double roundedY = DoubleUtil.roundDouble(y, DECIMAL_POINTS);
+        double roundedPNR = DoubleUtil.roundDouble(pnr, DECIMAL_POINTS);
 
         pnrDataTable.put(roundedX, roundedY, roundedPNR);
 

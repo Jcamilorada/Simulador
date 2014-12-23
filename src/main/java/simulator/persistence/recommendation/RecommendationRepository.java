@@ -1,7 +1,6 @@
 package simulator.persistence.recommendation;
 
 import org.springframework.data.repository.CrudRepository;
-import simulator.domain.recomendations.Recommendation;
 
 /**
  * @author Juan Camilo Rada

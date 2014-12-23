@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import simulator.common.graphic.Point;
 import simulator.common.graphic.PointsTable;
 import simulator.common.graphic.Triangle;
-import simulator.common.util.DoubleUtils;
+import simulator.common.util.DoubleUtil;
 import simulator.configuration.GraphicsProperties;
 import simulator.restservices.graphic.SurfaceMeshDTO;
 
@@ -82,19 +82,19 @@ class SurfaceMeshMapper
 
     private double getXValue(final Point point)
     {
-        double value = DoubleUtils.roundDouble(point.getX(), 4) * graphicsProperties.getXFactor();
+        double value = DoubleUtil.roundDouble(point.getX(), 4) * graphicsProperties.getXFactor();
         return value - graphicsProperties.getMinRange();
     }
 
     private double getYValue(final Point point)
     {
-        double value = DoubleUtils.roundDouble(point.getY(), 4) * graphicsProperties.getYFactor();
+        double value = DoubleUtil.roundDouble(point.getY(), 4) * graphicsProperties.getYFactor();
         return value - graphicsProperties.getMinRange();
     }
 
     private double getZValue(final Point point)
     {
-        double value = DoubleUtils.roundDouble(point.getZ(), 4) * graphicsProperties.getZFactor();
+        double value = DoubleUtil.roundDouble(point.getZ(), 4) * graphicsProperties.getZFactor();
         return value;
     }
 }
