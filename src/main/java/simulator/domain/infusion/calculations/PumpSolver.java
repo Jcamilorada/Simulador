@@ -127,7 +127,7 @@ public class PumpSolver
             for (InfusionRequest infusionRequest : request.getInfusionRequestList()) {
                 int maxDelta = infusionRequest.getEndTime() - infusionRequest.getStartTime();
                 boolean isInfusionForPumping = request.isInfusionForPumping(infusionRequest);
-                int delta = isInfusionForPumping ? maxDelta : request.getDeltaTime();
+                int delta = isInfusionForPumping ? maxDelta : Math.min(request.getDeltaTime(), maxDelta);
                 for (int currentDelta = 0; currentDelta < maxDelta; currentDelta+=delta)
                 {
                     double infusion = findNeededInfusion(infusionRequest, delta, pumpStatus);
