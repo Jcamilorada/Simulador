@@ -126,13 +126,16 @@ public class PumpSolver
         {
             for (InfusionRequest infusionRequest : request.getInfusionRequestList()) {
                 int maxDelta = infusionRequest.getEndTime() - infusionRequest.getStartTime();
-                int delta = request.isInfusionForPumping(infusionRequest) ? maxDelta : request.getDeltaTime();
-                double infusion = findNeededInfusion(infusionRequest, delta,  pumpStatus);
-
-                calculateEffectSiteConcentration(infusion, infusionRequest.getEndTime(), pumpStatus);
-                calculatePlasmaConcentration(infusion, infusionRequest.getEndTime(), pumpStatus);
-                time += infusionRequest.getEndTime() - infusionRequest.getStartTime();
-                infusions.add(new InfusionResponse(time, infusion * 3.6/10));
+                boolean isInfusionForPumping = request.isInfusionForPumping(infusionRequest);
+                int delta = isInfusionForPumping ? maxDelta : request.getDeltaTime();
+                for (int currentDelta = 0; currentDelta < maxDelta; currentDelta+=delta)
+                {
+                    double infusion = findNeededInfusion(infusionRequest, delta, pumpStatus);
+                    calculateEffectSiteConcentration(infusion, delta, pumpStatus);
+                    calculatePlasmaConcentration(infusion, delta, pumpStatus);
+                    infusions.add(new InfusionResponse(time, infusion * 3.6/10));
+                    time += delta;
+                }
 
             }
             response.setInfusionList(infusions);
