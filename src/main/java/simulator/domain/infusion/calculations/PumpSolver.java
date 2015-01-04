@@ -32,7 +32,7 @@ public class PumpSolver
     private double l4;
 
     @Autowired
-    public PumpSolver(PumpProperties pumpProperties)
+    public PumpSolver(final PumpProperties pumpProperties)
     {
         this.pumpProperties = Preconditions.checkNotNull(pumpProperties);
     }
@@ -175,6 +175,7 @@ public class PumpSolver
                 pumpStatus = new PumpStatus(oldPumpStatus);
                 calculateEffectSiteConcentration(infusion, deltaTime, pumpStatus);
                 error = (pumpStatus.getLatestEffectSiteUdf() - neededConcentration) / neededConcentration;
+
                 if (error > pumpProperties.getEpsilon())
                 {
                     throw new InfusionException(request);

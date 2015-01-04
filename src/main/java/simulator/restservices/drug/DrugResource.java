@@ -21,7 +21,7 @@ public class DrugResource
         this.drugMapper = drugMapper;
     }
 
-    @RequestMapping("/drugs/")
+    @RequestMapping("/drugs")
     public @ResponseBody List<DrugDTO> getDrugs()
     {
         return drugMapper.newBusinessObjectDTOList(drugService.findAll());

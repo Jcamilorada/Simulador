@@ -6,7 +6,9 @@ import com.google.common.collect.Table;
 import simulator.common.DataPair;
 import simulator.common.util.DoubleUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -96,6 +98,19 @@ public class SurfaceModelCalculator
     public static DataPair getMinXY(final double pnr)
     {
         return minPnrMap.get(pnr);
+    }
+
+    public static List<Double> caculateListPNR(final List<Double> xValues, final List<Double> yValues)
+    {
+        int dataSize = xValues.size();
+
+        List<Double> result = new ArrayList<>(dataSize);
+        for (int i = 0; i < dataSize; i++)
+        {
+            result.add(caculatePNR(xValues.get(i), yValues.get(i)));
+        }
+
+        return result;
     }
 
     /**

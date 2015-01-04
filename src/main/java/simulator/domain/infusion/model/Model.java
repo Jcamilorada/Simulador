@@ -1,5 +1,7 @@
 package simulator.domain.infusion.model;
 
+import simulator.common.exceptions.EnumCastException;
+
 public enum Model
 {
     Minto(0), Schider(1);
@@ -18,6 +20,14 @@ public enum Model
 
     public static Model fromValue(final int value)
     {
-        return Model.values()[value];
+        switch (value)
+        {
+            case 0:
+                return Minto;
+            case 1:
+                return Schider;
+            default:
+                throw new EnumCastException(value);
+        }
     }
 }

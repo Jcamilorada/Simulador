@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by alevalv on 23/12/2014.
+ * @author alevalv.
  */
 @Data
 @Configuration
@@ -21,4 +21,7 @@ public class PumpProperties
     private int maximumTime;
 
     private double epsilon;
+
+    /* Number of rounded decimal places to send data to the ui side. */
+    private int decimalPlaces;
 }

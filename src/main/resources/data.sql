@@ -22,3 +22,6 @@ insert into solutions (id, description, value) values(4 , '500 ml', 500);
 
 insert into drugs(id, name, drug_type, concentrations) values (1, 'Remifentanilo', 1, '10,20,30,40');
 insert into drugs(id, name, drug_type, concentrations) values (2, 'Propofol', 2, '10,20,30,40');
+
+insert into induction_methods(id, name, pnr) values (1, 'Intubación', 80);
+insert into induction_methods(id, name, pnr) values (2, 'Mascara Laringea', 75);

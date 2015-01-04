@@ -24,13 +24,13 @@ public class CORSFilter implements Filter
     static final String ALLOW_ORIGIN_HEADER_VALUE = "*";
 
     static final String ALLOW_METHODS_HEADER = "Access-Control-Allow-Methods";
-    static final String ALLOW_METHODS_HEADER_VALUE = "POST, GET, OPTIONS, DELETE";
+    static final String ALLOW_METHODS_HEADER_VALUE = "POST, GET, OPTIONS, DELETE, PUT";
 
     static final String MAX_AGE_HEADER = "Access-Control-Max-Age";
     static final String MAX_AGE_HEADER_VALUE = "3600";
 
     static final String ALLOW_HEADER = "Access-Control-Allow-Headers";
-    static final String ALLOW_HEADER_VALUE = "x-requested-with";
+    static final String ALLOW_HEADER_VALUE = "x-requested-with, Content-Type";
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException

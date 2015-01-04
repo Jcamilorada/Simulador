@@ -1,48 +1,77 @@
 URL: http://localhost:8080/infusion/solve
 Content-Type: application/json
 
+// Minto Test (Remifentanilo)
 {
-    "deltaTime": 900,
-    "patient":
-    {
-        "height":  160,
-        "weight":  55,
-        "age":  22,
-        "gender": 1
-    },
-    "pumpInfusion": [{"time": 900, "infusion": 2}]
+   "model":0,
+   "deltaTime":300,
+   "patient":{
+      "height":160,
+      "weight":55,
+      "age":22,
+      "gender":1
+   },
+   "pumpInfusion":[
+      {
+         "startTime":0,
+         "endTime":360,
+         "infusion":3.86
+      },
+      {
+         "startTime":360,
+         "endTime":660,
+         "infusion":3.51
+      },
+      {
+         "startTime":1860,
+         "endTime":2160,
+         "infusion":2.69
+      }
+   ]
 }
 
-// Expected values
+// Answer to model (Infusion List)
+0: {time: 0, infusionValue: 128.71}
+1: {time: 360, infusionValue: 43.58}
+2: {time: 660, infusionValue: 67.67}
+3: {time: 960, infusionValue: 62.66}
+4: {time: 1260, infusionValue: 63.62}
+5: {time: 1560, infusionValue: 63.29}
+6: {time: 1860, infusionValue: 31.02}
 
-1- 39 ml/h o 07 ug/kg/h 00:00:00
-2- 30 ml/h o 05 ug/kg/h 00:15:00
-3- 26 ml/h o 05 ug/kg/h 00:30:00
-4- 25 ml/h o 05 ug/kg/h 00:45:00
-
-bm = 45.3750
-Vc = 4270
-V2 = 31021
-V3 = 238000
-V4 = 0.4270
-r =  0     0     0     0
-a0 = 3.3875e-010
-a1 = 1.0213e-005
-a2 = 0.0177
-r1 = 1.7463e-007
-phi = 1.0200
-lambda = 3.5321e-005
-lambda = 0.0000    0.0171
-lambda = 0.0000    0.0171    0.0006
-lambda = 0.0171    0.0006    0.0000
-cp1 = 0.0133
-cp2 = 0.0128
-cp3 = 0.0180
-ce1 = -0.0107
-ce2 = 0.0138
-ce3 = 0.0181
-ce4 = 0.0228
-L1 = 0.9831
-L2 = 0.9994
-L3 = 1.0000
-L4 = 0.9924
+// Propofol Test
+{
+   "model":1,
+   "deltaTime":300,
+   "patient":{
+      "height":160,
+      "weight":55,
+      "age":22,
+      "gender":1
+   },
+   "pumpInfusion":[
+      {
+         "startTime":0,
+         "endTime":360,
+         "infusion":3.86
+      },
+      {
+         "startTime":360,
+         "endTime":660,
+         "infusion":3.51
+      },
+      {
+         "startTime":1860,
+         "endTime":2160,
+         "infusion":2.69
+      }
+   ]
+}
+// Answer to model (Infusion List)
+0: {time: 0, infusionValue: 84.48}
+1: {time: 360, infusionValue: 45.69}
+2: {time: 660, infusionValue: 43.81}
+3: {time: 960, infusionValue: 37.68}
+4: {time: 1260, infusionValue: 33.92}
+5: {time: 1560, infusionValue: 31.04}
+6: {time: 1860, infusionValue: 9.94}

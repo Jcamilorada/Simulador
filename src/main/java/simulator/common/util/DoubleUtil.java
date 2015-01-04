@@ -1,5 +1,8 @@
 package simulator.common.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Juan Camilo Rada
  *
@@ -26,6 +29,17 @@ public class DoubleUtil
 
         double factor = Math.pow(10, decimalPlaces);
         double result = Math.round(number * factor) / factor;
+
+        return result;
+    }
+
+    public static List<Double> roundDoubleList(final List<Double> doubleList, final int decimalPlaces)
+    {
+        List<Double> result = new ArrayList<>(doubleList.size());
+        for(double value : doubleList)
+        {
+            result.add(roundDouble(value, decimalPlaces));
+        }
 
         return result;
     }

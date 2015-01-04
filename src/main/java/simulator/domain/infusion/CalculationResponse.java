@@ -16,6 +16,7 @@ public class CalculationResponse
     List<Double> siteConcentrationsData;
     List<Double> plasmaConcentrationsData;
     List<InfusionResponse> infusionList;
+    List<Double> pnrData;
 
     public static enum ErrorCode
     {

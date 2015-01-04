@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import simulator.domain.infusion.calculations.PumpSolver;
 import simulator.domain.infusion.model.ModelFactory;
+import simulator.domain.surfacemodel.SurfaceModelCalculator;
 
 @Component
 public class InfusionService
