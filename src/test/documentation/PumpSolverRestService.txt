@@ -39,7 +39,7 @@ Content-Type: application/json
 5: {time: 1560, infusionValue: 63.29}
 6: {time: 1860, infusionValue: 31.02}
 
-// Propofol Test
+// Schnider Test (Propofol)
 {
    "model":1,
    "deltaTime":300,
