@@ -3,6 +3,7 @@ package simulator.domain.infusion.calculations;
 import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import simulator.common.infusion.InfusionUtil;
 import simulator.configuration.PumpProperties;
 import simulator.domain.infusion.*;
 
@@ -130,10 +131,11 @@ public class PumpSolver
                 int delta = isInfusionForPumping ? maxDelta : Math.min(request.getDeltaTime(), maxDelta);
                 for (int currentDelta = 0; currentDelta < maxDelta; currentDelta+=delta)
                 {
-                    double infusion = findNeededInfusion(infusionRequest, delta, pumpStatus);
+                    double infusion = findNeededInfusion(infusionRequest.getConcentration(), delta, pumpStatus);
                     calculateEffectSiteConcentration(infusion, delta, pumpStatus);
                     calculatePlasmaConcentration(infusion, delta, pumpStatus);
-                    infusions.add(new InfusionResponse(time, infusion * 3.6/10));
+
+                    infusions.add(createInfusionResponse(time, infusion, request.getPatient().getWeight()));
                     time += delta;
                 }
 
@@ -142,22 +144,20 @@ public class PumpSolver
             response.setPlasmaConcentrationsData(pumpStatus.getPlasmaUdf());
             response.setSiteConcentrationsData(pumpStatus.getEffectSiteUdf());
         }
+
         catch (InfusionException ie)
         {
-            response.setErrorCode(CalculationResponse.ErrorCode.UNREACHABLE_INFUSION);
-            response.setInfusionList(
-                Collections.singletonList(
-                    new InfusionResponse(ie.getRequest().getStartTime(), ie.getRequest().getConcentration())));
+            response.setErrorCode(CalculationResponse.ErrorCode.UNREACHABLE_CONCENTRATION);
+            response.setErrorMessage(ie.getMessage());
         }
         return response;
     }
 
     private double findNeededInfusion(
-        final InfusionRequest request,
+        final double neededConcentration,
         final int deltaTime,
         final PumpStatus oldPumpStatus) throws InfusionException
     {
-        final double neededConcentration = request.getConcentration();
         double error = 1;
         double infusion = 1;
         while (Math.abs(error) > pumpProperties.getEpsilon())
@@ -178,7 +178,7 @@ public class PumpSolver
 
                 if (error > pumpProperties.getEpsilon())
                 {
-                    throw new InfusionException(request);
+                    throw new InfusionException(neededConcentration, deltaTime);
                 }
 
             }
@@ -210,5 +210,15 @@ public class PumpSolver
                 pumpStatus.getTemp4() * l4 + effectSiteCoefficients[3] * infusion * (1 - l4));
         }
 
+    }
+
+    private InfusionResponse createInfusionResponse(final int time, final double infusion, final int weigth)
+    {
+        final int drugConcentration = 10;
+
+        double infusionValue = infusion * 3.6/drugConcentration;
+        double alternativeInfusionValue = InfusionUtil.convertUnits(infusionValue, weigth, drugConcentration);
+
+        return new InfusionResponse(time, infusionValue, alternativeInfusionValue);
     }
 }

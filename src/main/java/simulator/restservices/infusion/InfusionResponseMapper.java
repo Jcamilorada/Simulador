@@ -24,16 +24,20 @@ public class InfusionResponseMapper extends AbstractBusinessObjectMapper<Infusio
     }
 
     @Override
-    public InfusionResponse newBusinessObject(InfusionResponseDTO businessObjectDTO)
+    public InfusionResponse newBusinessObject(final InfusionResponseDTO businessObjectDTO)
     {
-        return new InfusionResponse(businessObjectDTO.getTime(), businessObjectDTO.getInfusionValue());
+        return new InfusionResponse(
+            businessObjectDTO.getTime(),
+            businessObjectDTO.getInfusionValue(),
+            businessObjectDTO.getAlternativeInfusionValue());
     }
 
     @Override
-    public InfusionResponseDTO newBusinessObjectDTO(InfusionResponse businessObject)
+    public InfusionResponseDTO newBusinessObjectDTO(final InfusionResponse businessObject)
     {
         return new InfusionResponseDTO(
             businessObject.getTime(),
-            DoubleUtil.roundDouble(businessObject.getInfusionValue(), pumpProperties.getDecimalPlaces()));
+            DoubleUtil.roundDouble(businessObject.getInfusionValue(), pumpProperties.getDecimalPlaces()),
+            businessObject.getAlternativeInfusionValue());
     }
 }

@@ -15,4 +15,7 @@ public class InfusionResponse
 
     /** The amount of drug that it has to be used. */
     private double infusionValue;
+
+    /** The amount of drug in ug/kg/h */
+    private double alternativeInfusionValue;
 }

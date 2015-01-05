@@ -2,6 +2,8 @@ package simulator.common.infusion;
 
 public class InfusionUtil
 {
+    private static int BASE_10_FACTOR = 10;
+
     /**
      * Convert from the infusion value in ml/h to ug/kg/h
      *
@@ -41,6 +43,6 @@ public class InfusionUtil
      */
     public static double convertInfusion(double base10Value, double concentration)
     {
-        return 10 * base10Value / concentration;
+        return BASE_10_FACTOR * base10Value / concentration;
     }
 }
