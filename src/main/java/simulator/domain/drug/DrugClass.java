@@ -33,9 +33,9 @@ public enum DrugClass
     {
         switch (drugType)
         {
-            case REMIFENTANILO:
+            case OPIOID:
                 return DrugClass.RELAXING;
-            case PROPOFOL:
+            case HYPNOTIC:
                 return DrugClass.HYPNOTIC;
             default:
                 return DrugClass.HYPNOTIC;

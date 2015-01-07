@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 public class CalculationRequestDTO
 {
+    private double drugConcentration;
     private int deltaTime;
     private int model;
     private PatientDTO patient;

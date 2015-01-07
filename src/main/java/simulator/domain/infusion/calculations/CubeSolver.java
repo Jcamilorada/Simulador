@@ -28,24 +28,27 @@ public class CubeSolver
         {
             a0 = k10 * k21 * k31;
             a1 = k10 * k31 +
-                k21 * k31 +
-                k21 * k13 +
-                k10 * k21 +
-                k31 * k12;
+                 k21 * k31 +
+                 k21 * k13 +
+                 k10 * k21 +
+                 k31 * k12;
             a2 = k10 + k12 + k13 + k21 + k31;
 
             p = a1 - (a2 * a2 / 3D);
             q = (2D * a2 * a2 * a2 / 27D) - (a1 * a2 / 3D) + a0;
             r1 = Math.sqrt(-(p * p * p) / 27D);
             phi = (-q / 2D) / r1;
+
             if (phi > 1D) phi = 1D;
             else if (phi < -1D) phi = -1D;
+
             phi = (Math.acos(phi) / 3D);
             r1 = 2.0 * Math.exp(Math.log(r1) / 3D);
             R.add(-(Math.cos(phi) * r1 - a2 / 3D));
             R.add(-(Math.cos(phi + 120D * TO_RADIAN) * r1 - a2 / 3D));
             R.add(-(Math.cos(phi + 240D * TO_RADIAN) * r1 - a2 / 3D));
-        } else
+        }
+        else
         {
             if (k21 > 0D)
             {
@@ -54,13 +57,15 @@ public class CubeSolver
                 R.add((-a1 + Math.sqrt(a1 * a1 - 4 * a0)) / 2D);
                 R.add((-a1 - Math.sqrt(a1 * a1 - 4 * a0)) / 2D);
                 R.add(0D);
-            } else
+            }
+            else
             {
                 R.add(k10);
                 R.add(0D);
                 R.add(0D);
             }
         }
+
         Collections.sort(R);
         return R;
     }

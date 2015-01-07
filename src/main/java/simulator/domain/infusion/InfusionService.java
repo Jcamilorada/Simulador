@@ -20,7 +20,7 @@ public class InfusionService
         this.pumpSolver = pumpSolver;
     }
 
-    public CalculationResponse processSimulation(final CalculationRequest request)
+    public synchronized CalculationResponse processSimulation(final CalculationRequest request)
     {
         pumpSolver.setModel(ModelFactory.getModel(request.getModel(), request.getPatient()));
         CalculationResponse response = pumpSolver.solve(request);

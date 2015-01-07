@@ -38,6 +38,6 @@ public class InfusionResponseMapper extends AbstractBusinessObjectMapper<Infusio
         return new InfusionResponseDTO(
             businessObject.getTime(),
             DoubleUtil.roundDouble(businessObject.getInfusionValue(), pumpProperties.getDecimalPlaces()),
-            businessObject.getAlternativeInfusionValue());
+            DoubleUtil.roundDouble(businessObject.getAlternativeInfusionValue(), pumpProperties.getDecimalPlaces()));
     }
 }

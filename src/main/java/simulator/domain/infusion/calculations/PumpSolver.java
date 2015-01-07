@@ -46,11 +46,12 @@ public class PumpSolver
      */
     public void setModel(final IModel model)
     {
-        Preconditions.checkNotNull(model);
-        this.model = model;
+        this.model = Preconditions.checkNotNull(model);
+
         lambda = CubeSolver.solve(
             model.getK(1, 0), model.getK(1, 2), model.getK(2, 1), model.getK(1, 3), model.getK(3, 1));
         Collections.sort(lambda, Collections.reverseOrder());
+
         lambda.add(model.getK(4, 1));
         if (model.getK(3, 1) > 0D)
         {
@@ -66,6 +67,7 @@ public class PumpSolver
                 (lambda.get(2) - lambda.get(1)) /
                 (lambda.get(2) - lambda.get(0)) /
                 model.getCentralVolume() / lambda.get(2);
+
             effectSiteCoefficients[0] = plasmaCoefficients[0] / (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
             effectSiteCoefficients[1] = plasmaCoefficients[1] / (model.getK(4, 1) - lambda.get(1)) * model.getK(4, 1);
             effectSiteCoefficients[2] = plasmaCoefficients[2] / (model.getK(4, 1) - lambda.get(2)) * model.getK(4, 1);
@@ -85,6 +87,7 @@ public class PumpSolver
                     (lambda.get(0) - lambda.get(1)) /
                     model.getCentralVolume() / lambda.get(1);
                 plasmaCoefficients[2] = 0;
+
                 effectSiteCoefficients[0] = plasmaCoefficients[0] / (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
                 effectSiteCoefficients[1] = plasmaCoefficients[1] / (model.getK(4, 1) - lambda.get(1)) * model.getK(4, 1);
                 effectSiteCoefficients[2] = 0;
@@ -97,6 +100,7 @@ public class PumpSolver
                 plasmaCoefficients[0] = 1 / lambda.get(0) / model.getCentralVolume();
                 plasmaCoefficients[1] = 0;
                 plasmaCoefficients[2] = 0;
+
                 effectSiteCoefficients[0] = plasmaCoefficients[0] / (model.getK(4, 1) - lambda.get(0)) * model.getK(4, 1);
                 effectSiteCoefficients[1] = 0;
                 effectSiteCoefficients[2] = 0;
@@ -135,11 +139,17 @@ public class PumpSolver
                     calculateEffectSiteConcentration(infusion, delta, pumpStatus);
                     calculatePlasmaConcentration(infusion, delta, pumpStatus);
 
-                    infusions.add(createInfusionResponse(time, infusion, request.getPatient().getWeight()));
+                    infusions.add(
+                        createInfusionResponse(
+                            time,
+                            infusion,
+                            request.getPatient().getWeight(),
+                            request.getDrugConcentration()));
+
                     time += delta;
                 }
-
             }
+
             response.setInfusionList(infusions);
             response.setPlasmaConcentrationsData(pumpStatus.getPlasmaUdf());
             response.setSiteConcentrationsData(pumpStatus.getEffectSiteUdf());
@@ -150,6 +160,7 @@ public class PumpSolver
             response.setErrorCode(CalculationResponse.ErrorCode.UNREACHABLE_CONCENTRATION);
             response.setErrorMessage(ie.getMessage());
         }
+
         return response;
     }
 
@@ -212,12 +223,11 @@ public class PumpSolver
 
     }
 
-    private InfusionResponse createInfusionResponse(final int time, final double infusion, final int weigth)
+    private InfusionResponse createInfusionResponse(
+        final int time, final double infusion, final int weight, final double drugConcentration)
     {
-        final int drugConcentration = 10;
-
         double infusionValue = infusion * 3.6/drugConcentration;
-        double alternativeInfusionValue = InfusionUtil.convertUnits(infusionValue, weigth, drugConcentration);
+        double alternativeInfusionValue = InfusionUtil.convertUnits(infusionValue, weight, drugConcentration);
 
         return new InfusionResponse(time, infusionValue, alternativeInfusionValue);
     }

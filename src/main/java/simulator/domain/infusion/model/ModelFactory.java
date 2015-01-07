@@ -14,6 +14,7 @@ public class ModelFactory
     {
         Preconditions.checkNotNull(model);
         Preconditions.checkNotNull(patient);
+
         IModel actModel = null;
         switch (model)
         {

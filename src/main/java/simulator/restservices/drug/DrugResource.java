@@ -2,9 +2,11 @@ package simulator.restservices.drug;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.domain.drug.DrugService;
+import simulator.domain.drug.DrugType;
 
 import java.util.List;
 
@@ -21,9 +23,10 @@ public class DrugResource
         this.drugMapper = drugMapper;
     }
 
-    @RequestMapping("/drugs")
-    public @ResponseBody List<DrugDTO> getDrugs()
+    @RequestMapping("/drugs/type/{type}")
+    public @ResponseBody List<DrugDTO> getDrugs(@PathVariable int type)
     {
-        return drugMapper.newBusinessObjectDTOList(drugService.findAll());
+        return drugMapper.newBusinessObjectDTOList(
+            drugService.findAllByType(DrugType.fromValue(type)));
     }
 }

@@ -8,7 +8,7 @@ import simulator.common.exceptions.EnumCastException;
 @AllArgsConstructor
 public enum DrugType
 {
-    REMIFENTANILO(1), PROPOFOL(2);
+    OPIOID(1), HYPNOTIC(2);
 
     @Getter @Setter
     private int value;
@@ -18,9 +18,9 @@ public enum DrugType
         switch (value)
         {
             case 1:
-                return REMIFENTANILO;
+                return OPIOID;
             case 2:
-                return PROPOFOL;
+                return HYPNOTIC;
             default:
                 throw new EnumCastException(value);
         }

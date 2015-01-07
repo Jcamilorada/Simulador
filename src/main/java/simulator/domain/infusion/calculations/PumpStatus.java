@@ -52,6 +52,16 @@ public class PumpStatus
         pTemp3 = pumpStatus.pTemp3;
     }
 
+    public List<Double> getPlasmaUdf()
+    {
+        return new ArrayList<>(plasmaUdf);
+    }
+
+    public List<Double> getEffectSiteUdf()
+    {
+        return new ArrayList<>(effectSiteUdf);
+    }
+
     /**
      * Convenient method to store the actual status of the algorithm.
      * This method will always add to the end of the lists.
@@ -90,13 +100,5 @@ public class PumpStatus
     double getLatestEffectSiteUdf()
     {
         return effectSiteUdf.get(effectSiteUdf.size() - 1);
-    }
-
-    public List<Double> getPlasmaUdf() {
-        return new ArrayList<>(plasmaUdf);
-    }
-
-    public List<Double> getEffectSiteUdf() {
-        return new ArrayList<>(effectSiteUdf);
     }
 }

@@ -14,4 +14,5 @@ public class PatientDTO
     private int weight;
     private int age;
     private int gender;
+    private String name;
 }

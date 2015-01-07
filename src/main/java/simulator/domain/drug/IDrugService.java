@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface IDrugService
 {
-    public List<Drug> findAll();
+    public List<Drug> findAllByType(DrugType type);
 }

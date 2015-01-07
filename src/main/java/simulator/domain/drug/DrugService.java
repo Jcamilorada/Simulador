@@ -20,8 +20,8 @@ public class DrugService implements IDrugService
     }
 
     @Override
-    public List<Drug> findAll()
+    public List<Drug> findAllByType(DrugType type)
     {
-        return beanMapper.newBusinessObjectList(drugRepository.findAll());
+        return beanMapper.newBusinessObjectList(drugRepository.findByDrugType(type.getValue()));
     }
 }

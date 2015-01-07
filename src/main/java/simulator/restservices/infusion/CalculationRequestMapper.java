@@ -33,6 +33,7 @@ class CalculationRequestMapper extends AbstractBusinessObjectMapper<CalculationR
         calculationRequest.setPatient(patientMapper.newBusinessObject(businessObjectDTO.getPatient()));
         calculationRequest.setDeltaTime(businessObjectDTO.getDeltaTime());
         calculationRequest.setModel(Model.fromValue(businessObjectDTO.getModel()));
+        calculationRequest.setDrugConcentration(businessObjectDTO.getDrugConcentration());
 
         calculationRequest.setInfusionRequestList(
             infusionRequestMapper.newBusinessObjectList(businessObjectDTO.getPumpInfusion()));
@@ -47,6 +48,7 @@ class CalculationRequestMapper extends AbstractBusinessObjectMapper<CalculationR
         calculationRequestDTO.setPatient(patientMapper.newBusinessObjectDTO(businessObject.getPatient()));
         calculationRequestDTO.setDeltaTime(businessObject.getDeltaTime());
         calculationRequestDTO.setModel(businessObject.getModel().getValue());
+        calculationRequestDTO.setDrugConcentration(businessObject.getDrugConcentration());
 
         calculationRequestDTO.setPumpInfusion(infusionRequestMapper.newBusinessObjectDTOList(businessObject.getInfusionRequestList()));
 

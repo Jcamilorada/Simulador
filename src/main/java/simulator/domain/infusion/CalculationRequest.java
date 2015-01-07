@@ -22,6 +22,8 @@ public class CalculationRequest
 
     private int deltaTime;
 
+    private double drugConcentration;
+
     private Patient patient;
 
     private Model model;
