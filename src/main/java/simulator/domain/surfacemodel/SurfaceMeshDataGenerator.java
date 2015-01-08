@@ -34,7 +34,7 @@ class SurfaceMeshDataGenerator
 
     Point createPoint(final double x, final double y, final int index)
     {
-        double pnr = SurfaceModelCalculator.getPNR(x, y);
+        double pnr = SurfaceModelCalculator.caculatePNR(x, y);
         Color color = getPointColor(pnr);
         Point point = new Point(x, y, pnr, index, color);
 
