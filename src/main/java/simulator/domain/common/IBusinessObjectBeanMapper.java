@@ -2,7 +2,7 @@ package simulator.domain.common;
 
 public interface IBusinessObjectBeanMapper<Bean, BO>
 {
-    public Bean newBusinessObjectBean(final BO businessObjectDTO);
+    public Bean newBusinessObjectBean(final BO businessObject);
 
-    public BO newBusinessObject(final Bean businessObject);
+    public BO newBusinessObject(final Bean businessObjectBean);
 }

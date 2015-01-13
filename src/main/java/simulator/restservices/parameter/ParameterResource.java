@@ -1,5 +1,6 @@
 package simulator.restservices.parameter;
 
+import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +22,14 @@ public class ParameterResource
     @Autowired
     ParameterResource(final IParameterService parameterService, final ParameterMapper parameterMapper)
     {
-        this.parameterService = parameterService;
-        this.parameterMapper = parameterMapper;
+        this.parameterService = Preconditions.checkNotNull(parameterService, "parameterService cannot be null");
+        this.parameterMapper = Preconditions.checkNotNull(parameterMapper, "parameterMapper cannot be null");
     }
 
     @RequestMapping("/parameters/{id}")
     public
     @ResponseBody
-    ParameterDTO getParameterList(final @PathVariable long id)
+    ParameterDTO getParameter(final @PathVariable long id)
     {
         return parameterMapper.newBusinessObjectDTO(parameterService.getParameter(id));
     }

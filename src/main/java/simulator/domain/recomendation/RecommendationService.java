@@ -13,23 +13,22 @@ import java.util.List;
 @Transactional
 public class RecommendationService implements IRecommendationService
 {
-    private final RecommendationRepository recomendationRepository;
-    private final RecomendationBeanMapper beanMapper;
+    private final RecommendationRepository recommendationRepository;
+    private final RecommendationBeanMapper beanMapper;
 
     @Autowired
     RecommendationService(
-        final RecommendationRepository recomendationRepository, final RecomendationBeanMapper objectMapper)
+        final RecommendationRepository recommendationRepository, final RecommendationBeanMapper recommendationBeanMapper)
     {
-        this.recomendationRepository =
-            Preconditions.checkNotNull(recomendationRepository, "RecommendationRepository can not be null");
+        this.recommendationRepository =
+            Preconditions.checkNotNull(recommendationRepository, "RecommendationRepository can not be null");
         this.beanMapper =
-            Preconditions.checkNotNull(objectMapper, "beanMapper can not be null");
+            Preconditions.checkNotNull(recommendationBeanMapper, "recommendationBeanMapper can not be null");
     }
 
     @Override
-    public List<Recommendation> getRecomendations()
+    public List<Recommendation> getRecommendations(int type)
     {
-        return beanMapper.newBusinessObjectList(
-            Lists.newArrayList(recomendationRepository.findAll()));
+        return beanMapper.newBusinessObjectList(recommendationRepository.findByType(type));
     }
 }

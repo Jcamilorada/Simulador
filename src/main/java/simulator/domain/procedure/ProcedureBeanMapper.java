@@ -8,21 +8,21 @@ import simulator.persistence.procedure.ProcedureBean;
 public class ProcedureBeanMapper extends AbstractBusinessObjectBeanMapper<ProcedureBean, Procedure>
 {
     @Override
-    public ProcedureBean newBusinessObjectBean(final Procedure businessObjectDTO)
+    public ProcedureBean newBusinessObjectBean(final Procedure businessObject)
     {
         ProcedureBean procedureBean = new ProcedureBean();
-        procedureBean.setName(businessObjectDTO.getName());
-        procedureBean.setCode(businessObjectDTO.getCode());
+        procedureBean.setName(businessObject.getName());
+        procedureBean.setCode(businessObject.getCode());
 
         return procedureBean;
     }
 
     @Override
-    public Procedure newBusinessObject(final ProcedureBean businessObject)
+    public Procedure newBusinessObject(final ProcedureBean businessObjectBean)
     {
         Procedure procedure = new Procedure();
-        procedure.setName(businessObject.getName());
-        procedure.setCode(businessObject.getCode());
+        procedure.setName(businessObjectBean.getName());
+        procedure.setCode(businessObjectBean.getCode());
 
         return procedure;
     }

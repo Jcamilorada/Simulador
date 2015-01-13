@@ -8,23 +8,23 @@ import simulator.persistence.indution.InductionMethodBean;
 public class InductionMethodBeanMapper extends AbstractBusinessObjectBeanMapper<InductionMethodBean, InductionMethod>
 {
     @Override
-    public InductionMethodBean newBusinessObjectBean(InductionMethod businessObjectDTO)
+    public InductionMethodBean newBusinessObjectBean(InductionMethod businessObject)
     {
         InductionMethodBean inductionMethodBean = new InductionMethodBean();
-        inductionMethodBean.setId(businessObjectDTO.getId());
-        inductionMethodBean.setName(businessObjectDTO.getName());
-        inductionMethodBean.setPnr(businessObjectDTO.getPnr());
+        inductionMethodBean.setId(businessObject.getId());
+        inductionMethodBean.setName(businessObject.getName());
+        inductionMethodBean.setPnr(businessObject.getPnr());
 
         return inductionMethodBean;
     }
 
     @Override
-    public InductionMethod newBusinessObject(InductionMethodBean businessObject)
+    public InductionMethod newBusinessObject(InductionMethodBean businessObjectBean)
     {
         InductionMethod inductionMethod = new InductionMethod();
-        inductionMethod.setPnr(businessObject.getPnr());
-        inductionMethod.setName(businessObject.getName());
-        inductionMethod.setId(businessObject.getId());
+        inductionMethod.setPnr(businessObjectBean.getPnr());
+        inductionMethod.setName(businessObjectBean.getName());
+        inductionMethod.setId(businessObjectBean.getId());
 
         return inductionMethod;
     }

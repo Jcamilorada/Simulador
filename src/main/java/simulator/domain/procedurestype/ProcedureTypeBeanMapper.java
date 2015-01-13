@@ -8,25 +8,25 @@ import simulator.persistence.proceduretype.ProcedureTypeBean;
 public final class ProcedureTypeBeanMapper extends AbstractBusinessObjectBeanMapper<ProcedureTypeBean, ProcedureType>
 {
     @Override
-    public ProcedureTypeBean newBusinessObjectBean(ProcedureType businessObjectDTO)
+    public ProcedureTypeBean newBusinessObjectBean(ProcedureType businessObject)
     {
         ProcedureTypeBean procedureTypeBean = new ProcedureTypeBean();
-        procedureTypeBean.setId(businessObjectDTO.getId());
-        procedureTypeBean.setName(businessObjectDTO.getName());
-        procedureTypeBean.setPNR(businessObjectDTO.getPNR());
-        procedureTypeBean.setExamples(businessObjectDTO.getExamples());
+        procedureTypeBean.setId(businessObject.getId());
+        procedureTypeBean.setName(businessObject.getName());
+        procedureTypeBean.setPNR(businessObject.getPNR());
+        procedureTypeBean.setExamples(businessObject.getExamples());
 
         return procedureTypeBean;
     }
 
     @Override
-    public ProcedureType newBusinessObject(ProcedureTypeBean businessObject)
+    public ProcedureType newBusinessObject(ProcedureTypeBean businessObjectBean)
     {
         ProcedureType procedureType = new ProcedureType();
-        procedureType.setId(businessObject.getId());
-        procedureType.setName(businessObject.getName());
-        procedureType.setPNR(businessObject.getPNR());
-        procedureType.setExamples(businessObject.getExamples());
+        procedureType.setId(businessObjectBean.getId());
+        procedureType.setName(businessObjectBean.getName());
+        procedureType.setPNR(businessObjectBean.getPNR());
+        procedureType.setExamples(businessObjectBean.getExamples());
 
         return procedureType;
     }

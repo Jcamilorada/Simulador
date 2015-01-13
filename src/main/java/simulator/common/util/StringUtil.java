@@ -41,4 +41,11 @@ public class StringUtil
         }
         return  values;
     }
+
+    public static List<String> getStringList(final String value, final String separator)
+    {
+        String[] arrayValues = value.split(separator);
+
+        return  Lists.newArrayList(arrayValues);
+    }
 }

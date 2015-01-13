@@ -1,13 +1,13 @@
 package simulator.restservices.recommendation;
 
+import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.domain.recomendation.IRecommendationService;
-import simulator.domain.recomendation.Recommendation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,33 +15,21 @@ import java.util.List;
 public class RecomendationsResource
 {
     private final IRecommendationService recommendationService;
-    private final RecomendationMapper recomendationMapper;
+    private final RecommendationMapper recommendationMapper;
 
     @Autowired
     RecomendationsResource(final IRecommendationService parameterService,
-                           final RecomendationMapper recomendationMapper)
+                           final RecommendationMapper recommendationMapper)
     {
-        this.recommendationService = parameterService;
-        this.recomendationMapper = recomendationMapper;
+        this.recommendationService = Preconditions.checkNotNull(parameterService, "recommendationService cannot be null");
+        this.recommendationMapper = Preconditions.checkNotNull(recommendationMapper, "recomendationMapper cannot be null" );
     }
 
-    @RequestMapping
-    public
-    @ResponseBody
-    List<RecommendationDTO> getRecomendations()
+    @RequestMapping("/type/{type}")
+    public @ResponseBody List<RecommendationDTO> getRecomendations(@PathVariable int type)
     {
-        return  getRecomendations(recommendationService.getRecomendations());
-    }
-
-    private List<RecommendationDTO> getRecomendations(final List<Recommendation> recommendations)
-    {
-        List<RecommendationDTO> dtoList = new ArrayList<>(recommendations.size());
-        for (Recommendation recommendation : recommendations)
-        {
-            dtoList.add(recomendationMapper.newBusinessObjectDTO(recommendation));
-        }
-
-        return  dtoList;
+        return  recommendationMapper.newBusinessObjectDTOList(
+            recommendationService.getRecommendations(type));
     }
 }
 

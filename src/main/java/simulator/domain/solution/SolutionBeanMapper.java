@@ -8,23 +8,23 @@ import simulator.persistence.solution.SolutionBean;
 public class SolutionBeanMapper extends AbstractBusinessObjectBeanMapper<SolutionBean, Solution>
 {
     @Override
-    public SolutionBean newBusinessObjectBean(final Solution businessObjectDTO)
+    public SolutionBean newBusinessObjectBean(final Solution businessObject)
     {
         SolutionBean solutionBean = new SolutionBean();
-        solutionBean.setDescription(businessObjectDTO.getDescription());
-        solutionBean.setId(businessObjectDTO.getId());
-        solutionBean.setValue(businessObjectDTO.getValue());
+        solutionBean.setDescription(businessObject.getDescription());
+        solutionBean.setId(businessObject.getId());
+        solutionBean.setValue(businessObject.getValue());
 
         return  solutionBean;
     }
 
     @Override
-    public Solution newBusinessObject(final SolutionBean businessObject)
+    public Solution newBusinessObject(final SolutionBean businessObjectBean)
     {
         Solution solution = new Solution();
-        solution.setDescription(businessObject.getDescription());
-        solution.setId(businessObject.getId());
-        solution.setValue(businessObject.getValue());
+        solution.setDescription(businessObjectBean.getDescription());
+        solution.setId(businessObjectBean.getId());
+        solution.setValue(businessObjectBean.getValue());
 
         return  solution;
     }

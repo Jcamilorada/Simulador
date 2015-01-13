@@ -8,23 +8,23 @@ import simulator.persistence.parameter.ParameterBean;
 public class ParameterBeanMapper extends AbstractBusinessObjectBeanMapper<ParameterBean, Parameter>
 {
     @Override
-    public ParameterBean newBusinessObjectBean(Parameter businessObjectDTO)
+    public ParameterBean newBusinessObjectBean(Parameter businessObject)
     {
         ParameterBean parameterBean = new ParameterBean();
-        parameterBean.setName(businessObjectDTO.getName());
-        parameterBean.setId(businessObjectDTO.getId());
-        parameterBean.setValue(businessObjectDTO.getValue());
+        parameterBean.setName(businessObject.getName());
+        parameterBean.setId(businessObject.getId());
+        parameterBean.setValue(businessObject.getValue());
 
         return parameterBean;
     }
 
     @Override
-    public Parameter newBusinessObject(ParameterBean businessObject)
+    public Parameter newBusinessObject(ParameterBean businessObjectBean)
     {
         Parameter parameter = new Parameter();
-        parameter.setName(businessObject.getName());
-        parameter.setId(businessObject.getId());
-        parameter.setValue(businessObject.getValue());
+        parameter.setName(businessObjectBean.getName());
+        parameter.setId(businessObjectBean.getId());
+        parameter.setValue(businessObjectBean.getValue());
 
         return parameter;
     }

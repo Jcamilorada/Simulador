@@ -2,6 +2,8 @@ package simulator.persistence.recommendation;
 
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * @author Juan Camilo Rada
  *
@@ -10,4 +12,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface RecommendationRepository extends CrudRepository<RecommendationBean, Long>
 {
+    public List<RecommendationBean> findByType(final int type);
 }

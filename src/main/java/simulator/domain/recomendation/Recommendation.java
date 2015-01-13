@@ -2,17 +2,14 @@ package simulator.domain.recomendation;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.io.Serializable;
+import java.util.List;
 
 @Data
-public class Recommendation implements Serializable
+public class Recommendation
 {
-    private static final long serialVersionUID = 1L;
-
-    @Id
     private Long id;
-    @Column
     private String description;
+    private RecommendationType recommendationType;
+    private List<String> alternatives;
+    private SentenceType sentenceType;
 }
