@@ -1,63 +1,39 @@
 package simulator.domain.infusion.calculations;
 
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class PumpStatus
 {
-    private List<Double> effectSiteUdf;
-    private List<Double> plasmaUdf;
-    @Getter
-    private double temp1;
-    @Getter
-    private double temp2;
-    @Getter
-    private double temp3;
-    @Getter
-    private double temp4;
-    @Getter
-    private double pTemp1;
-    @Getter
-    private double pTemp2;
-    @Getter
-    private double pTemp3;
-
-    PumpStatus(final int maximumTime)
-    {
-        effectSiteUdf = new ArrayList<>(maximumTime);
-        plasmaUdf = new ArrayList<>(maximumTime);
-        temp1 = 0;
-        temp2 = 0;
-        temp3 = 0;
-        temp4 = 0;
-        pTemp1 = 0;
-        pTemp2 = 0;
-        pTemp3 = 0;
-        effectSiteUdf.add(0D);
-        plasmaUdf.add(0D);
-    }
+    private List<ESCComponentValues> effectSiteUdf;
+    private List<PlasmaComponentValues> plasmaUdf;
 
     PumpStatus(final PumpStatus pumpStatus)
     {
         effectSiteUdf = new ArrayList<>(pumpStatus.effectSiteUdf);
         plasmaUdf = new ArrayList<>(pumpStatus.plasmaUdf);
-        temp1 = pumpStatus.temp1;
-        temp2 = pumpStatus.temp2;
-        temp3 = pumpStatus.temp3;
-        temp4 = pumpStatus.temp4;
-        pTemp1 = pumpStatus.pTemp1;
-        pTemp2 = pumpStatus.pTemp2;
-        pTemp3 = pumpStatus.pTemp3;
     }
 
-    public List<Double> getPlasmaUdf()
+    PumpStatus(
+        final ESCComponentValues effectSiteValues,
+        final PlasmaComponentValues plasmaValues,
+        final int maximumTime) {
+        effectSiteUdf = new ArrayList<>(maximumTime);
+        plasmaUdf = new ArrayList<>(maximumTime);
+        storeEffectSiteUdfValue(
+            effectSiteValues.getC1(),
+            effectSiteValues.getC2(),
+            effectSiteValues.getC3(),
+            effectSiteValues.getC4());
+        storePlasmaUdfValue(plasmaValues.getP1(), plasmaValues.getP2(), plasmaValues.getP3());
+    }
+
+    public List<PlasmaComponentValues> getPlasmaUdf()
     {
         return new ArrayList<>(plasmaUdf);
     }
 
-    public List<Double> getEffectSiteUdf()
+    public List<ESCComponentValues> getEffectSiteUdf()
     {
         return new ArrayList<>(effectSiteUdf);
     }
@@ -74,11 +50,7 @@ public class PumpStatus
     void storeEffectSiteUdfValue(
         final double temp1, final double temp2, final double temp3, final double temp4)
     {
-        this.effectSiteUdf.add(temp1 + temp2 + temp3 + temp4);
-        this.temp1 = temp1;
-        this.temp2 = temp2;
-        this.temp3 = temp3;
-        this.temp4 = temp4;
+        this.effectSiteUdf.add(new ESCComponentValues(temp1, temp2, temp3, temp4));
     }
 
     /**
@@ -91,14 +63,16 @@ public class PumpStatus
      */
     void storePlasmaUdfValue(final double pTemp1, final double pTemp2, final double pTemp3)
     {
-        this.plasmaUdf.add(pTemp1 + pTemp2 + pTemp3);
-        this.pTemp1 = pTemp1;
-        this.pTemp2 = pTemp2;
-        this.pTemp3 = pTemp3;
+        this.plasmaUdf.add(new PlasmaComponentValues(pTemp1, pTemp2, pTemp3));
     }
 
-    double getLatestEffectSiteUdf()
+    ESCComponentValues getLatestEffectSiteUdf()
     {
         return effectSiteUdf.get(effectSiteUdf.size() - 1);
+    }
+
+    PlasmaComponentValues getLatestPlasmaUdf()
+    {
+        return plasmaUdf.get(plasmaUdf.size() -1);
     }
 }

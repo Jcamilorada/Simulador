@@ -124,7 +124,8 @@ public class PumpSolver
     {
         Preconditions.checkNotNull(request);
         List<InfusionResponse> infusions = new ArrayList<>();
-        PumpStatus pumpStatus = new PumpStatus(request.getMaximumTime());
+        PumpStatus pumpStatus = new PumpStatus(
+            request.getEffectSiteValues(), request.getPlasmaValues(), request.getMaximumTime());
         int time = 0;
         CalculationResponse response = new CalculationResponse();
         try
@@ -175,7 +176,7 @@ public class PumpSolver
         {
             PumpStatus pumpStatus = new PumpStatus(oldPumpStatus);
             calculateEffectSiteConcentration(infusion, deltaTime, pumpStatus);
-            error = (pumpStatus.getLatestEffectSiteUdf() - neededConcentration) / neededConcentration;
+            error = (pumpStatus.getLatestEffectSiteUdf().getSum() - neededConcentration) / neededConcentration;
             if (Math.abs(error) > pumpProperties.getEpsilon())
             {
                 infusion = infusion * (1 - error);
@@ -185,7 +186,7 @@ public class PumpSolver
                 infusion = 0;
                 pumpStatus = new PumpStatus(oldPumpStatus);
                 calculateEffectSiteConcentration(infusion, deltaTime, pumpStatus);
-                error = (pumpStatus.getLatestEffectSiteUdf() - neededConcentration) / neededConcentration;
+                error = (pumpStatus.getLatestEffectSiteUdf().getSum() - neededConcentration) / neededConcentration;
 
                 if (error > pumpProperties.getEpsilon())
                 {
@@ -202,10 +203,11 @@ public class PumpSolver
     {
         for (int i = 0; i < deltaTime; i++)
         {
+            PlasmaComponentValues actual = pumpStatus.getLatestPlasmaUdf();
             pumpStatus.storePlasmaUdfValue(
-                pumpStatus.getPTemp1() * l1 + plasmaCoefficients[0] * infusion * (1 - l1),
-                pumpStatus.getPTemp2() * l2 + plasmaCoefficients[1] * infusion * (1 - l2),
-                pumpStatus.getPTemp3() * l3 + plasmaCoefficients[2] * infusion * (1 - l3));
+                actual.getP1() * l1 + plasmaCoefficients[0] * infusion * (1 - l1),
+                actual.getP2() * l2 + plasmaCoefficients[1] * infusion * (1 - l2),
+                actual.getP3() * l3 + plasmaCoefficients[2] * infusion * (1 - l3));
         }
     }
 
@@ -214,11 +216,12 @@ public class PumpSolver
     {
         for (int iterator = 0; iterator < deltaTime; iterator++)
         {
+            ESCComponentValues actual = pumpStatus.getLatestEffectSiteUdf();
             pumpStatus.storeEffectSiteUdfValue(
-                pumpStatus.getTemp1() * l1 + effectSiteCoefficients[0] * infusion * (1 - l1),
-                pumpStatus.getTemp2() * l2 + effectSiteCoefficients[1] * infusion * (1 - l2),
-                pumpStatus.getTemp3() * l3 + effectSiteCoefficients[2] * infusion * (1 - l3),
-                pumpStatus.getTemp4() * l4 + effectSiteCoefficients[3] * infusion * (1 - l4));
+                actual.getC1() * l1 + effectSiteCoefficients[0] * infusion * (1 - l1),
+                actual.getC2() * l2 + effectSiteCoefficients[1] * infusion * (1 - l2),
+                actual.getC3() * l3 + effectSiteCoefficients[2] * infusion * (1 - l3),
+                actual.getC4() * l4 + effectSiteCoefficients[3] * infusion * (1 - l4));
         }
 
     }

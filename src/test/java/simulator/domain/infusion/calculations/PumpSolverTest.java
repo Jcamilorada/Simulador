@@ -64,6 +64,8 @@ public class PumpSolverTest
         request.setDeltaTime(50);
         request.setPatient(patient);
         request.setInfusionRequestList(Arrays.asList(new InfusionRequest(0, 500, 2), new InfusionRequest(700, 1000, 3)));
+        request.setEffectSiteValues(new ESCComponentValues());
+        request.setPlasmaValues(new PlasmaComponentValues());
         CalculationResponse response = testInstance.solve(request);
     }
 
@@ -74,10 +76,12 @@ public class PumpSolverTest
         request.setModel(Model.Minto);
         request.setDeltaTime(300);
         request.setInfusionRequestList(Arrays.asList(
-            new InfusionRequest(0, 360, 3.86),
-            new InfusionRequest(360, 660, 3.51),
-            new InfusionRequest(1860, 2160, 2.69)));
+        new InfusionRequest(0, 360, 3.86),
+        new InfusionRequest(360, 660, 3.51),
+        new InfusionRequest(1860, 2160, 2.69)));
         request.setPatient(patient);
+        request.setEffectSiteValues(new ESCComponentValues());
+        request.setPlasmaValues(new PlasmaComponentValues());
         IModel model = new MintoModel(patient);
         testInstance.setModel(model);
         CalculationResponse response = testInstance.solve(request);

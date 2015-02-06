@@ -1,8 +1,7 @@
 package simulator.restservices.infusion;
 
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 /**
  * @author Juan Camilo Rada
@@ -16,6 +15,8 @@ public class CalculationRequestDTO
     private double drugConcentration;
     private int deltaTime;
     private int model;
+    private ESCComponentValuesDTO componentValuesDTO;
+    private PlasmaComponentValuesDTO plasmaComponentValuesDTO;
     private PatientDTO patient;
     private List<InfusionRequestDTO> pumpInfusion;
 }

@@ -4,6 +4,8 @@ import lombok.Data;
 import simulator.common.exceptions.EnumCastException;
 
 import java.util.List;
+import simulator.domain.infusion.calculations.ESCComponentValues;
+import simulator.domain.infusion.calculations.PlasmaComponentValues;
 
 /**
  * The simulation response containing the plasma, and effect site concentration
@@ -16,8 +18,8 @@ public class CalculationResponse
     ErrorCode errorCode = ErrorCode.NO_ERROR;
     String ErrorMessage;
 
-    List<Double> siteConcentrationsData;
-    List<Double> plasmaConcentrationsData;
+    List<ESCComponentValues> siteConcentrationsData;
+    List<PlasmaComponentValues> plasmaConcentrationsData;
     List<InfusionResponse> infusionList;
     List<Double> pnrData;
 

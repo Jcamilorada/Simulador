@@ -1,9 +1,8 @@
 package simulator.restservices.infusion;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
+import lombok.Data;
 
 /**
  * @author Juan Camilo Rada
@@ -15,7 +14,7 @@ import java.util.List;
 public class CalculationResponseDTO implements Serializable
 {
     int errorCode = 0;
-    List<Double> siteConcentrationsData;
-    List<Double> plasmaConcentrationsData;
+    List<ESCComponentValuesDTO> siteConcentrationsData;
+    List<PlasmaComponentValuesDTO> plasmaConcentrationsData;
     List<InfusionResponseDTO> infusionList;
 }

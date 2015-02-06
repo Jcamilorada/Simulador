@@ -8,6 +8,8 @@ import lombok.Data;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import simulator.domain.infusion.calculations.ESCComponentValues;
+import simulator.domain.infusion.calculations.PlasmaComponentValues;
 import simulator.domain.infusion.model.Model;
 
 @Data
@@ -27,6 +29,10 @@ public class CalculationRequest
     private Patient patient;
 
     private Model model;
+
+    private ESCComponentValues effectSiteValues;
+
+    private PlasmaComponentValues plasmaValues;
 
     @Getter(AccessLevel.NONE)
     private final Set<InfusionRequest> noPumpTimes = new HashSet<>();

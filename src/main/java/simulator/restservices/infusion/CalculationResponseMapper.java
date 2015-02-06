@@ -1,8 +1,8 @@
 package simulator.restservices.infusion;
 
+import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import simulator.common.util.DoubleUtil;
 import simulator.configuration.PumpProperties;
 import simulator.domain.infusion.CalculationResponse;
 import simulator.restservices.common.AbstractBusinessObjectMapper;
@@ -16,13 +16,22 @@ import simulator.restservices.common.AbstractBusinessObjectMapper;
 class CalculationResponseMapper extends AbstractBusinessObjectMapper<CalculationResponse, CalculationResponseDTO>
 {
     private final InfusionResponseMapper infusionResponseMapper;
-    private final PumpProperties pumpProperties;
+    private final EffectSiteValuesMapper effectSiteValuesMapper;
+    private final PlasmaValuesMapper plasmaValuesMapper;
 
     @Autowired
-    CalculationResponseMapper(final InfusionResponseMapper infusionResponseMapper, final PumpProperties pumpProperties)
+    CalculationResponseMapper(
+        final InfusionResponseMapper infusionResponseMapper,
+        final EffectSiteValuesMapper effectSiteValuesMapper,
+        final PlasmaValuesMapper plasmaValuesMapper,
+        final PumpProperties pumpProperties)
     {
-        this.infusionResponseMapper = infusionResponseMapper;
-        this.pumpProperties = pumpProperties;
+        Preconditions.checkNotNull(pumpProperties);
+        this.infusionResponseMapper = Preconditions.checkNotNull(infusionResponseMapper);
+        this.effectSiteValuesMapper = Preconditions.checkNotNull(effectSiteValuesMapper);
+        this.plasmaValuesMapper = Preconditions.checkNotNull(plasmaValuesMapper);
+        effectSiteValuesMapper.setDecimalPlaces(pumpProperties.getDecimalPlaces());
+        plasmaValuesMapper.setDecimalPlaces(pumpProperties.getDecimalPlaces());
     }
 
     @Override
@@ -31,8 +40,10 @@ class CalculationResponseMapper extends AbstractBusinessObjectMapper<Calculation
         CalculationResponse calculationResponse = new CalculationResponse();
         calculationResponse.setErrorCode(CalculationResponse.ErrorCode.fromValue(businessObjectDTO.getErrorCode()));
         calculationResponse.setInfusionList(infusionResponseMapper.newBusinessObjectList(businessObjectDTO.getInfusionList()));
-        calculationResponse.setPlasmaConcentrationsData(businessObjectDTO.getPlasmaConcentrationsData());
-        calculationResponse.setSiteConcentrationsData(businessObjectDTO.getSiteConcentrationsData());
+        calculationResponse.setPlasmaConcentrationsData(
+            plasmaValuesMapper.newBusinessObjectList(businessObjectDTO.getPlasmaConcentrationsData()));
+        calculationResponse.setSiteConcentrationsData(
+            effectSiteValuesMapper.newBusinessObjectList(businessObjectDTO.getSiteConcentrationsData()));
 
         return calculationResponse;
     }
@@ -45,15 +56,11 @@ class CalculationResponseMapper extends AbstractBusinessObjectMapper<Calculation
         calculationResponseDTO.setInfusionList(infusionResponseMapper.newBusinessObjectDTOList(businessObject.getInfusionList()));
 
 
-        calculationResponseDTO.setPlasmaConcentrationsData(DoubleUtil.roundDoubleList(
-            businessObject.getPlasmaConcentrationsData(),
-            pumpProperties.getDecimalPlaces()));
-        calculationResponseDTO.setSiteConcentrationsData(DoubleUtil.roundDoubleList(
-            businessObject.getSiteConcentrationsData(),
-            pumpProperties.getDecimalPlaces()));
+        calculationResponseDTO.setPlasmaConcentrationsData(
+            plasmaValuesMapper.newBusinessObjectDTOList(businessObject.getPlasmaConcentrationsData()));
+        calculationResponseDTO.setSiteConcentrationsData(
+            effectSiteValuesMapper.newBusinessObjectDTOList(businessObject.getSiteConcentrationsData()));
 
         return calculationResponseDTO;
     }
-
-
 }
