@@ -4,6 +4,8 @@ import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import simulator.domain.infusion.CalculationRequest;
+import simulator.domain.infusion.calculations.ESCComponentValues;
+import simulator.domain.infusion.calculations.PlasmaComponentValues;
 import simulator.domain.infusion.model.Model;
 import simulator.restservices.common.AbstractBusinessObjectMapper;
 
@@ -35,8 +37,20 @@ class CalculationRequestMapper extends AbstractBusinessObjectMapper<CalculationR
         calculationRequest.setModel(Model.fromValue(businessObjectDTO.getModel()));
         calculationRequest.setDrugConcentration(businessObjectDTO.getDrugConcentration());
 
-        calculationRequest.setInfusionRequestList(
-            infusionRequestMapper.newBusinessObjectList(businessObjectDTO.getPumpInfusion()));
+
+        calculationRequest.setEffectSiteValues(new ESCComponentValues(
+            businessObjectDTO.getComponentValuesDTO().getC1(),
+            businessObjectDTO.getComponentValuesDTO().getC2(),
+            businessObjectDTO.getComponentValuesDTO().getC3(),
+            businessObjectDTO.getComponentValuesDTO().getC4()));
+
+        calculationRequest.setPlasmaValues(new PlasmaComponentValues(
+            businessObjectDTO.getPlasmaComponentValuesDTO().getP1(),
+            businessObjectDTO.getPlasmaComponentValuesDTO().getP2(),
+            businessObjectDTO.getPlasmaComponentValuesDTO().getP3()
+        ));
+
+        calculationRequest.setInfusionRequestList(infusionRequestMapper.newBusinessObjectList(businessObjectDTO.getPumpInfusion()));
 
         return  calculationRequest;
     }

@@ -42,7 +42,7 @@ class SurfaceMeshMapper
 
     private List<Integer> getColorsList(final List<Point> pointList)
     {
-        List<Integer> colorsList = new ArrayList<>(pointList.size());
+        List<Integer> colorsList = new ArrayList<Integer>(pointList.size());
         for (Point point : pointList)
         {
             colorsList.add(point.getColor().getValue());

@@ -21,9 +21,9 @@ public class GraphicsProperties
     /* x Factor used to change x values in the mesh. */
     private int xFactor;
 
-    /* y Factor used to change x values in the mesh. */
+    /* y Factor used to change y values in the mesh. */
     private int yFactor;
 
-    /* z Factor used to change x values in the mesh. */
+    /* z Factor used to change z values in the mesh. */
     private int zFactor;
 }

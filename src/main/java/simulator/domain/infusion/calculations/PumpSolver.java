@@ -126,6 +126,7 @@ public class PumpSolver
         List<InfusionResponse> infusions = new ArrayList<>();
         PumpStatus pumpStatus = new PumpStatus(
             request.getEffectSiteValues(), request.getPlasmaValues(), request.getMaximumTime());
+
         int time = 0;
         CalculationResponse response = new CalculationResponse();
         try
