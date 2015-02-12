@@ -15,6 +15,9 @@ public class InfusionResponseDTO
     /** The time where the infusion has to be done. */
     private int time;
 
+    /** The end time where the infusion has to be done. */
+    private int endTime;
+
     /** The amount of drug that it has to be used. */
     private double infusionValue;
 

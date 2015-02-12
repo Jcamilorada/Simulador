@@ -144,6 +144,7 @@ public class PumpSolver
                     infusions.add(
                         createInfusionResponse(
                             time,
+                            time + delta,
                             infusion,
                             request.getPatient().getWeight(),
                             request.getDrugConcentration()));
@@ -228,11 +229,11 @@ public class PumpSolver
     }
 
     private InfusionResponse createInfusionResponse(
-        final int time, final double infusion, final int weight, final double drugConcentration)
+        final int time, final int endTime, final double infusion, final int weight, final double drugConcentration)
     {
         double infusionValue = infusion * 3.6/drugConcentration;
         double alternativeInfusionValue = InfusionUtil.convertUnits(infusionValue, weight, drugConcentration);
 
-        return new InfusionResponse(time, infusionValue, alternativeInfusionValue);
+        return new InfusionResponse(time, endTime, infusionValue, alternativeInfusionValue);
     }
 }
