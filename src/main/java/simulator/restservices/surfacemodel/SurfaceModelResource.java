@@ -47,7 +47,7 @@ public class SurfaceModelResource
     {
         double xValue = Double.parseDouble(x);
         double pnrValue = Double.parseDouble(pnr);
-        double value = SurfaceModelCalculator.getY(xValue, pnrValue);
+        Double value = SurfaceModelCalculator.getY(xValue, pnrValue);
 
         return new CalculationResponseDTO(value);
     }

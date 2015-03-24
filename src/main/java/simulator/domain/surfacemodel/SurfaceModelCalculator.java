@@ -90,7 +90,7 @@ public class SurfaceModelCalculator
         return xDataTable.get(y, pnr);
     }
 
-    public static double getY(final double x, final double pnr)
+    public static Double getY(final double x, final double pnr)
     {
         return xDataTable.get(x, pnr);
     }

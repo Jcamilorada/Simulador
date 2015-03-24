@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class CalculationResponseDTO
 {
-    private double value;
+    private Double value;
 }
