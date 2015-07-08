@@ -32,6 +32,10 @@ class EffectSiteValuesMapper extends AbstractBusinessObjectMapper<ESCComponentVa
         componentValuesDTO.setC2(DoubleUtil.roundDouble(businessObject.getC2(), decimalPlaces));
         componentValuesDTO.setC3(DoubleUtil.roundDouble(businessObject.getC3(), decimalPlaces));
         componentValuesDTO.setC4(DoubleUtil.roundDouble(businessObject.getC4(), decimalPlaces));
+        componentValuesDTO.setTotal(DoubleUtil.roundDouble(
+            businessObject.getC1() + businessObject.getC2() + businessObject.getC3() + businessObject.getC4(),
+            decimalPlaces));
+
         return componentValuesDTO;
     }
 }

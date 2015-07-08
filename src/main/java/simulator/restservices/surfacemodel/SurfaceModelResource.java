@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import simulator.common.DataPair;
 import simulator.domain.surfacemodel.SurfaceModelCalculator;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -17,8 +16,7 @@ import java.util.List;
 public class SurfaceModelResource
 {
     @RequestMapping("/x/{x}/y/{y}")
-    public
-    @ResponseBody
+    public @ResponseBody
     CalculationResponseDTO getPNR(@PathVariable String x, @PathVariable String y)
     {
         double xValue = Double.parseDouble(x);
@@ -64,7 +62,8 @@ public class SurfaceModelResource
     @RequestMapping(value = "/pnr_list", method = RequestMethod.PUT)
     public @ResponseBody List<Double>  pnrValues(final @RequestBody PNRCalculationRequestDTO pnrCalculationRequestDTO)
     {
-        List<Double> pnrListValues = SurfaceModelCalculator.caculateListPNR(pnrCalculationRequestDTO.getXvalues(), pnrCalculationRequestDTO.getYvalues());
+        List<Double> pnrListValues = SurfaceModelCalculator.caculateListPNR(
+            pnrCalculationRequestDTO.getXvalues(), pnrCalculationRequestDTO.getYvalues());
 
         return pnrListValues;
     }

@@ -12,4 +12,5 @@ public class ESCComponentValuesDTO
     private double c2;
     private double c3;
     private double c4;
+    private double total;
 }
