@@ -13,12 +13,12 @@ public class InfusionException extends IllegalArgumentException
     @Getter
     private final double concentration;
     @Getter
-    private final double time;
+    private final int time;
 
     public InfusionException(final double concentration, final int time)
     {
         this.concentration = Preconditions.checkNotNull(concentration);
-        this.time = Preconditions.checkNotNull(concentration);
+        this.time = Preconditions.checkNotNull(time);
     }
 
     @Override
