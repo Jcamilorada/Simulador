@@ -1,5 +1,6 @@
 package simulator.domain.infusion;
 
+import java.util.ArrayList;
 import lombok.Data;
 import simulator.common.exceptions.EnumCastException;
 
@@ -15,13 +16,13 @@ import simulator.domain.infusion.calculations.PlasmaComponentValues;
 @Data
 public class CalculationResponse
 {
-    ErrorCode errorCode = ErrorCode.NO_ERROR;
-    String ErrorMessage;
+    private ErrorCode errorCode = ErrorCode.NO_ERROR;
+    private String ErrorMessage;
 
-    List<ESCComponentValues> siteConcentrationsData;
-    List<PlasmaComponentValues> plasmaConcentrationsData;
-    List<InfusionResponse> infusionList;
-    List<Double> pnrData;
+    private List<ESCComponentValues> siteConcentrationsData = new ArrayList<>();
+    private List<PlasmaComponentValues> plasmaConcentrationsData = new ArrayList<>();
+    private List<InfusionResponse> infusionList = new ArrayList<>();
+    private List<Double> pnrData = new ArrayList<>();
 
     public static enum ErrorCode
     {
