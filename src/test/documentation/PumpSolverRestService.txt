@@ -4,40 +4,74 @@ Content-Type: application/json
 // Minto Test (Remifentanilo)
 {
    "model":0,
-   "deltaTime":300,
+   "deltaTime":900,
    "patient":{
-      "height":160,
-      "weight":55,
-      "age":22,
-      "gender":1
+      "name":"Juan Camilo Rada",
+      "height":170,
+      "weight":81,
+      "gender":"1",
+      "age":28
    },
    "pumpInfusion":[
       {
          "startTime":0,
-         "endTime":360,
-         "infusion":3.86
+         "endTime":900,
+         "infusion":8
       },
       {
-         "startTime":360,
-         "endTime":660,
-         "infusion":3.51
+         "startTime":900,
+         "endTime":1800,
+         "infusion":8
       },
       {
-         "startTime":1860,
-         "endTime":2160,
-         "infusion":2.69
+         "startTime":1800,
+         "endTime":2700,
+         "infusion":8
+      },
+      {
+         "startTime":2700,
+         "endTime":3600,
+         "infusion":8
+      },
+      {
+         "startTime":3600,
+         "endTime":4500,
+         "infusion":8
+      },
+      {
+         "startTime":4500,
+         "endTime":5400,
+         "infusion":8
       }
-   ]
+   ],
+   "componentValuesDTO":{
+      "c1":0,
+      "c2":0,
+      "c3":0,
+      "c4":0
+   },
+   "plasmaComponentValuesDTO":{
+      "p1":0,
+      "p2":0,
+      "p3":0
+   },
+   "drugConcentration":10
 }
 
-// Answer to model (Infusion List)
-0: {time: 0, infusionValue: 128.71}
-1: {time: 360, infusionValue: 43.58}
-2: {time: 660, infusionValue: 67.67}
-3: {time: 960, infusionValue: 62.66}
-4: {time: 1260, infusionValue: 63.62}
-5: {time: 1560, infusionValue: 63.29}
-6: {time: 1860, infusionValue: 31.02}
+// Answer to model (Infusion List) approximate
+
+ajuste la velocidad de infusión a: 163 ml/h ó 20 ug/kg/h
+tiempo transcurrido desde el inicio(hh:mm:ss): 00:00:00
+ajuste la velocidad de infusión a: 140 ml/h ó 17 ug/kg/h
+tiempo transcurrido desde el inicio(hh:mm:ss): 00:15:00
+ajuste la velocidad de infusión a: 137 ml/h ó 17 ug/kg/h
+tiempo transcurrido desde el inicio(hh:mm:ss): 00:30:00
+ajuste la velocidad de infusión a: 137 ml/h ó 17 ug/kg/h
+tiempo transcurrido desde el inicio(hh:mm:ss): 00:45:00
+ajuste la velocidad de infusión a: 136 ml/h ó 17 ug/kg/h
+tiempo transcurrido desde el inicio(hh:mm:ss): 01:00:00
+ajuste la velocidad de infusión a: 136 ml/h ó 17 ug/kg/h
+tiempo transcurrido desde el inicio(hh:mm:ss): 01:15:00
 
 // Schnider Test (Propofol)
 {
