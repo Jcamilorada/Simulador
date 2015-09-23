@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface ProcedureRepository extends CrudRepository<ProcedureBean, String>
 {
-    List<ProcedureBean> findByNameContainingOrCodeContaining(String name, String code);
+    List<ProcedureBean> findTop10ByNameContainingOrCodeContaining(String name, String code);
 }

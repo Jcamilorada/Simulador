@@ -30,7 +30,7 @@ public class ProcedureService implements IProcedureService
     public List<Procedure> getProcedures(final String searchText)
     {
         return procedureBeanMapper.newBusinessObjectList(
-            procedureRepository.findByNameContainingOrCodeContaining(searchText, searchText));
+            procedureRepository.findTop10ByNameContainingOrCodeContaining(searchText, searchText));
     }
 
     @Override
