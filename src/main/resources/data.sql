@@ -21,13 +21,14 @@ insert into procedures_types(id, name, examples, pnr) values (3, 'Medio', 'Masto
 insert into procedures_types(id, name, examples, pnr) values (4, 'Sedacion', 'Litotripsia', 15)
 insert into procedures_types(id, name, examples, pnr) values (5, 'Microcirugia', 'Reseccion de Tumor de Hipofisis', 50)
 
-insert into solutions (id, description, value) values(1 , '100 ml', 100);
-insert into solutions (id, description, value) values(2 , '200 ml', 200);
-insert into solutions (id, description, value) values(3 , '300 ml', 300);
-insert into solutions (id, description, value) values(4 , '500 ml', 500);
+insert into solutions (id, description, value) values(1 , '0 ml', 0);
+insert into solutions (id, description, value) values(2 , '50 ml', 50);
+insert into solutions (id, description, value) values(3 , '100 ml', 100);
+insert into solutions (id, description, value) values(4 , '250 ml', 250);
+insert into solutions (id, description, value) values(5 , '500 ml', 500);
 
-insert into drugs(id, name, drug_type, concentrations) values (1, 'Remifentanilo', 1, '10,20,30,40');
-insert into drugs(id, name, drug_type, concentrations) values (2, 'Propofol', 2, '10,20,30,40');
+insert into drugs(id, name, drug_type, concentrations) values (1, 'Remifentanilo', 1, '2000,5000');
+insert into drugs(id, name, drug_type, concentrations) values (2, 'Propofol', 2, '100,200,500');
 
 insert into induction_methods(id, name, pnr) values (1, 'Intubación', 90);
 insert into induction_methods(id, name, pnr) values (2, 'Mascara Laringea', 75);
