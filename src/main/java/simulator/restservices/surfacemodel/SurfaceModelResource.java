@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/sf")
 public class SurfaceModelResource
 {
-    @RequestMapping("/x/{x}/y/{y}")
+    @RequestMapping("/x/{x}/y/{y:.+}")
     public @ResponseBody
     CalculationResponseDTO getPNR(@PathVariable String x, @PathVariable String y)
     {

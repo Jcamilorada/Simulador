@@ -18,7 +18,8 @@ public class InductionMethodMapper extends AbstractBusinessObjectMapper<Inductio
         InductionMethod inductionMethod = new InductionMethod();
         inductionMethod.setId(businessObjectDTO.getId());
         inductionMethod.setName(businessObjectDTO.getName());
-        inductionMethod.setPnr(businessObjectDTO.getPnr());
+        inductionMethod.setProp(businessObjectDTO.getProp());
+        inductionMethod.setRemi(businessObjectDTO.getRemi());
 
         return inductionMethod;
     }
@@ -29,7 +30,8 @@ public class InductionMethodMapper extends AbstractBusinessObjectMapper<Inductio
         InductionMethodDTO inductionMethodDTO = new InductionMethodDTO();
         inductionMethodDTO.setId(businessObject.getId());
         inductionMethodDTO.setName(businessObject.getName());
-        inductionMethodDTO.setPnr(businessObject.getPnr());
+        inductionMethodDTO.setProp(businessObject.getProp());
+        inductionMethodDTO.setRemi(businessObject.getRemi());
 
         return inductionMethodDTO;
     }

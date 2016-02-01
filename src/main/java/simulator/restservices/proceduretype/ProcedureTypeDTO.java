@@ -6,10 +6,8 @@ import lombok.Data;
 public class ProcedureTypeDTO
 {
     private Long id;
-
     private String name;
-
     private String examples;
-
-    private Long PNR;
+    private double remi;
+    private double prop;
 }

@@ -13,7 +13,8 @@ public final class ProcedureTypeBeanMapper extends AbstractBusinessObjectBeanMap
         ProcedureTypeBean procedureTypeBean = new ProcedureTypeBean();
         procedureTypeBean.setId(businessObject.getId());
         procedureTypeBean.setName(businessObject.getName());
-        procedureTypeBean.setPNR(businessObject.getPNR());
+        procedureTypeBean.setRemi(businessObject.getRemi());
+        procedureTypeBean.setProp(businessObject.getProp());
         procedureTypeBean.setExamples(businessObject.getExamples());
 
         return procedureTypeBean;
@@ -25,7 +26,9 @@ public final class ProcedureTypeBeanMapper extends AbstractBusinessObjectBeanMap
         ProcedureType procedureType = new ProcedureType();
         procedureType.setId(businessObjectBean.getId());
         procedureType.setName(businessObjectBean.getName());
-        procedureType.setPNR(businessObjectBean.getPNR());
+        procedureType.setRemi(businessObjectBean.getRemi());
+        procedureType.setProp(businessObjectBean.getProp());
+
         procedureType.setExamples(businessObjectBean.getExamples());
 
         return procedureType;

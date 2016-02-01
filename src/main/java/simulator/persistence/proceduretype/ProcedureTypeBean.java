@@ -17,13 +17,12 @@ public class ProcedureTypeBean implements Serializable
 
     @Id
     private Long id;
-
     @Column
     private String name;
-
     @Column
     private String examples;
-
     @Column
-    private Long PNR;
+    private double remi;
+    @Column
+    private double prop;
 }

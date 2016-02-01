@@ -6,8 +6,7 @@ import lombok.Data;
 public class InductionMethod
 {
     private long id;
-
     private String name;
-
-    private int pnr;
+    private double remi;
+    private double prop;
 }

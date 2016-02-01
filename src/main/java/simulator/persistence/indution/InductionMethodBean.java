@@ -17,5 +17,7 @@ public class InductionMethodBean
     @Column
     private String name;
     @Column
-    private int pnr;
+    private double remi;
+    @Column
+    private double prop;
 }

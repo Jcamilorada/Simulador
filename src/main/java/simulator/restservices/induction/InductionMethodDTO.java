@@ -10,5 +10,6 @@ public class InductionMethodDTO
 {
     private long id;
     private String name;
-    private int pnr;
+    private double prop;
+    private double remi;
 }

@@ -13,7 +13,8 @@ public class InductionMethodBeanMapper extends AbstractBusinessObjectBeanMapper<
         InductionMethodBean inductionMethodBean = new InductionMethodBean();
         inductionMethodBean.setId(businessObject.getId());
         inductionMethodBean.setName(businessObject.getName());
-        inductionMethodBean.setPnr(businessObject.getPnr());
+        inductionMethodBean.setProp(businessObject.getProp());
+        inductionMethodBean.setRemi(businessObject.getRemi());
 
         return inductionMethodBean;
     }
@@ -22,9 +23,11 @@ public class InductionMethodBeanMapper extends AbstractBusinessObjectBeanMapper<
     public InductionMethod newBusinessObject(InductionMethodBean businessObjectBean)
     {
         InductionMethod inductionMethod = new InductionMethod();
-        inductionMethod.setPnr(businessObjectBean.getPnr());
         inductionMethod.setName(businessObjectBean.getName());
         inductionMethod.setId(businessObjectBean.getId());
+        inductionMethod.setProp(businessObjectBean.getProp());
+        inductionMethod.setRemi(businessObjectBean.getRemi());
+
 
         return inductionMethod;
     }

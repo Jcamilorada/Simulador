@@ -18,8 +18,9 @@ public class ProcedureTypeMapper extends AbstractBusinessObjectMapper<ProcedureT
         ProcedureType procedureType = new ProcedureType();
         procedureType.setName(businessObjectDTO.getName());
         procedureType.setId(businessObjectDTO.getId());
+        procedureType.setRemi(businessObjectDTO.getRemi());
+        procedureType.setProp(businessObjectDTO.getProp());
         procedureType.setExamples(businessObjectDTO.getExamples());
-        procedureType.setPNR(businessObjectDTO.getPNR());
 
         return  procedureType;
     }
@@ -30,8 +31,9 @@ public class ProcedureTypeMapper extends AbstractBusinessObjectMapper<ProcedureT
         ProcedureTypeDTO ProcedureTypeDTO = new ProcedureTypeDTO();
         ProcedureTypeDTO.setName(businessObject.getName());
         ProcedureTypeDTO.setId(businessObject.getId());
+        ProcedureTypeDTO.setRemi(businessObject.getRemi());
+        ProcedureTypeDTO.setProp(businessObject.getProp());
         ProcedureTypeDTO.setExamples(businessObject.getExamples());
-        ProcedureTypeDTO.setPNR(businessObject.getPNR());
 
         return  ProcedureTypeDTO;
     }
