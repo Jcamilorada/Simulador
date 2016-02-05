@@ -54,6 +54,7 @@ public class MintoModel implements IModel
         weightedGraph.put(2, 1, (cl2 / V2) / 60D);
         weightedGraph.put(3, 1, (cl3 / V3) / 60D);
         weightedGraph.put(4, 1, (0.595D - 0.007D * (patient.getAge() - 40)) / 60D);
+
         this.centralVolume= centralVolume * 1000;
     }
 

@@ -14,7 +14,7 @@ import lombok.Data;
 public class CalculationResponseDTO implements Serializable
 {
     int errorCode = 0;
+    List<InfusionResponseDTO> infusionList;
     List<ESCComponentValuesDTO> siteConcentrationsData;
     List<PlasmaComponentValuesDTO> plasmaConcentrationsData;
-    List<InfusionResponseDTO> infusionList;
 }
