@@ -1,36 +1,32 @@
 package simulator.restservices.proceduretype;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.domain.procedurestype.IProcedureTypeService;
-
-import java.util.List;
+import simulator.persistence.proceduretype.ProcedureTypeBean;
+import simulator.persistence.proceduretype.ProcedureTypeRepository;
 
 @Controller
 @RequestMapping("/procedures-types")
 public class ProcedureTypeResource
 {
-    private final IProcedureTypeService procedureTypeService;
-
-    private final ProcedureTypeMapper procedureTypeMapper;
+    private final ProcedureTypeRepository procedureTypeRepository;
 
     @Autowired
-    ProcedureTypeResource(
-        final IProcedureTypeService procedureTypeService,
-        final ProcedureTypeMapper procedureTypeMapper)
+    ProcedureTypeResource(ProcedureTypeRepository procedureTypeRepository)
     {
-        this.procedureTypeService = procedureTypeService;
-        this.procedureTypeMapper = procedureTypeMapper;
+        this.procedureTypeRepository = Preconditions.checkNotNull(procedureTypeRepository);
     }
 
     @RequestMapping
     public @ResponseBody
-    List<ProcedureTypeDTO> getProcedureTypes()
+    List<ProcedureTypeBean> getProcedureTypes()
     {
-        return procedureTypeMapper.newBusinessObjectDTOList(
-            procedureTypeService.getProcedureTypes());
+        return Lists.newArrayList(procedureTypeRepository.findAll());
     }
 }
 

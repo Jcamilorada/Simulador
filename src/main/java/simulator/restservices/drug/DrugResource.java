@@ -1,32 +1,29 @@
 package simulator.restservices.drug;
 
+import com.google.common.base.Preconditions;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.domain.drug.DrugService;
-import simulator.domain.drug.DrugType;
-
-import java.util.List;
+import simulator.persistence.drug.Drug;
+import simulator.persistence.drug.DrugRepository;
 
 @Controller
 public class DrugResource
 {
-    private final DrugService drugService;
-    private final DrugMapper drugMapper;
+    private final DrugRepository drugRepository;
 
     @Autowired
-    DrugResource(final DrugService drugService, final DrugMapper drugMapper)
+    DrugResource(final DrugRepository drugRepository)
     {
-        this.drugService = drugService;
-        this.drugMapper = drugMapper;
+        this.drugRepository = Preconditions.checkNotNull(drugRepository);
     }
 
     @RequestMapping("/drugs/type/{type}")
-    public @ResponseBody List<DrugDTO> getDrugs(@PathVariable int type)
+    public @ResponseBody List<Drug> getDrugs(@PathVariable int type)
     {
-        return drugMapper.newBusinessObjectDTOList(
-            drugService.findAllByType(DrugType.fromValue(type)));
+        return drugRepository.findByDrugType(type);
     }
 }

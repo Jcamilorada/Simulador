@@ -6,7 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.domain.parameter.IParameterService;
+import simulator.persistence.parameter.ParameterBean;
+import simulator.persistence.parameter.ParameterRepository;
 
 /**
  * @author Juan Camilo Rada
@@ -16,21 +17,19 @@ import simulator.domain.parameter.IParameterService;
 @Controller
 public class ParameterResource
 {
-    private final IParameterService parameterService;
-    private final ParameterMapper parameterMapper;
+    private final ParameterRepository parameterRepository;
 
     @Autowired
-    ParameterResource(final IParameterService parameterService, final ParameterMapper parameterMapper)
+    ParameterResource(final ParameterRepository parameterRepository)
     {
-        this.parameterService = Preconditions.checkNotNull(parameterService, "parameterService cannot be null");
-        this.parameterMapper = Preconditions.checkNotNull(parameterMapper, "parameterMapper cannot be null");
+        this.parameterRepository = Preconditions.checkNotNull(parameterRepository, "parameterRepository cannot be null");
     }
 
     @RequestMapping("/parameters/{id}")
     public
     @ResponseBody
-    ParameterDTO getParameter(final @PathVariable long id)
+    ParameterBean getParameter(final @PathVariable long id)
     {
-        return parameterMapper.newBusinessObjectDTO(parameterService.getParameter(id));
+        return parameterRepository.findOne(id);
     }
 }

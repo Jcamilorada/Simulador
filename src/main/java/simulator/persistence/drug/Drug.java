@@ -1,27 +1,32 @@
 package simulator.persistence.drug;
 
-import lombok.Data;
-
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.List;
+import lombok.Data;
+import simulator.persistence.common.StringIntegerListConverter;
 
 @Data
 @Entity()
 @Table(name = "drugs")
-public class DrugBean implements Serializable
+public class Drug implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     @Id
     private long id;
+
     @Column
     private String name;
+
     @Column(name = "drug_type")
     private int drugType;
+
     @Column
-    private String concentrations;
+    @Convert(converter = StringIntegerListConverter.class)
+    private List<Integer> concentrations;
 }

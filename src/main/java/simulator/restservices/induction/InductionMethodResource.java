@@ -1,13 +1,13 @@
 package simulator.restservices.induction;
 
 import com.google.common.base.Preconditions;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.domain.induction.InductionMethodService;
-
-import java.util.List;
+import simulator.persistence.indution.InductionMethodBean;
+import simulator.persistence.indution.InductionMethodRepository;
 
 /**
  * @author Juan Camilo Rada
@@ -15,20 +15,17 @@ import java.util.List;
 @Controller
 public class InductionMethodResource
 {
-    private final InductionMethodService inductionMethodService;
-    private final InductionMethodMapper inductionMethodMapper;
+    private final InductionMethodRepository inductionMethodRepository;
 
     @Autowired
-    InductionMethodResource(
-        final InductionMethodService inductionMethodService, final InductionMethodMapper inductionMethodMapper)
+    InductionMethodResource(final InductionMethodRepository inductionMethodRepository)
     {
-        this.inductionMethodService = Preconditions.checkNotNull(inductionMethodService);
-        this.inductionMethodMapper = Preconditions.checkNotNull(inductionMethodMapper);
+        this.inductionMethodRepository = Preconditions.checkNotNull(inductionMethodRepository);
     }
 
     @RequestMapping("/methods")
-    public @ResponseBody List<InductionMethodDTO> getInductionMethods()
+    public @ResponseBody List<InductionMethodBean> getInductionMethods()
     {
-        return inductionMethodMapper.newBusinessObjectDTOList(inductionMethodService.getInductionMethods());
+        return inductionMethodRepository.findAll();
     }
 }

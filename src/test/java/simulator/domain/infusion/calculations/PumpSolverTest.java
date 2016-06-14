@@ -52,8 +52,7 @@ public class PumpSolverTest
         patient.setGender(Gender.Male);
         IModel model = new SchiderModel(patient);
 
-        testInstance = new PumpSolver(mockPumpProperties);
-        testInstance.setModel(model);
+        testInstance = new PumpSolver(mockPumpProperties, model);
     }
 
     @Test
@@ -83,7 +82,7 @@ public class PumpSolverTest
         request.setEffectSiteValues(new ESCComponentValues());
         request.setPlasmaValues(new PlasmaComponentValues());
         IModel model = new MintoModel(patient);
-        testInstance.setModel(model);
+        testInstance = new PumpSolver(mockPumpProperties, model);
         CalculationResponse response = testInstance.solve(request);
     }
 

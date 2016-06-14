@@ -1,46 +1,42 @@
 package simulator.restservices.procedure;
 
+import com.google.common.base.Preconditions;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import simulator.domain.procedure.Procedure;
-import simulator.domain.procedure.IProcedureService;
-
-import java.util.List;
+import simulator.persistence.procedure.ProcedureBean;
+import simulator.persistence.procedure.ProcedureRepository;
 
 @Controller
 @RequestMapping("/procedures")
 public class ProcedureResource
 {
-    private final IProcedureService prodecureService;
-    private final ProcedureMapper procedureMapper;
+    private final ProcedureRepository procedureRepository;
 
     @Autowired
     ProcedureResource(
-        final IProcedureService prodecureService, final ProcedureMapper procedureMapper)
+        final ProcedureRepository procedureRepository)
     {
-        this.prodecureService = prodecureService;
-        this.procedureMapper = procedureMapper;
+        this.procedureRepository = Preconditions.checkNotNull(procedureRepository);
     }
 
     @RequestMapping("search/{keyword}")
     public
     @ResponseBody
-    List<ProcedureDTO> getProcedures(@PathVariable final String keyword)
+    List<ProcedureBean> getProcedures(@PathVariable final String keyword)
     {
-        return procedureMapper.newBusinessObjectDTOList(
-            prodecureService.getProcedures(keyword));
+        return procedureRepository.findTop10ByNameContainingOrCodeContaining(keyword, keyword);
     }
 
     @RequestMapping("/{id}")
     public
     @ResponseBody
-    ProcedureDTO getProcedure(@PathVariable final String id)
+    ProcedureBean getProcedure(@PathVariable final String id)
     {
-        return procedureMapper.newBusinessObjectDTO(
-            prodecureService.findProcedure(id));
+        return procedureRepository.findOne(id);
     }
 }
 

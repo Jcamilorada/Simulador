@@ -1,7 +1,7 @@
 package simulator.persistence.indution;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface InductionMethodRepository extends CrudRepository<InductionMethodBean, Long>
+public interface InductionMethodRepository extends JpaRepository<InductionMethodBean, Long>
 {
 }

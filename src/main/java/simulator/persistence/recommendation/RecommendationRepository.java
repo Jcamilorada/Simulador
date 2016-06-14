@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface RecommendationRepository extends CrudRepository<RecommendationBean, Long>
 {
-    public List<RecommendationBean> findByType(final int type);
+    List<RecommendationBean> findByType(final int type);
 }

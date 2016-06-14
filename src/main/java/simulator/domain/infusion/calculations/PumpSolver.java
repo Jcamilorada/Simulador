@@ -1,15 +1,16 @@
 package simulator.domain.infusion.calculations;
 
 import com.google.common.base.Preconditions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import simulator.common.infusion.InfusionUtil;
-import simulator.configuration.PumpProperties;
-import simulator.domain.infusion.*;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import simulator.common.infusion.InfusionUtil;
+import simulator.configuration.PumpProperties;
+import simulator.domain.infusion.CalculationRequest;
+import simulator.domain.infusion.CalculationResponse;
+import simulator.domain.infusion.InfusionException;
+import simulator.domain.infusion.InfusionRequest;
+import simulator.domain.infusion.InfusionResponse;
 import simulator.domain.infusion.model.IModel;
 
 /**
@@ -18,7 +19,6 @@ import simulator.domain.infusion.model.IModel;
  *
  * @author Alejandro Valdes
  */
-@Component
 public class PumpSolver
 {
     private final PumpProperties pumpProperties;
@@ -32,10 +32,10 @@ public class PumpSolver
     private double l3;
     private double l4;
 
-    @Autowired
-    public PumpSolver(final PumpProperties pumpProperties)
+    public PumpSolver(final PumpProperties pumpProperties, final IModel model)
     {
         this.pumpProperties = Preconditions.checkNotNull(pumpProperties);
+        this.setupModel(Preconditions.checkNotNull(model));
     }
 
     /**
@@ -44,7 +44,7 @@ public class PumpSolver
      *
      * @param model an instance of {@link IModel}.
      */
-    public void setModel(final IModel model)
+    private void setupModel(final IModel model)
     {
         this.model = Preconditions.checkNotNull(model);
 
