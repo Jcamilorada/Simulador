@@ -44,6 +44,7 @@ public class InfusionResource
     {
         CalculationRequest request = requestMapper.newBusinessObject(requestDTO);
         CalculationResponse response = infusionService.processSimulation(request);
+
         return responseMapper.newBusinessObjectDTO(response);
     }
 }
